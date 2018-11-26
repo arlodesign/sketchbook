@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const handlebars = require('handlebars');
 const chokidar = require('chokidar');
@@ -6,8 +7,8 @@ const chokidar = require('chokidar');
 const app = express();
 const port = 8080;
 
-const sketchFiles = fs.readdirSync('./sketches/').reverse();
-const template = fs.readFileSync('./template.hbs', 'utf8');
+const sketchFiles = fs.readdirSync('./sketches/').reverse().map(sketch => path.basename(sketch, '.js'));
+const template = fs.readFileSync('./page.hbs', 'utf8');
 const html = handlebars.compile(template);
 
 app.use('/js', express.static('sketches'));
@@ -15,7 +16,8 @@ app.use('/js', express.static('sketches'));
 function getContext(currentSketch) {
   return {
     sketches: sketchFiles.map(sketchFile => ({
-      sketch: sketchFile,
+      sketch: sketchFile + '.js',
+      url: sketchFile,
       isCurrent: sketchFile === currentSketch
     })),
     currentSketch

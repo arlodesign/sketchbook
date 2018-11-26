@@ -1,10 +1,11 @@
 {
   "name": "sketchbook",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Experiments with p5.js",
   "scripts": {
-    "start": "node server.js",
-    "generate": "node generate.js"
+    "serve": "node scripts/serve.js",
+    "sketch": "node scripts/sketch.js",
+    "share": "node scripts/share.js"
   },
   "repository": "git@github.com:arlodesign/sketchbook.git",
   "author": "mail@arlo.me",
@@ -20,6 +21,8 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.15.2"
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.15.2",
+    "rimraf": "^2.6.2"
   }
 }
