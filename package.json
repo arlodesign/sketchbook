@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Experiments with p5.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "generate": "node generate.js"
   },
   "repository": "git@github.com:arlodesign/sketchbook.git",
   "author": "mail@arlo.me",
