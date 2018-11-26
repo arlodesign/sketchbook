@@ -11,16 +11,20 @@ const html = handlebars.compile(template);
 
 app.use('/js', express.static('sketches'));
 
-app.get('/*', (req, res) => {
-  const currentSketch = req.params ? req.params[0] : sketchFiles[0];
-  const context = {
+function getContext(currentSketch) {
+  return {
     sketches: sketchFiles.map(sketchFile => ({
       sketch: sketchFile,
       isCurrent: sketchFile === currentSketch
     })),
     currentSketch
-  }
-  res.send(html(context));
+  };
+}
+app.get('/', (req, res) => {
+  res.send(html(getContext(sketchFiles[0])));
+});
+app.get('/sketch/:file', (req, res) => {
+  res.send(html(getContext(req.params.file)));
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
