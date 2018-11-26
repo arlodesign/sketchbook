@@ -22,7 +22,9 @@ function getContext(currentSketch) {
   };
 }
 
+// delete dist folder just in case
 rimraf.sync('./dist');
+
 fs.mkdirSync('./dist');
 fs.mkdirSync('./dist/sketch');
 fs.mkdirSync('./dist/js');
@@ -36,4 +38,5 @@ fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
 ghpages.publish('./dist', error => {
   if (error) throw error;
   console.log('Published');
+  rimraf.sync('./dist');
 })
