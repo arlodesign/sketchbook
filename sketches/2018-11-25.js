@@ -1,6 +1,7 @@
-var angle = 2;
-var scalar = 3;
-var speed = 0.3;
+const speed = 0.3;
+
+let angle = 2;
+let scalar = 3;
 
 function setup() {
   const myCanvas = createCanvas(660, 840);
@@ -11,9 +12,9 @@ function setup() {
 }
 
 function draw() {
-  var x = (width / 2) + cos(angle) * scalar;
-  var y = (height / 2) + sin(angle) * scalar;
-  var rectWidth = scalar / speed;
+  const x = (width / 2) + cos(angle) * scalar;
+  const y = (height / 2) + sin(angle) * scalar;
+  const rectWidth = scalar / speed;
   rotate(PI / angle);
   rect(x, y, rectWidth, 1);
   if (rectWidth > width) {

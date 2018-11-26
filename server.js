@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const handlebars = require('handlebars');
 
-const app = express()
+const app = express();
 const port = 8080;
 
 const sketchFiles = fs.readdirSync('./sketches/').reverse();
@@ -23,4 +23,4 @@ app.get('/*', (req, res) => {
   res.send(html(context));
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
