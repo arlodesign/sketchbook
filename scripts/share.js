@@ -17,7 +17,8 @@ function getContext(currentSketch) {
       url: sketchFile,
       isCurrent: sketchFile === currentSketch
     })),
-    currentSketch
+    currentSketch,
+    local: false
   };
 }
 

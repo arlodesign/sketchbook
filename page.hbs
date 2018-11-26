@@ -71,11 +71,13 @@
   </nav>
   <script src="https://www.unpkg.com/p5"></script>
   <script src="/js/{{currentSketch}}.js"></script>
+  {{#if local}}
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
     socket.on('update', msg => location.reload());
   </script>
+  {{/if}}
 </body>
 
 </html>

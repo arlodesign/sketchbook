@@ -20,7 +20,8 @@ function getContext(currentSketch) {
       url: sketchFile,
       isCurrent: sketchFile === currentSketch
     })),
-    currentSketch
+    currentSketch,
+    local: true
   };
 }
 app.get('/', (_, res) => res.send(html(getContext(sketchFiles[0]))));
