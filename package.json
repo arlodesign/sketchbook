@@ -10,8 +10,10 @@
   "author": "mail@arlo.me",
   "license": "MIT",
   "dependencies": {
+    "chokidar": "^2.0.4",
     "express": "^4.16.4",
-    "handlebars": "^4.0.12"
+    "handlebars": "^4.0.12",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "eslint": "^5.3.0",

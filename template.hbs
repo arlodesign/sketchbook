@@ -12,10 +12,8 @@
     body {
       width: 660px;
       margin: .5em auto;
-    }
-
-    #my-canvas {
-      box-shadow: 0 0 1px 1px black;
+      background: #111;
+      color: #eee;
     }
 
     h1 {
@@ -49,10 +47,8 @@
       padding: 0 1ch 0 0;
     }
 
-    a.is-current {
+    a {
       color: currentColor;
-      font-weight: bold;
-      text-decoration: none;
     }
   </style>
 </head>
@@ -65,7 +61,7 @@
       {{#each sketches}}
       <li>
         {{#if isCurrent}}
-        <a href="/sketch/{{sketch}}" class="is-current">{{sketch}}</a>
+        <strong>{{sketch}}</strong>
         {{else}}
         <a href="/sketch/{{sketch}}">{{sketch}}</a>
         {{/if}}
@@ -75,6 +71,11 @@
   </nav>
   <script src="https://www.unpkg.com/p5"></script>
   <script src="/js/{{currentSketch}}"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('update', msg => location.reload());
+  </script>
 </body>
 
 </html>

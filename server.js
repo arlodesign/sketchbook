@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const handlebars = require('handlebars');
+const chokidar = require('chokidar');
 
 const app = express();
 const port = 8080;
@@ -20,11 +21,17 @@ function getContext(currentSketch) {
     currentSketch
   };
 }
-app.get('/', (req, res) => {
-  res.send(html(getContext(sketchFiles[0])));
-});
-app.get('/sketch/:file', (req, res) => {
-  res.send(html(getContext(req.params.file)));
+app.get('/', (_, res) => res.send(html(getContext(sketchFiles[0]))));
+app.get('/sketch/:file', (req, res) => res.send(html(getContext(req.params.file))));
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+io.on('connection', socket => {
+  const watcher = chokidar.watch('./sketches/*', {
+    ignored: /(^|[\/\\])\../,
+    persistent: true
+  });
+  watcher.on('change', () => io.emit('update'));
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+http.listen(port, () => console.log(`Listening on port ${port}`));

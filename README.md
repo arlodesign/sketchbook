@@ -2,4 +2,6 @@
 
 This repo is my sketchbook for working with [p5.js](https://p5js.org).
 
-I’m using [Visual Studio Code](https://code.visualstudio.com/) with [p5canvas](https://github.com/pixelkind/p5canvas), which is why you don't see any sort of build environment.
+To start the server, run `npm start` or `yarn start`.
+
+To create a new sketch, run `npm generate` or `yarn generate`.
