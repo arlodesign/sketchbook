@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sketches | 2018-11-26</title>
+  <style>
+    * {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      width: 660px;
+      margin: .5em auto;
+      background: #111;
+      color: #eee;
+    }
+
+    h1 {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    nav {
+      padding: .5em 0 0;
+    }
+
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul {
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0;
+      padding: 0 1ch 0 0;
+    }
+
+    a {
+      color: currentColor;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>2018-11-26</h1>
+  <div class="frame" id="my-canvas"></div>
+  <nav>
+    <ul class="nav">
+      <li>
+        <strong>2018-11-26</strong>
+      </li>
+      <li>
+        <a href="/sketch/2018-11-25">2018-11-25</a>
+      </li>
+      <li>
+        <a href="/sketch/2018-11-24">2018-11-24</a>
+      </li>
+    </ul>
+  </nav>
+  <script src="https://www.unpkg.com/p5"></script>
+  <script src="/js/2018-11-26.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('update', msg => location.reload());
+  </script>
+</body>
+
+</html>
