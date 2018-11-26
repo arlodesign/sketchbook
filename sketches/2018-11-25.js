@@ -2,10 +2,13 @@ var angle = 2;
 var scalar = 3;
 var speed = 0.3;
 
-noStroke();
-fill(0);
-// rectMode(CENTER);
-background("white");
+function setup() {
+  const myCanvas = createCanvas(660, 840);
+  myCanvas.parent('my-canvas');
+  noStroke();
+  fill(0);
+  background("white");
+}
 
 function draw() {
   var x = (width / 2) + cos(angle) * scalar;

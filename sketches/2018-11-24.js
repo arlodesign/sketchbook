@@ -1,4 +1,8 @@
-background('white');
+function setup() {
+  const myCanvas = createCanvas(660, 840);
+  myCanvas.parent('my-canvas');
+  background('white');
+}
 
 function draw() {
   rectMode(CENTER);
