@@ -6,9 +6,9 @@ let scalar = 3;
 function setup() {
   const myCanvas = createCanvas(660, 840);
   myCanvas.parent('my-canvas');
+  background("white");
   noStroke();
   fill(0);
-  background("white");
 }
 
 function draw() {
