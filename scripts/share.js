@@ -37,6 +37,6 @@ fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
 
 ghpages.publish('./dist', error => {
   if (error) throw error;
-  console.log('Published');
+  console.log('🎉 Published');
   rimraf.sync('./dist');
 })

@@ -7,6 +7,7 @@
   <style>
     * {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 1rem;
     }
 
     body {
@@ -18,7 +19,7 @@
 
     h1 {
       position: absolute;
-      left: -10000px;
+      left: -100%;
       top: auto;
       width: 1px;
       height: 1px;
@@ -69,8 +70,14 @@
       {{/each}}
     </ul>
   </nav>
+  <h2></h2>
   <script src="https://www.unpkg.com/p5"></script>
   <script src="/js/{{currentSketch}}.js"></script>
+  <script>
+    if (window.sketchHeadline) {
+      document.querySelector('h2').innerHTML = window.sketchHeadline;
+    }
+  </script>
   {{#if local}}
   <script src="/socket.io/socket.io.js"></script>
   <script>

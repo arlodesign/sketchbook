@@ -37,4 +37,4 @@ io.on('connection', socket => {
   watcher.on('change', () => io.emit('update'));
 });
 
-http.listen(port, () => console.log(`Listening on port ${port}`));
+http.listen(port, () => console.log(`👂 Listening at http://localhost:${port}/`));
