@@ -1,18 +1,21 @@
+let count = 0;
+const total = 500;
+
 function setup() {
   const myCanvas = createCanvas(660, 840);
   myCanvas.parent('my-canvas');
+  background('white');
   strokeWeight(4);
   noLoop();
 }
 
 function draw() {
-  background('white');
-
-  for (let i = 0; i < 1000; i++) {
+  while (count < total) {
     triangle(
       0, 0,
       width, random(0, height),
       random(0, width), height
     );
+    count++;
   }
 }
