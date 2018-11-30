@@ -1,6 +1,6 @@
 window.sketchHeadline = "Move pointer over sketch.";
 
-const scalar = 15;
+const scalar = 9;
 
 let diagonal;
 let gridWidth;
@@ -42,7 +42,7 @@ function draw() {
       strokeWeight(map(
         distanceFromPointer,
         0, diagonal,
-        2, 1
+        2, 0
       ));
       rect(x, y, rectSize, rectSize);
     }
