@@ -52,6 +52,11 @@
       color: currentColor;
     }
   </style>
+  {{#if local}}
+  <!-- RSS LINK GOES HERE -->
+  {{else}}
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="//sketchbook.arlo.me/feed.rss">
+  {{/if}}
 </head>
 
 <body>
