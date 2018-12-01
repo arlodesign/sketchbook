@@ -50,6 +50,7 @@ sketchFiles.forEach(sketch => {
 });
 fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
 fs.writeFileSync('./dist/feed.rss', feed.xml());
+fs.writeFileSync('./dist/CNAME', "sketchbook.arlo.me");
 
 ghpages.publish('./dist', error => {
   if (error) throw error;
