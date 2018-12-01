@@ -1,3 +1,7 @@
+window.sketchHeadline = `
+  <a href="javascript: location.reload()">Refresh</a>
+`;
+
 const size = 20;
 
 let scalar = 0;

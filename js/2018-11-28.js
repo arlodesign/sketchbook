@@ -1,3 +1,7 @@
+window.sketchHeadline = `
+  <a href="javascript: location.reload()">Refresh</a>
+`;
+
 let angle = 0;
 let scalar = 0;
 let speed;
