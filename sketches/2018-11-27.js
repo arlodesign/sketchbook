@@ -1,3 +1,7 @@
+window.sketchHeadline = `
+  <a href="javascript: location.reload()">Refresh</a>
+`;
+
 let count = 0;
 const total = 500;
 
