@@ -11,10 +11,15 @@ const sketchFiles = fs
   .readdirSync('./sketches/')
   .reverse()
   .map(sketch => path.basename(sketch, '.js'));
-const template = fs.readFileSync('./page.hbs', 'utf8');
-const html = handlebars.compile(template);
 
-app.use('/js', express.static('sketches'));
+let template;
+let html;
+
+function updateTemplate() {
+  template = fs.readFileSync('./page.hbs', 'utf8');
+  html = handlebars.compile(template);
+}
+updateTemplate();
 
 function getContext(currentSketch) {
   return {
@@ -27,6 +32,8 @@ function getContext(currentSketch) {
     local: true
   };
 }
+
+app.use('/js', express.static('sketches'));
 app.get('/', (_, res) =>
   res.send(html(getContext(sketchFiles[0]))));
 app.get('/sketch/:file', (req, res) =>
@@ -36,11 +43,18 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 io.on('connection', socket => {
-  const watcher = chokidar.watch('./sketches/*', {
+  const sketchWatcher = chokidar.watch('./sketches/*', {
     ignored: /(^|[\/\\])\../,
     persistent: true
   });
-  watcher.on('change', () => io.emit('update'));
+  sketchWatcher.on('change', () => io.emit('update'));
+  const templateWatcher = chokidar.watch('./page.hbs', {
+    persistent: true
+  });
+  templateWatcher.on('change', () => {
+    updateTemplate();
+    io.emit('update');
+  })
 });
 
 http.listen(port, () => console.log(`👂 Listening at http://localhost:${port}/`), );
