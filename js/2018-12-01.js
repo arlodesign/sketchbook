@@ -8,7 +8,7 @@ function setup() {
   const myCanvas = createCanvas(660, 840);
   myCanvas.parent('my-canvas');
   strokeWeight(3);
-  fill(0);
+  fill(1);
 }
 
 function draw() {
