@@ -1,5 +1,5 @@
 const ghpages = require('gh-pages');
-const build = require('./dist');
+const build = require('./build');
 
 build();
 
