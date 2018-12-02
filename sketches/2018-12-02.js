@@ -1,6 +1,7 @@
 window.sketchHeadline = "Move pointer over sketch.";
 
 const circleGap = 30;
+const noiseScale = 0.02;
 
 function setup() {
   pixelDensity(4);
@@ -12,7 +13,7 @@ function setup() {
 function draw() {
   background('white');
 
-  let i = 1;
+  let i = .2;
   let y = map(
     mouseY,
     0, height,
@@ -22,9 +23,10 @@ function draw() {
   let strokeWeightValue = 5;
 
   while (y > mouseY - (width * 2)) {
+    const noiseVal = noise(mouseX * noiseScale, y * noiseScale);
     strokeWeight(i);
-    ellipse(width / 2, y, width);
-    ellipse(width / 2, height - y, width);
+    ellipse((width / 2) * noiseVal, y, width);
+    ellipse((width / 2) * noiseVal, height - y, width);
     i += .1;
     y -= circleGap;
   }
