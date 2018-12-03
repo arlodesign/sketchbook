@@ -11,7 +11,6 @@ build(true);
 app.use(
   '/',
   express.static('./dist', {
-    index: false,
     extensions: ['html']
   })
 );
