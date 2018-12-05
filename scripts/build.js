@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const handlebars = require('handlebars');
 const rimraf = require('rimraf');
+const copydir = require('copy-dir');
 const rss = require('rss');
 
 module.exports = (local = false) => {
@@ -36,6 +37,7 @@ module.exports = (local = false) => {
 
   fs.existsSync('./dist') ? rimraf.sync('./dist/*') : fs.mkdirSync('./dist');
   fs.mkdirSync('./dist/sketch');
+  fs.mkdirSync('./dist/images');
   fs.mkdirSync('./dist/js');
 
   sketchFiles.forEach(sketch => {
@@ -50,4 +52,5 @@ module.exports = (local = false) => {
   fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
   fs.writeFileSync('./dist/feed.rss', feed.xml());
   fs.writeFileSync('./dist/CNAME', "sketchbook.arlo.me");
+  copydir.sync('./images', './dist/images');
 };

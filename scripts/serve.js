@@ -21,7 +21,12 @@ const io = require('socket.io')(http);
 io.on('connection', socket => {
   chokidar
     .watch('.', {
-      ignored: [/(^|[\/\\])\../, './dist/**/*', './scripts/**/*'],
+      ignored: [
+        /(^|[\/\\])\../,
+        './dist/**/*',
+        './scripts/**/*',
+        './images/**/*'
+      ],
       persistent: true
     })
     .on('change', () => {
