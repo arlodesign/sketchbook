@@ -21,15 +21,15 @@
       margin: .5em auto;
       background: #111;
       display: grid;
-      grid-template-columns: 12ch 1fr;
+      grid-template-columns: 1fr 12ch;
     }
-    header {
+    nav {
       grid-column-start: 2;
       grid-column-end: 3;
       grid-row-start: 2;
       grid-row-end: 3;
     }
-    nav {
+    header {
       grid-column-start: 1;
       grid-column-end: 2;
       grid-row-start: 2;
@@ -42,7 +42,7 @@
       grid-row-end: 2;
       padding-bottom: 1.2rem;
     }
-    h1 {
+    .large {
       font-size: 2rem;
     }
     ul,
@@ -59,22 +59,38 @@
 
 <body>
   <header>
-    <h1>{{currentSketch}}</h1>
+    <h1 class="large">{{currentSketch}}</h1>
     <p></p>
   </header>
   <main class="frame" id="my-canvas"></main>
   <nav>
-    <ul class="nav">
-      {{#each sketches}}
-      <li>
-        {{#if isCurrent}}
-        <strong>{{url}}</strong>
-        {{else}}
-        <a href="/sketch/{{url}}">{{url}}</a>
-        {{/if}}
-      </li>
-      {{/each}}
-    </ul>
+    <div>
+      {{#if prevSketch}}
+      <a href="/sketch/{{prevSketch}}" class="large" aria-label="{{prevSketch}}">←</a>
+      {{else}}<span class="large" aria-hidden="true">←</span>
+      {{/if}}
+
+      <a class="large" href="/" aria-label="{{url}}">•</a>
+
+      {{#if nextSketch}}
+      <a href="/sketch/{{nextSketch}}" class="large" aria-label="{{nextSketch}}">→</a>
+      {{else}}<span class="large" aria-hidden="true">→</span>
+      {{/if}}
+    </div>
+    <details>
+      <summary>Index</summary>
+      <ul class="nav">
+        {{#each sketches}}
+        <li>
+          {{#if isCurrent}}
+          <strong>{{url}}</strong>
+          {{else}}
+          <a href="/sketch/{{url}}">{{url}}</a>
+          {{/if}}
+        </li>
+        {{/each}}
+      </ul>
+    </details>
   </nav>
   <script src="https://www.unpkg.com/p5"></script>
   <script src="/js/{{currentSketch}}.js"></script>

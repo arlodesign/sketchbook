@@ -24,6 +24,12 @@ module.exports = (local = false) => {
   console.log('🛠 Building pages...');
 
   function getContext(currentSketch) {
+    const currentSketchIndex = sketchFiles.findIndex(sketch => sketch === currentSketch);
+    const nextSketchIndex = currentSketchIndex - 1;
+    const nextSketch = nextSketchIndex >= 0 ? sketchFiles[nextSketchIndex] : false;
+    const prevSketchIndex = currentSketchIndex + 1;
+    const prevSketch = prevSketchIndex < sketchFiles.length ? sketchFiles[prevSketchIndex] : false;
+
     return {
       sketches: sketchFiles.map(sketchFile => ({
         sketch: sketchFile + '.js',
@@ -31,6 +37,8 @@ module.exports = (local = false) => {
         isCurrent: sketchFile === currentSketch
       })),
       currentSketch,
+      prevSketch,
+      nextSketch,
       local
     };
   }
