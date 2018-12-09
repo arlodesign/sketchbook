@@ -1,6 +1,4 @@
-window.sketchHeadline = `
-  <a href="javascript: location.reload()">Refresh</a>
-`;
+window.sketchHeadline = 'Reload page for a different variation.';
 
 let count = 0;
 const total = 500;
@@ -15,11 +13,7 @@ function setup() {
 
 function draw() {
   while (count < total) {
-    triangle(
-      0, 0,
-      width, random(0, height),
-      random(0, width), height
-    );
+    triangle(0, 0, width, random(0, height), random(0, width), height);
     count++;
   }
 }

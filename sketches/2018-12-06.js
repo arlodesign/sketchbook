@@ -1,6 +1,4 @@
-window.sketchHeadline = `Click to draw.
-  <a href="javascript: location.reload()">Refresh</a>
-`;
+window.sketchHeadline = 'Click to draw.';
 
 const speed = 6;
 
