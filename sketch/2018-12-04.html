@@ -21,15 +21,15 @@
       margin: .5em auto;
       background: #111;
       display: grid;
-      grid-template-columns: 12ch 1fr;
+      grid-template-columns: 1fr 12ch;
     }
-    header {
+    nav {
       grid-column-start: 2;
       grid-column-end: 3;
       grid-row-start: 2;
       grid-row-end: 3;
     }
-    nav {
+    header {
       grid-column-start: 1;
       grid-column-end: 2;
       grid-row-start: 2;
@@ -42,7 +42,7 @@
       grid-row-end: 2;
       padding-bottom: 1.2rem;
     }
-    h1 {
+    .large {
       font-size: 2rem;
     }
     ul,
@@ -55,55 +55,68 @@
 
 <body>
   <header>
-    <h1>2018-12-04</h1>
+    <h1 class="large">2018-12-04</h1>
     <p></p>
   </header>
   <main class="frame" id="my-canvas"></main>
   <nav>
-    <ul class="nav">
-      <li>
-        <a href="/sketch/2018-12-07">2018-12-07</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-12-06">2018-12-06</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-12-05">2018-12-05</a>
-      </li>
-      <li>
-        <strong>2018-12-04</strong>
-      </li>
-      <li>
-        <a href="/sketch/2018-12-03">2018-12-03</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-12-02">2018-12-02</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-12-01">2018-12-01</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-30">2018-11-30</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-29">2018-11-29</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-28">2018-11-28</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-27">2018-11-27</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-26">2018-11-26</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-25">2018-11-25</a>
-      </li>
-      <li>
-        <a href="/sketch/2018-11-24">2018-11-24</a>
-      </li>
-    </ul>
+    <div>
+      <a href="/sketch/2018-12-03" class="large" aria-label="2018-12-03">←</a>
+      
+      <a class="large" href="/" aria-label="">•</a>
+
+      <a href="/sketch/2018-12-05" class="large" aria-label="2018-12-05">→</a>
+          </div>
+    <details>
+      <summary>Index</summary>
+      <ul class="nav">
+        <li>
+          <a href="/sketch/2018-12-09">2018-12-09</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-07">2018-12-07</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-06">2018-12-06</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-05">2018-12-05</a>
+        </li>
+        <li>
+          <strong>2018-12-04</strong>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-03">2018-12-03</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-02">2018-12-02</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-12-01">2018-12-01</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-30">2018-11-30</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-29">2018-11-29</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-28">2018-11-28</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-27">2018-11-27</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-26">2018-11-26</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-25">2018-11-25</a>
+        </li>
+        <li>
+          <a href="/sketch/2018-11-24">2018-11-24</a>
+        </li>
+      </ul>
+    </details>
   </nav>
   <script src="https://www.unpkg.com/p5"></script>
   <script src="/js/2018-12-04.js"></script>
