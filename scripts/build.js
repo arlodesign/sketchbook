@@ -61,4 +61,5 @@ module.exports = (local = false) => {
   fs.writeFileSync('./dist/feed.rss', feed.xml());
   fs.writeFileSync('./dist/CNAME', "sketchbook.arlo.me");
   copydir.sync('./images', './dist/images');
+  fs.copyFileSync('./node_modules/p5/lib/p5.min.js', './dist/js/p5.min.js');
 };
