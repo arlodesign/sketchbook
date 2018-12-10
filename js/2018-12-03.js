@@ -1,6 +1,4 @@
-window.sketchHeadline = `
-  <a href="javascript: location.reload()">Refresh</a>
-`;
+window.sketchHeadline = 'Reload page for a different variation.';
 
 let jump = 0;
 let scalar = 0;
@@ -20,8 +18,8 @@ function setup() {
 }
 
 function draw() {
-  const x = (width * .666) + cos(angle) * scalar;
-  const y = (height * .666) + sin(angle) * scalar;
+  const x = width * 0.666 + cos(angle) * scalar;
+  const y = height * 0.666 + sin(angle) * scalar;
   const noiseVal = noise(x, y);
 
   if (x > 0 && y > 0 && x < width && y < height) {

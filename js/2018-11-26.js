@@ -1,6 +1,4 @@
-window.sketchHeadline = `
-  <a href="javascript: location.reload()">Refresh</a>
-`;
+window.sketchHeadline = 'Reload page for a different variation.';
 
 const size = 20;
 
@@ -23,17 +21,19 @@ function setup() {
 }
 
 function draw() {
-  const x = (width / 2) + cos(angle) * scalar;
-  const y = (height / 2) + sin(angle) * scalar;
+  const x = width / 2 + cos(angle) * scalar;
+  const y = height / 2 + sin(angle) * scalar;
 
   ellipse(x, y, random(size / 3, size));
 
   angle += speed;
 
-  if (startX > x - speed &&
+  if (
+    startX > x - speed &&
     startX < x + speed &&
     startY > y - speed &&
-    startY < y + speed) {
+    startY < y + speed
+  ) {
     startX = x;
     startY = y;
     scalar += speed;

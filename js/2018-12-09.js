@@ -1,6 +1,4 @@
-window.sketchHeadline = `
-  <a href="javascript: location.reload()">Refresh</a>
-`;
+window.sketchHeadline = 'Reload page for a different variation.';
 
 const goldenRatio = 1.6180339887;
 
@@ -19,7 +17,7 @@ function setup() {
   apex = {
     width: width / goldenRatio,
     height: height / goldenRatio
-  }
+  };
   spin = random(1, 3) * Math.random();
   grow = spin * noise(spin) * 10;
 }
@@ -40,6 +38,6 @@ function draw() {
   line(apex.width, apex.height, x2, y2);
 
   if (x > width * goldenRatio && y > height * goldenRatio) {
-    noLoop()
+    noLoop();
   }
 }
