@@ -1,5 +1,3 @@
-window.sketchHeadline = "";
-
 const size = 60;
 
 function setup() {
