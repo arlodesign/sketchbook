@@ -51,3 +51,9 @@ function draw() {
   );
   pop();
 }
+
+function touchMoved() {
+  if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
+    return false
+  };
+}

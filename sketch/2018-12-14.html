@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=660px">
   <title>Sketches | 2018-12-14</title>
   <style>
     html {
-      font-size: 14px;
+      font-size: 18px;
       line-height: 1.4;
     }
     * {
@@ -18,7 +19,7 @@
     }
     body {
       width: 660px;
-      margin: .5em auto;
+      margin: 0 auto 1em;
       background: #111;
       display: grid;
       grid-template-columns: 1fr 12ch;
@@ -34,6 +35,7 @@
       grid-column-end: 2;
       grid-row-start: 2;
       grid-row-end: 3;
+      padding-left: 1em;
     }
     main {
       grid-column-start: 1;
@@ -48,6 +50,17 @@
     ul,
     li {
       list-style: none;
+    }
+    @media (min-width: 661px) {
+      html {
+        font-size: 14px;
+      }
+      body {
+        margin: .5em auto;
+      }
+      header {
+        padding-left: 0;
+      }
     }
   </style>
   <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="//sketchbook.arlo.me/feed.rss">
