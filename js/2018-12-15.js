@@ -1,4 +1,4 @@
-window.sketchHeadline = "";
+window.sketchHeadline = "Move pointer over sketch.";
 
 const scalar = 36;
 
