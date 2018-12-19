@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const chokidar = require('chokidar');
@@ -24,14 +25,20 @@ io.on('connection', socket => {
       ignored: [
         /(^|[\/\\])\../,
         './dist/**/*',
-        './scripts/**/*',
-        './images/**/*'
+        './scripts/**/*'
       ],
       persistent: true
     })
-    .on('change', () => {
-      build(true);
-      io.emit('update');
+    .on('change', file => {
+      if (file.startsWith('sketches/')) {
+        fs.copyFile(`./${file}`, `./dist/js/${path.basename(file)}`, (err) => {
+          if (err) throw err;
+          io.emit('update');
+        });
+      } else {
+        build(true);
+        io.emit('update');
+      }
     });
 });
 
