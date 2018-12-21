@@ -33,6 +33,7 @@ function draw() {
 
   if (scalar > max) {
     noLoop();
+    drawingComplete = true;
   }
 
   angle += speed;

@@ -13,8 +13,8 @@ function setup() {
 }
 
 function draw() {
-  const x = (width / goldenRatio) + cos(angle) * size;
-  const y = (height / goldenRatio) + sin(angle) * size;
+  const x = width / goldenRatio + cos(angle) * size;
+  const y = height / goldenRatio + sin(angle) * size;
   const noiseVal = noise(x, y);
   stroke(`rgba(0, 0, 0, ${noiseVal})`);
   strokeWeight(noiseVal);
@@ -22,5 +22,8 @@ function draw() {
   stroke(`rgba(0, 0, 0, ${noiseVal / 2})`);
   ellipse(x, y, angle, angle);
   angle += goldenRatio;
-  if (angle > 720) noLoop();
+  if (angle > 720) {
+    noLoop();
+    drawingComplete = true;
+  }
 }

@@ -46,3 +46,7 @@ function touchMoved() {
     return false
   };
 }
+
+setTimeout(() => {
+  drawingComplete = true;
+}, 1000);

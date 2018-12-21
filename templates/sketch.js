@@ -18,3 +18,9 @@ function draw() {
 //     return false
 //   };
 // }
+
+// If you want to capture a screenshot of the drawing at a different time,
+// set drawingComplete = true when it makes sense.
+setTimeout(() => {
+  drawingComplete = true;
+}, 1000);

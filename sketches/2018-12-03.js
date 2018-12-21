@@ -34,3 +34,7 @@ function draw() {
     jump++;
   }
 }
+
+setTimeout(() => {
+  drawingComplete = true;
+}, 30000);

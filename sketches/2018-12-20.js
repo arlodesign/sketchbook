@@ -23,8 +23,8 @@ function draw() {
   let xHandle;
   let yHandle;
 
-  xEnd = xFocus + cos((frameCount % points) * (TWO_PI / points)) * size / 2;
-  yEnd = yFocus + sin((frameCount % points) * (TWO_PI / points)) * size / 2;
+  xEnd = xFocus + (cos((frameCount % points) * (TWO_PI / points)) * size) / 2;
+  yEnd = yFocus + (sin((frameCount % points) * (TWO_PI / points)) * size) / 2;
   xHandle = xFocus + cos((frameCount % points) * (TWO_PI / points)) * size;
   yHandle = yFocus + sin((frameCount % points) * (TWO_PI / points)) * size;
 
@@ -32,24 +32,20 @@ function draw() {
   const y = yFocus + sin(frameCount % points) * (size / 7);
 
   const noiseVal = noise(frameCount) * size;
-  const xStart = xFocus + cos(frameCount % points + size) * (size + noiseVal);
-  const yStart = yFocus + sin(frameCount % points + size) * (size + noiseVal);
+  const xStart = xFocus + cos((frameCount % points) + size) * (size + noiseVal);
+  const yStart = yFocus + sin((frameCount % points) + size) * (size + noiseVal);
 
   const clr = `rgba(0, 0, 0, ${noise(x, y) / 2})`;
 
   stroke(clr);
   noFill();
-  bezier(
-    x, y,
-    xStart, yStart,
-    xHandle, yHandle,
-    xEnd, yEnd
-  );
+  bezier(x, y, xStart, yStart, xHandle, yHandle, xEnd, yEnd);
 
   fill(clr);
   ellipse(xStart, yStart, 2);
 
   if (frameCount === points) {
     noLoop();
+    drawingComplete = true;
   }
 }

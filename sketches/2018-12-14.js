@@ -30,7 +30,8 @@ function draw() {
     line(x2, y2, x, y);
     line(width - x2, height - y2, width - x, height - y);
   } else {
-    noLoop()
+    noLoop();
+    drawingComplete = true;
   }
 
   x2 = x;

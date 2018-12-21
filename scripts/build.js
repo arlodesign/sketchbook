@@ -54,7 +54,10 @@ module.exports = (local = false) => {
     ++feedItems <= feedLimit && feed.item({
       title: sketch,
       url: `https://sketchbook.arlo.me/sketch/${sketch}`,
-      date: sketch
+      date: sketch,
+      enclosure: {
+        url: `https://sketchbook.arlo.me/thumbnails/${sketch}.png`
+      }
     });
   });
   fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));

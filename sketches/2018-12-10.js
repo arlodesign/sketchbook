@@ -13,14 +13,10 @@ function draw() {
   background(255);
   translate(width / 3, height / 3);
 
-  for (let x = 0; x <= width; x = x + (size * 1.333)) {
-    for (let y = 0; y <= height; y = y + (size * 1.333)) {
+  for (let x = 0; x <= width; x = x + size * 1.333) {
+    for (let y = 0; y <= height; y = y + size * 1.333) {
       const noiseVal = noise(x, y);
-      const rotateVal = map(
-        noiseVal,
-        0, 1,
-        2, 4
-      );
+      const rotateVal = map(noiseVal, 0, 1, 2, 4);
 
       rotate(PI / rotateVal);
 
@@ -30,4 +26,5 @@ function draw() {
       rect(0, y, width, size * noiseVal);
     }
   }
+  drawingComplete = true;
 }
