@@ -7,6 +7,8 @@ let centerX;
 let centerY;
 let size;
 let speed;
+let drawn = false;
+let drawCount = 0;
 
 function setup() {
   pixelDensity(4);
@@ -27,19 +29,30 @@ function draw() {
   const noiseVal = noise(x, y);
 
   if (x > 0 && y > 0 && x < width && y < height) {
+    drawn = true;
+    drawCount++;
     stroke(`rgba(255, 255, 255, ${noiseVal})`);
 
     bezier(
-      centerX, centerY,
-      centerX + (scalar * noiseVal), centerY + (scalar * noiseVal),
-      x + (scalar * noiseVal), y + (scalar * noiseVal),
-      x, y
+      centerX,
+      centerY,
+      centerX + scalar * noiseVal,
+      centerY + scalar * noiseVal,
+      x + scalar * noiseVal,
+      y + scalar * noiseVal,
+      x,
+      y
     );
   }
 
   angle += speed;
 
   if (angle / 360 > jump) {
+    if (drawn && drawCount === 0) {
+      noLoop();
+      drawingComplete = true;
+    }
+    drawCount = 0;
     scalar += speed;
     speed += speed / size;
     jump++;

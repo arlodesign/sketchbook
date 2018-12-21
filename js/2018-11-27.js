@@ -16,4 +16,5 @@ function draw() {
     triangle(0, 0, width, random(0, height), random(0, width), height);
     count++;
   }
+  drawingComplete = true;
 }

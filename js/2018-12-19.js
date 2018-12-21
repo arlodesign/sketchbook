@@ -27,20 +27,20 @@ function draw() {
   let yHandle;
   switch (frameCount % 3) {
     case 0:
-      xEnd = xFocus + cos((7 * PI) / 6) * size / 2;
-      yEnd = yFocus + sin((7 * PI) / 6) * size / 2;
+      xEnd = xFocus + (cos((7 * PI) / 6) * size) / 2;
+      yEnd = yFocus + (sin((7 * PI) / 6) * size) / 2;
       xHandle = xFocus + cos((7 * PI) / 6) * size * 2;
       yHandle = yFocus + sin((7 * PI) / 6) * size * 2;
       break;
     case 1:
-      xEnd = xFocus + cos((11 * PI) / 6) * size / 2;
-      yEnd = yFocus + sin((11 * PI) / 6) * size / 2;
+      xEnd = xFocus + (cos((11 * PI) / 6) * size) / 2;
+      yEnd = yFocus + (sin((11 * PI) / 6) * size) / 2;
       xHandle = xFocus + cos((11 * PI) / 6) * size * 2;
       yHandle = yFocus + sin((11 * PI) / 6) * size * 2;
       break;
     case 2:
-      xEnd = xFocus + cos(HALF_PI) * size / 2;
-      yEnd = yFocus + sin(HALF_PI) * size / 2;
+      xEnd = xFocus + (cos(HALF_PI) * size) / 2;
+      yEnd = yFocus + (sin(HALF_PI) * size) / 2;
       xHandle = xFocus + cos(HALF_PI) * size * 2;
       yHandle = yFocus + sin(HALF_PI) * size * 2;
       break;
@@ -53,13 +53,11 @@ function draw() {
   stroke(frameCount % 5 ? 255 : 0);
   strokeWeight(frameCount % 5 ? 1 : 2);
 
-  bezier(
-    xStart, yStart,
-    xFocus, yFocus,
-    xHandle, yHandle,
-    xEnd, yEnd
-  );
+  bezier(xStart, yStart, xFocus, yFocus, xHandle, yHandle, xEnd, yEnd);
 
   angle += scalar;
-  if (angle > maxRotation) noLoop();
+  if (angle > maxRotation) {
+    noLoop();
+    drawingComplete = true;
+  }
 }

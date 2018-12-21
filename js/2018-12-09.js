@@ -39,5 +39,6 @@ function draw() {
 
   if (x > width * goldenRatio && y > height * goldenRatio) {
     noLoop();
+    drawingComplete = true;
   }
 }

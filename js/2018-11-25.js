@@ -20,6 +20,7 @@ function draw() {
   rect(x, y, rectWidth, 1);
   if (rectWidth > width) {
     noLoop();
+    drawingComplete = true;
   }
   angle += speed;
   scalar += speed;

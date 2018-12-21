@@ -13,4 +13,5 @@ function draw() {
     rotate(PI / index);
     rect(index + 200, index + 10, width / 3, height / 3);
   }
+  drawingComplete = true;
 }

@@ -40,3 +40,7 @@ function draw() {
     speed += speed / 4;
   }
 }
+
+setTimeout(() => {
+  drawingComplete = true;
+}, 5000);
