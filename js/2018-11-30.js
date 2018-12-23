@@ -1,4 +1,6 @@
-window.sketchHeadline = "Move pointer over sketch.";
+/*---
+description: Move pointer or finger over sketch.
+---*/
 
 const scalar = 9;
 
@@ -29,21 +31,27 @@ function setup() {
 
 function draw() {
   background('white');
-  for (let h = -(Math.floor(gridHeight / 2)); h < Math.ceil(gridHeight / 2); h++) {
-    for (let w = -(Math.floor(gridWidth / 2)); w < Math.ceil(gridWidth / 2); w++) {
-      const x = (width / 2) + (scalar * 3 * w);
-      const y = (height / 2) + (scalar * 3 * h);
+  for (
+    let h = -Math.floor(gridHeight / 2);
+    h < Math.ceil(gridHeight / 2);
+    h++
+  ) {
+    for (
+      let w = -Math.floor(gridWidth / 2);
+      w < Math.ceil(gridWidth / 2);
+      w++
+    ) {
+      const x = width / 2 + scalar * 3 * w;
+      const y = height / 2 + scalar * 3 * h;
       const distanceFromPointer = getDistanceFromPointer(x, y);
       const rectSize = map(
         distanceFromPointer,
-        0, diagonal,
-        scalar * 10, scalar * 3
+        0,
+        diagonal,
+        scalar * 10,
+        scalar * 3
       );
-      strokeWeight(map(
-        distanceFromPointer,
-        0, diagonal,
-        2, 0
-      ));
+      strokeWeight(map(distanceFromPointer, 0, diagonal, 2, 0));
       rect(x, y, rectSize, rectSize);
     }
   }
@@ -52,8 +60,8 @@ function draw() {
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

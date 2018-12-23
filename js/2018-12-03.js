@@ -1,4 +1,6 @@
-window.sketchHeadline = 'Reload page for a different variation.';
+/*---
+description: Reload page for a different variation.
+---*/
 
 let jump = 0;
 let scalar = 0;

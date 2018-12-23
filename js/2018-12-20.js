@@ -1,4 +1,6 @@
-window.sketchHeadline = 'Reload page for a different variation.';
+/*---
+description: Reload page for a different variation.
+---*/
 
 const points = 2160;
 

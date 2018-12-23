@@ -1,4 +1,6 @@
-window.sketchHeadline = 'Click to draw.';
+/*---
+description: Click to draw.
+---*/
 
 const speed = 6;
 
@@ -33,8 +35,8 @@ function draw() {
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

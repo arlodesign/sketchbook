@@ -1,4 +1,6 @@
-window.sketchHeadline = 'Be patient. Reload page for a different variation.';
+/*---
+description: Be patient. Reload page for a different variation.
+---*/
 
 let jump = 0;
 let scalar = 0;
