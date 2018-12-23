@@ -1,4 +1,6 @@
-window.sketchHeadline = "Move pointer over sketch.";
+/*---
+description: Move pointer or finger over sketch.
+---*/
 
 const centerWeight = 20;
 const centerWeightGrowth = 6;
@@ -14,14 +16,18 @@ function setup() {
 function draw() {
   background('white');
   const centerWeightX = map(
-    Math.abs((width / 2) - mouseX),
-    0, width / 2,
-    centerWeight, centerWeight * centerWeightGrowth
+    Math.abs(width / 2 - mouseX),
+    0,
+    width / 2,
+    centerWeight,
+    centerWeight * centerWeightGrowth
   );
   const centerWeightY = map(
-    Math.abs((height / 2) - mouseY),
-    0, height / 2,
-    centerWeight * centerWeightGrowth, centerWeight
+    Math.abs(height / 2 - mouseY),
+    0,
+    height / 2,
+    centerWeight * centerWeightGrowth,
+    centerWeight
   );
   // Sides, starting top and going clockwise
   stroke(0);
@@ -32,35 +38,51 @@ function draw() {
   // Corners, starting top left and going clockwise
   stroke(255);
   quad(
-    mouseX, mouseY,
-    mouseX - centerWeightX, mouseY,
-    0, 0,
-    mouseX, mouseY - centerWeightY
+    mouseX,
+    mouseY,
+    mouseX - centerWeightX,
+    mouseY,
+    0,
+    0,
+    mouseX,
+    mouseY - centerWeightY
   );
   quad(
-    mouseX, mouseY,
-    mouseX + centerWeightX, mouseY,
-    width, 0,
-    mouseX, mouseY - centerWeightY
+    mouseX,
+    mouseY,
+    mouseX + centerWeightX,
+    mouseY,
+    width,
+    0,
+    mouseX,
+    mouseY - centerWeightY
   );
   quad(
-    mouseX, mouseY,
-    mouseX + centerWeightX, mouseY,
-    width, height,
-    mouseX, mouseY + centerWeightY
+    mouseX,
+    mouseY,
+    mouseX + centerWeightX,
+    mouseY,
+    width,
+    height,
+    mouseX,
+    mouseY + centerWeightY
   );
   quad(
-    mouseX, mouseY,
-    mouseX - centerWeightX, mouseY,
-    0, height,
-    mouseX, mouseY + centerWeightY
+    mouseX,
+    mouseY,
+    mouseX - centerWeightX,
+    mouseY,
+    0,
+    height,
+    mouseX,
+    mouseY + centerWeightY
   );
 }
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

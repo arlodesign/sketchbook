@@ -1,4 +1,6 @@
-window.sketchHeadline = "";
+/*---
+description: 
+---*/
 
 function setup() {
   pixelDensity(4);

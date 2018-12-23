@@ -1,4 +1,6 @@
-window.sketchHeadline = 'Reload page for a different variation.';
+/*---
+description: Reload page for a different variation.
+---*/
 
 let count = 0;
 const total = 500;

@@ -1,4 +1,6 @@
-window.sketchHeadline = "Move pointer over sketch.";
+/*---
+description: Move pointer or finger over sketch.
+---*/
 
 const size = 20;
 
@@ -27,13 +29,9 @@ function draw() {
   for (let x = 0; x < width; x += size) {
     for (let y = 0; y < height; y += size) {
       const noiseVal = noise(x, y);
-      const scaleVal = map(
-        getDistanceFromPointer(x, y),
-        0, diagonal,
-        .1, 1.1
-      );
+      const scaleVal = map(getDistanceFromPointer(x, y), 0, diagonal, 0.1, 1.1);
       push();
-      translate(x + (size / 2), y + (size / 2));
+      translate(x + size / 2, y + size / 2);
       fill(`rgba(0, 0, 0, ${noiseVal})`);
       ellipse(0, 0, (size * noiseVal) / scaleVal);
       pop();
@@ -43,8 +41,8 @@ function draw() {
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

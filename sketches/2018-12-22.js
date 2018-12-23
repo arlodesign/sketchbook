@@ -1,5 +1,3 @@
-window.sketchHeadline = "";
-
 let size;
 let spheres = [];
 

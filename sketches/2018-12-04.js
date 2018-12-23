@@ -1,4 +1,6 @@
-window.sketchHeadline = "Move pointer over sketch.";
+/*---
+description: Move pointer or finger over sketch.
+---*/
 
 const count = 3;
 
@@ -17,18 +19,8 @@ function setup() {
 
 function draw() {
   background(0);
-  const camY = map(
-    mouseY,
-    0, height,
-    -1000, 1000,
-    true
-  )
-  const camZ = map(
-    mouseX,
-    0, width,
-    -1000, 1000,
-    true
-  );
+  const camY = map(mouseY, 0, height, -1000, 1000, true);
+  const camZ = map(mouseX, 0, width, -1000, 1000, true);
   camera(camY + camZ, camY, camZ, 0, 0, 0, 0, 1, 0);
   for (let x = -ceil(count / 2); x <= ceil(count / 2); x++) {
     for (let y = -ceil(count / 2); y <= ceil(count / 2); y++) {
@@ -44,8 +36,8 @@ function draw() {
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

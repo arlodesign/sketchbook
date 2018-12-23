@@ -97,7 +97,9 @@
         </svg>
       </a>
     </h1>
-    <p></p>
+    {{#if description}}
+    <p>{{description}}</p>
+    {{/if}}
   </header>
   <main class="frame" id="my-canvas"></main>
   <nav>
@@ -134,11 +136,6 @@
   </script>
   <script src="/js/p5.min.js"></script>
   <script src="/js/{{currentSketch}}.js"></script>
-  <script>
-    if (window.sketchHeadline) {
-      document.querySelector('p').innerHTML = window.sketchHeadline;
-    }
-  </script>
   {{#if local}}
   <script src="/socket.io/socket.io.js"></script>
   <script>

@@ -1,12 +1,17 @@
-window.sketchHeadline = "Move pointer over sketch.";
+/*---
+description: Move pointer or finger over sketch.
+---*/
 
 const triangleRatio = Math.sqrt(5) / 2;
 
 function myTriangle(x, y, radius) {
   triangle(
-    x, y - radius,
-    x - triangleRatio * radius, y + (radius / 2),
-    x + triangleRatio * radius, y + (radius / 2)
+    x,
+    y - radius,
+    x - triangleRatio * radius,
+    y + radius / 2,
+    x + triangleRatio * radius,
+    y + radius / 2
   );
 }
 
@@ -21,31 +26,25 @@ function setup() {
 function draw() {
   background('white');
 
-  const radius = map(
-    mouseX,
-    0, width,
-    30, 120,
-    true
-  );
+  const radius = map(mouseX, 0, width, 30, 120, true);
 
-  const overlap = map(
-    mouseY,
-    0, height,
-    radius / 2, radius * 2,
-    true
-  );
+  const overlap = map(mouseY, 0, height, radius / 2, radius * 2, true);
 
   for (let y = height / 2; y <= height + radius * 3; y += radius * 3) {
-    for (let x = width / 2; x <= width + radius * 3; x += triangleRatio * radius * 2) {
+    for (
+      let x = width / 2;
+      x <= width + radius * 3;
+      x += triangleRatio * radius * 2
+    ) {
       push();
       fill(`rgba(0, 0, 0, ${noise(1)})`);
-      translate(x, y - (radius / 2));
+      translate(x, y - radius / 2);
       myTriangle(0, 0, overlap);
       pop();
 
       push();
       fill(`rgba(0, 0, 0, ${noise(2)})`);
-      translate(x, y + (radius / 2));
+      translate(x, y + radius / 2);
       rotate(180);
       myTriangle(0, 0, overlap);
       pop();
@@ -66,13 +65,13 @@ function draw() {
       if (y > height / 2) {
         push();
         fill(`rgba(0, 0, 0, ${noise(5)})`);
-        translate(x, height - y - (radius / 2));
+        translate(x, height - y - radius / 2);
         myTriangle(0, 0, overlap);
         pop();
 
         push();
         fill(`rgba(0, 0, 0, ${noise(6)})`);
-        translate(x, height - y + (radius / 2));
+        translate(x, height - y + radius / 2);
         rotate(180);
         myTriangle(0, 0, overlap);
         pop();
@@ -94,13 +93,13 @@ function draw() {
       if (x > width / 2) {
         push();
         fill(`rgba(0, 0, 0, ${noise(9)})`);
-        translate(width - x, y - (radius / 2));
+        translate(width - x, y - radius / 2);
         myTriangle(0, 0, overlap);
         pop();
 
         push();
         fill(`rgba(0, 0, 0, ${noise(10)})`);
-        translate(width - x, y + (radius / 2));
+        translate(width - x, y + radius / 2);
         rotate(180);
         myTriangle(0, 0, overlap);
         pop();
@@ -122,13 +121,13 @@ function draw() {
       if (y > height / 2 && x > width / 2) {
         push();
         fill(`rgba(0, 0, 0, ${noise(13)})`);
-        translate(width - x, height - y - (radius / 2));
+        translate(width - x, height - y - radius / 2);
         myTriangle(0, 0, overlap);
         pop();
 
         push();
         fill(`rgba(0, 0, 0, ${noise(14)})`);
-        translate(width - x, height - y + (radius / 2));
+        translate(width - x, height - y + radius / 2);
         rotate(180);
         myTriangle(0, 0, overlap);
         pop();
@@ -152,8 +151,8 @@ function draw() {
 
 function touchMoved() {
   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-    return false
-  };
+    return false;
+  }
 }
 
 setTimeout(() => {

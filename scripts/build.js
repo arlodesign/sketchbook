@@ -4,6 +4,7 @@ const handlebars = require('handlebars');
 const rimraf = require('rimraf');
 const copydir = require('copy-dir');
 const rss = require('rss');
+const matter = require('gray-matter');
 
 module.exports = (local = false) => {
   const sketchFiles = fs.readdirSync('./sketches/')
@@ -15,8 +16,8 @@ module.exports = (local = false) => {
   const feed = new rss({
     title: 'sketchbook.arlo.me',
     description: 'Explorations of generative art using p5.js',
-    feed_url: "https://sketchbook.arlo.me/feed.rss",
-    site_url: "https://sketchbook.arlo.me/"
+    feed_url: 'https://sketchbook.arlo.me/feed.rss',
+    site_url: 'https://sketchbook.arlo.me/'
   });
   const feedLimit = 20;
   let feedItems = 0;
@@ -24,11 +25,22 @@ module.exports = (local = false) => {
   console.log('🛠 Building pages...');
 
   function getContext(currentSketch) {
-    const currentSketchIndex = sketchFiles.findIndex(sketch => sketch === currentSketch);
+    const currentSketchIndex = sketchFiles.findIndex(
+      sketch => sketch === currentSketch
+    );
     const nextSketchIndex = currentSketchIndex - 1;
-    const nextSketch = nextSketchIndex >= 0 ? sketchFiles[nextSketchIndex] : false;
+    const nextSketch =
+      nextSketchIndex >= 0 ? sketchFiles[nextSketchIndex] : false;
     const prevSketchIndex = currentSketchIndex + 1;
-    const prevSketch = prevSketchIndex < sketchFiles.length ? sketchFiles[prevSketchIndex] : false;
+    const prevSketch =
+      prevSketchIndex < sketchFiles.length ?
+      sketchFiles[prevSketchIndex] :
+      false;
+    const {
+      data
+    } = matter.read(`./sketches/${currentSketch}.js`, {
+      delimiters: ['/*---', '---*/']
+    });
 
     return {
       sketches: sketchFiles.map(sketchFile => ({
@@ -39,7 +51,8 @@ module.exports = (local = false) => {
       currentSketch,
       prevSketch,
       nextSketch,
-      local
+      local,
+      description: data.description || false
     };
   }
 
@@ -62,7 +75,11 @@ module.exports = (local = false) => {
   });
   fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
   fs.writeFileSync('./dist/feed.rss', feed.xml());
-  fs.writeFileSync('./dist/CNAME', "sketchbook.arlo.me");
+  fs.writeFileSync('./dist/CNAME', 'sketchbook.arlo.me');
   copydir.sync('./images', './dist/images');
   fs.copyFileSync('./node_modules/p5/lib/p5.min.js', './dist/js/p5.min.js');
+
+  setTimeout(() => {
+    lastBuiltFile = false;
+  }, 1000);
 };
