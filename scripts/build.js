@@ -59,6 +59,8 @@ module.exports = (local = false) => {
   fs.existsSync('./dist') ? rimraf.sync('./dist/*') : fs.mkdirSync('./dist');
   fs.mkdirSync('./dist/sketch');
   fs.mkdirSync('./dist/images');
+  fs.mkdirSync('./dist/styles');
+
   fs.mkdirSync('./dist/js');
 
   sketchFiles.forEach(sketch => {
@@ -77,9 +79,7 @@ module.exports = (local = false) => {
   fs.writeFileSync('./dist/feed.rss', feed.xml());
   fs.writeFileSync('./dist/CNAME', 'sketchbook.arlo.me');
   copydir.sync('./images', './dist/images');
-  fs.copyFileSync('./node_modules/p5/lib/p5.min.js', './dist/js/p5.min.js');
+  copydir.sync('./styles', './dist/styles');
 
-  setTimeout(() => {
-    lastBuiltFile = false;
-  }, 1000);
+  fs.copyFileSync('./node_modules/p5/lib/p5.min.js', './dist/js/p5.min.js');
 };
