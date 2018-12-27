@@ -7,76 +7,43 @@
   <title>Sketches | 2018-12-26</title>
   <meta property="og:title" content="2018-12-26">
   <meta property="og:site_name" content="sketchbook.arlo.me">
-  <meta property="og:url" content="https://sketchbook.arlo.me/sketch/2018-12-26">
-  <meta property="og:description" content="Sketch for 2018-12-26">
-  <meta property="og:type" content="object">
+  <meta property="og:url" content="https://sketchbook.arlo.me/">
+  <meta property="og:description" content="Sketchbook">
+  <meta property="og:type" content="website">
   <meta property="og:image" content="https://sketchbook.arlo.me/thumbnails/2018-12-26.png">
+  <link rel="stylesheet" href="/styles/styles.css">
   <style>
-    html {
-      font-size: 18px;
-      line-height: 1.4;
-    }
-    * {
-      font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-      font-size: 1rem;
-      color: #eee;
-      margin: 0;
-      padding: 0;
-    }
-
-    *:focus {
-      outline: solid 2px #eee;
-      outline-offset: 2px;
-    }
-    body {
-      width: 660px;
-      margin: 0 auto 1em;
-      background: #111;
-      display: grid;
-      grid-template-columns: 1fr 12ch;
-    }
-    nav {
-      grid-column-start: 2;
-      grid-column-end: 3;
-      grid-row-start: 2;
-      grid-row-end: 3;
-    }
     header {
-      grid-column-start: 1;
-      grid-column-end: 2;
-      grid-row-start: 2;
-      grid-row-end: 3;
-      padding-left: 1em;
-    }
-    main {
-      grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row-start: 1;
-      grid-row-end: 2;
       padding-bottom: 1.2rem;
     }
-    .large {
-      font-size: 2rem;
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;    
+      justify-content: space-between;
+    }
+    li {
+      width: calc(33% - 1rem);
+      padding-bottom: 1.2rem;
+    }
+    li >  a {
+      display: block;
     }
 
-    .icon {
-      width: 1em;
-      height: 1em;
+    img {
+      width: 100%;
+      padding-bottom: 0.6rem;
     }
-    ul,
-    li {
-      list-style: none;
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
     }
-    @media (min-width: 661px) {
-      html {
-        font-size: 14px;
-      }
-      body {
-        margin: .5em auto;
-      }
-      header {
-        padding-left: 0;
-      }
+    :target {
+      animation: pulse 1s .25s ease;
     }
   </style>
   <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="//sketchbook.arlo.me/feed.rss">
@@ -85,8 +52,8 @@
 <body>
   <header>
     <h1 class="large">
-      2018-12-26
-      <a href="https://github.com/arlodesign/sketchbook/blob/master/sketches/2018-12-26.js" aria-label="View the code for this sketch on GitHub.">
+      Sketchbook
+      <a href="https://github.com/arlodesign/sketchbook/" aria-label="View the code on GitHub.">
         <svg class="icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.999 0C7.164 0 0 7.163 0 16c0 7.07 4.584 13.066 10.942 15.182.8.147 1.092-.347 1.092-.771 0-.38-.013-1.386-.021-2.721-4.45.966-5.39-2.145-5.39-2.145-.728-1.849-1.777-2.34-1.777-2.34-1.452-.993.11-.973.11-.973 1.606.113 2.451 1.649 2.451 1.649 1.427 2.445 3.745 1.738 4.657 1.329.145-1.033.559-1.739 1.015-2.138-3.552-.404-7.288-1.777-7.288-7.908 0-1.747.624-3.176 1.647-4.294-.165-.404-.714-2.032.158-4.234 0 0 1.342-.43 4.399 1.64A15.325 15.325 0 0 1 16 7.737a15.33 15.33 0 0 1 4.006.54c3.055-2.071 4.395-1.641 4.395-1.641.874 2.202.325 3.83.16 4.234 1.026 1.118 1.645 2.547 1.645 4.294 0 6.146-3.741 7.499-7.305 7.895.574.494 1.085 1.47 1.085 2.963 0 2.138-.02 3.864-.02 4.389 0 .428.29.926 1.1.77C27.42 29.06 32 23.068 32 16c0-8.838-7.164-16-16.001-16"
             fill="currentColor" fill-rule="evenodd" />
@@ -94,119 +61,204 @@
       </a>
     </h1>
   </header>
-  <main class="frame" id="my-canvas"></main>
-  <nav>
-    <div>
-      <a href="/sketch/2018-12-25" class="large" aria-label="2018-12-25">←</a>
-      
-      <a class="large" href="/" aria-label="2018-12-26">•</a>
-
-<span class="large" aria-hidden="true">→</span>
-    </div>
-    <details>
-      <summary>Index</summary>
-      <ul class="nav">
-        <li>
-          <strong>2018-12-26</strong>
+  <main>
+    <nav>
+      <ul>
+        <li id="link-2018-12-26">
+          <a href="/sketch/2018-12-26">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-26.png" alt="2018-12-26">
+            <p>2018-12-26</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-25">2018-12-25</a>
+        <li id="link-2018-12-25">
+          <a href="/sketch/2018-12-25">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-25.png" alt="2018-12-25">
+            <p>2018-12-25</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-24">2018-12-24</a>
+        <li id="link-2018-12-24">
+          <a href="/sketch/2018-12-24">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-24.png" alt="2018-12-24">
+            <p>2018-12-24</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-23">2018-12-23</a>
+        <li id="link-2018-12-23">
+          <a href="/sketch/2018-12-23">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-23.png" alt="2018-12-23">
+            <p>2018-12-23</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-22">2018-12-22</a>
+        <li id="link-2018-12-22">
+          <a href="/sketch/2018-12-22">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-22.png" alt="2018-12-22">
+            <p>2018-12-22</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-21">2018-12-21</a>
+        <li id="link-2018-12-21">
+          <a href="/sketch/2018-12-21">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-21.png" alt="2018-12-21">
+            <p>2018-12-21</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-20">2018-12-20</a>
+        <li id="link-2018-12-20">
+          <a href="/sketch/2018-12-20">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-20.png" alt="2018-12-20">
+            <p>2018-12-20</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-19">2018-12-19</a>
+        <li id="link-2018-12-19">
+          <a href="/sketch/2018-12-19">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-19.png" alt="2018-12-19">
+            <p>2018-12-19</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-18">2018-12-18</a>
+        <li id="link-2018-12-18">
+          <a href="/sketch/2018-12-18">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-18.png" alt="2018-12-18">
+            <p>2018-12-18</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-17">2018-12-17</a>
+        <li id="link-2018-12-17">
+          <a href="/sketch/2018-12-17">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-17.png" alt="2018-12-17">
+            <p>2018-12-17</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-15">2018-12-15</a>
+        <li id="link-2018-12-15">
+          <a href="/sketch/2018-12-15">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-15.png" alt="2018-12-15">
+            <p>2018-12-15</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-14">2018-12-14</a>
+        <li id="link-2018-12-14">
+          <a href="/sketch/2018-12-14">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-14.png" alt="2018-12-14">
+            <p>2018-12-14</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-13">2018-12-13</a>
+        <li id="link-2018-12-13">
+          <a href="/sketch/2018-12-13">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-13.png" alt="2018-12-13">
+            <p>2018-12-13</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-12">2018-12-12</a>
+        <li id="link-2018-12-12">
+          <a href="/sketch/2018-12-12">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-12.png" alt="2018-12-12">
+            <p>2018-12-12</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-11">2018-12-11</a>
+        <li id="link-2018-12-11">
+          <a href="/sketch/2018-12-11">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-11.png" alt="2018-12-11">
+            <p>2018-12-11</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-10">2018-12-10</a>
+        <li id="link-2018-12-10">
+          <a href="/sketch/2018-12-10">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-10.png" alt="2018-12-10">
+            <p>2018-12-10</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-09">2018-12-09</a>
+        <li id="link-2018-12-09">
+          <a href="/sketch/2018-12-09">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-09.png" alt="2018-12-09">
+            <p>2018-12-09</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-07">2018-12-07</a>
+        <li id="link-2018-12-07">
+          <a href="/sketch/2018-12-07">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-07.png" alt="2018-12-07">
+            <p>2018-12-07</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-06">2018-12-06</a>
+        <li id="link-2018-12-06">
+          <a href="/sketch/2018-12-06">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-06.png" alt="2018-12-06">
+            <p>2018-12-06</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-05">2018-12-05</a>
+        <li id="link-2018-12-05">
+          <a href="/sketch/2018-12-05">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-05.png" alt="2018-12-05">
+            <p>2018-12-05</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-04">2018-12-04</a>
+        <li id="link-2018-12-04">
+          <a href="/sketch/2018-12-04">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-04.png" alt="2018-12-04">
+            <p>2018-12-04</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-03">2018-12-03</a>
+        <li id="link-2018-12-03">
+          <a href="/sketch/2018-12-03">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-03.png" alt="2018-12-03">
+            <p>2018-12-03</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-02">2018-12-02</a>
+        <li id="link-2018-12-02">
+          <a href="/sketch/2018-12-02">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-02.png" alt="2018-12-02">
+            <p>2018-12-02</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-12-01">2018-12-01</a>
+        <li id="link-2018-12-01">
+          <a href="/sketch/2018-12-01">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-01.png" alt="2018-12-01">
+            <p>2018-12-01</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-30">2018-11-30</a>
+        <li id="link-2018-11-30">
+          <a href="/sketch/2018-11-30">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-30.png" alt="2018-11-30">
+            <p>2018-11-30</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-29">2018-11-29</a>
+        <li id="link-2018-11-29">
+          <a href="/sketch/2018-11-29">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-29.png" alt="2018-11-29">
+            <p>2018-11-29</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-28">2018-11-28</a>
+        <li id="link-2018-11-28">
+          <a href="/sketch/2018-11-28">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-28.png" alt="2018-11-28">
+            <p>2018-11-28</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-27">2018-11-27</a>
+        <li id="link-2018-11-27">
+          <a href="/sketch/2018-11-27">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-27.png" alt="2018-11-27">
+            <p>2018-11-27</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-26">2018-11-26</a>
+        <li id="link-2018-11-26">
+          <a href="/sketch/2018-11-26">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-26.png" alt="2018-11-26">
+            <p>2018-11-26</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-25">2018-11-25</a>
+        <li id="link-2018-11-25">
+          <a href="/sketch/2018-11-25">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-25.png" alt="2018-11-25">
+            <p>2018-11-25</p>
+          </a>
         </li>
-        <li>
-          <a href="/sketch/2018-11-24">2018-11-24</a>
+        <li id="link-2018-11-24">
+          <a href="/sketch/2018-11-24">
+            <img class="js-lazy" data-src="/thumbnails/2018-11-24.png" alt="2018-11-24">
+            <p>2018-11-24</p>
+          </a>
         </li>
       </ul>
-    </details>
-  </nav>
+    </nav>
+  </main>
+  <script src="/js/lazyload.min.js"></script>
   <script>
-    window.drawingComplete = false;
+    var myLazyLoad = new LazyLoad({
+      elements_selector: ".js-lazy"
+    });
   </script>
-  <script src="/js/p5.min.js"></script>
-  <script src="/js/2018-12-26.js"></script>
 </body>
 
 </html>

@@ -6,7 +6,6 @@ function setup() {
   fill(0);
   lineCount = floor(random(300, 600));
   strokeWeight(lineCount / 100);
-
 }
 
 function draw() {

@@ -1,0 +1,47 @@
+html {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+* {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  font-size: 1rem;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+:focus {
+  outline: solid 2px #eee;
+  outline-offset: 2px;
+}
+
+body {
+  width: 660px;
+  margin: 0 auto 1em;
+  background: #111;
+}
+
+.large {
+  font-size: 2rem;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+@media (min-width: 661px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    margin: .5em auto;
+  }
+}
