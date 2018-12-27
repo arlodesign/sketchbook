@@ -60,7 +60,7 @@ module.exports = (local = false) => {
   fs.mkdirSync('./dist/sketch');
   fs.mkdirSync('./dist/images');
   fs.mkdirSync('./dist/styles');
-
+  fs.mkdirSync('./dist/thumbnails');
   fs.mkdirSync('./dist/js');
 
   sketchFiles.forEach(sketch => {
@@ -75,11 +75,17 @@ module.exports = (local = false) => {
       }
     });
   });
-  fs.writeFileSync('./dist/index.html', html(getContext(sketchFiles[0])));
+
+  const index = fs.readFileSync('./templates/index.hbs', 'utf8');
+  const indexHtml = handlebars.compile(index);
+
+  fs.writeFileSync('./dist/index.html', indexHtml(getContext(sketchFiles[0])));
   fs.writeFileSync('./dist/feed.rss', feed.xml());
   fs.writeFileSync('./dist/CNAME', 'sketchbook.arlo.me');
+  copydir.sync('./thumbnails', './dist/thumbnails');
   copydir.sync('./images', './dist/images');
   copydir.sync('./styles', './dist/styles');
 
   fs.copyFileSync('./node_modules/p5/lib/p5.min.js', './dist/js/p5.min.js');
+  fs.copyFileSync('./node_modules/vanilla-lazyload/dist/lazyload.iife.min.js', './dist/js/lazyload.min.js');
 };

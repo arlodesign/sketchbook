@@ -10,7 +10,8 @@
   "author": "mail@arlo.me",
   "license": "MIT",
   "dependencies": {
-    "p5": "^0.7.2"
+    "p5": "^0.7.2",
+    "vanilla-lazyload": "^10.19.0"
   },
   "devDependencies": {
     "chokidar": "^2.0.4",
