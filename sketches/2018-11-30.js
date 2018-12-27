@@ -21,7 +21,7 @@ function getDistanceFromPointer(x, y) {
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   rectMode(CENTER);
   noFill();
   diagonal = getHypotenuse(width, height);
@@ -30,7 +30,7 @@ function setup() {
 }
 
 function draw() {
-  background('white');
+  background("white");
   for (
     let h = -Math.floor(gridHeight / 2);
     h < Math.ceil(gridHeight / 2);

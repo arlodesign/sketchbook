@@ -1,28 +1,29 @@
-const fs = require('fs');
-const path = require('path');
-const ghpages = require('gh-pages');
-const express = require('express');
-const puppeteer = require('puppeteer');
-const imagemin = require('imagemin');
-const imageminOptipng = require('imagemin-optipng');
-const copydir = require('copy-dir');
+const fs = require("fs");
+const path = require("path");
+const ghpages = require("gh-pages");
+const express = require("express");
+const puppeteer = require("puppeteer");
+const imagemin = require("imagemin");
+const imageminOptipng = require("imagemin-optipng");
+const copydir = require("copy-dir");
 
-const build = require('./build');
+const build = require("./build");
 build();
 
 const app = express();
 const port = 8080;
 app.use(
-  '/',
-  express.static('./dist', {
-    extensions: ['html']
+  "/",
+  express.static("./dist", {
+    extensions: ["html"]
   })
 );
-const http = require('http').Server(app);
+const http = require("http").Server(app);
 
 http.listen(port, () => {
-  const sketchFiles = fs.readdirSync('./sketches/')
-    .map(sketch => path.basename(sketch, '.js'));
+  const sketchFiles = fs
+    .readdirSync("./sketches/")
+    .map(sketch => path.basename(sketch, ".js"));
 
   (async () => {
     const browser = await puppeteer.launch();
@@ -40,7 +41,7 @@ http.listen(port, () => {
 
         await page.goto(`http://localhost:8080/sketch/${sketch}`);
         try {
-          await page.waitForFunction('drawingComplete === true', {
+          await page.waitForFunction("drawingComplete === true", {
             timeout: 0
           });
         } catch (error) {}
@@ -52,22 +53,19 @@ http.listen(port, () => {
           throw error;
         }
 
-        await imagemin([thumbnailFile], './thumbnails', {
-          plugins: [
-            imageminOptipng()
-          ]
+        await imagemin([thumbnailFile], "./thumbnails", {
+          plugins: [imageminOptipng()]
         });
       }
     }
 
     await browser.close();
 
-    await console.log('📡 Publishing to GitHub...');
-    await ghpages.publish('./dist', error => {
+    await console.log("📡 Publishing to GitHub...");
+    await ghpages.publish("./dist", error => {
       if (error) throw error;
-      console.log('🎉 Published!');
+      console.log("🎉 Published!");
     });
     await process.exit();
-
   })();
 });

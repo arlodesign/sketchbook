@@ -10,7 +10,7 @@ let size;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840, WEBGL);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   strokeWeight(2);
   noFill();
   stroke(255);

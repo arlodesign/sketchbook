@@ -13,8 +13,8 @@ let startY;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   noStroke();
   fill(0);
   speed = random(5, 20);

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function leftPad(num) {
   return num < 10 ? `0${num}` : num;
@@ -9,7 +9,7 @@ function filename(date) {
     date.getFullYear(),
     leftPad(date.getMonth() + 1),
     leftPad(date.getDate())
-  ].join('-')
+  ].join("-");
 }
 
 const DateObj = new Date();
@@ -20,10 +20,10 @@ if (fs.existsSync(`./sketches/${filename(DateObj)}.js`)) {
 
 if (fs.existsSync(`./sketches/${filename(DateObj)}.js`)) {
   // Wait until tomorrow.
-  console.log('⚠️ Files already exist.');
+  console.log("⚠️ Files already exist.");
 } else {
   fs.copyFile(
-    './templates/sketch.js',
+    "./templates/sketch.js",
     `./sketches/${filename(DateObj)}.js`,
     error => {
       if (error) throw error;

@@ -11,10 +11,10 @@ let speed;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   noStroke();
-  fill('rgba(0, 0, 0, .9)');
+  fill("rgba(0, 0, 0, .9)");
   size = random(50, 60);
   speed = random(5, 10);
 }

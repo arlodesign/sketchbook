@@ -1,43 +1,39 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const chokidar = require('chokidar');
+const fs = require("fs");
+const path = require("path");
+const express = require("express");
+const chokidar = require("chokidar");
 
 const app = express();
 const port = 8080;
 
-const build = require('./build');
+const build = require("./build");
 build(true);
 
 app.use(
-  '/',
-  express.static('./dist', {
-    extensions: ['html']
+  "/",
+  express.static("./dist", {
+    extensions: ["html"]
   })
 );
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
-io.on('connection', socket => {
+io.on("connection", socket => {
   chokidar
-    .watch('.', {
-      ignored: [
-        /(^|[\/\\])\../,
-        './dist/**/*',
-        './scripts/**/*'
-      ],
+    .watch(".", {
+      ignored: [/(^|[\/\\])\../, "./dist/**/*", "./scripts/**/*"],
       persistent: true
     })
-    .on('change', file => {
-      if (file.startsWith('sketches/')) {
-        fs.copyFile(`./${file}`, `./dist/js/${path.basename(file)}`, (err) => {
+    .on("change", file => {
+      if (file.startsWith("sketches/")) {
+        fs.copyFile(`./${file}`, `./dist/js/${path.basename(file)}`, err => {
           if (err) throw err;
-          io.emit('update');
+          io.emit("update");
         });
       } else {
         build(true);
-        io.emit('update');
+        io.emit("update");
       }
     });
 });

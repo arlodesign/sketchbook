@@ -11,8 +11,8 @@ let y2;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   noFill();
   stroke(0);
   scalar = random(10, 20);

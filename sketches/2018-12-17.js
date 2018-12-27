@@ -18,13 +18,13 @@ function myTriangle(x, y, radius) {
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   angleMode(DEGREES);
   noStroke();
 }
 
 function draw() {
-  background('white');
+  background("white");
 
   const radius = map(mouseX, 0, width, 30, 120, true);
 

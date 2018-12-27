@@ -7,8 +7,8 @@ const total = 500;
 
 function setup() {
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   strokeWeight(4);
   noLoop();
 }

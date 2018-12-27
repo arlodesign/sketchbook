@@ -13,8 +13,8 @@ let grow;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('black');
+  myCanvas.parent("my-canvas");
+  background("black");
   noFill();
   apex = {
     width: width / goldenRatio,
