@@ -12,7 +12,7 @@ let rectangles = false;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   background(255);
   rectMode(CENTER);
   size = random(150, 250);

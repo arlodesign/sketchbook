@@ -7,12 +7,12 @@ const gap = 20;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   noFill();
 }
 
 function draw() {
-  background('white');
+  background("white");
 
   const mx = map(mouseX, 0, width, -width, width * 2, true);
   const my = map(mouseY, 0, height, -height, height * 2, true);

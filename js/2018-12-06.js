@@ -13,10 +13,10 @@ let letsDraw = false;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   noStroke();
-  fill('rgba(0, 0, 0, .9)');
+  fill("rgba(0, 0, 0, .9)");
   scalar = random(10, 20);
   size = random(10, 20);
 }

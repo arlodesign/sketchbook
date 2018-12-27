@@ -11,7 +11,7 @@ let yFocus;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   background(255);
   strokeWeight(0.75);
   size = random(250, 350);

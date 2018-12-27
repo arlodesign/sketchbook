@@ -19,13 +19,13 @@ function getDistanceFromPointer(x, y) {
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   diagonal = getHypotenuse(width, height);
   noStroke();
 }
 
 function draw() {
-  background('white');
+  background("white");
   for (let x = 0; x < width; x += size) {
     for (let y = 0; y < height; y += size) {
       const noiseVal = noise(x, y);

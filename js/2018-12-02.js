@@ -8,12 +8,12 @@ const noiseScale = 0.02;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   noFill();
 }
 
 function draw() {
-  background('white');
+  background("white");
 
   let i = 0.2;
   let y = map(mouseY, 0, height, height, height + width, true);

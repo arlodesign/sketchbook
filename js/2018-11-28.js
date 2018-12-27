@@ -10,8 +10,8 @@ let max;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   noFill();
   strokeWeight(2);
   speed = random(10, 20);

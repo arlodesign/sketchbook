@@ -2,7 +2,7 @@ let size;
 
 function setup() {
   const myCanvas = createCanvas(660, 840, WEBGL);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   size = random(500, 700);
   stroke(255);
   strokeWeight(0.5);
@@ -15,8 +15,12 @@ function draw() {
     cos((frameCount + 200) / 200) * (size / 3),
     sin((frameCount + 200) / 100) * (size / 2),
     sin((frameCount + 200) / 300) * size,
-    0, 0, 0,
-    0, 1, 0
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
   );
 
   noFill();
@@ -30,28 +34,60 @@ function draw() {
     rotateY(noiseVal * 2);
 
     bezier(
-      -anchorPoint, 0, anchorPoint,
-      noiseVal, noiseVal, noiseVal,
-      noiseVal, noiseVal, noiseVal,
-      anchorPoint, 0, anchorPoint
+      -anchorPoint,
+      0,
+      anchorPoint,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      anchorPoint,
+      0,
+      anchorPoint
     );
     bezier(
-      anchorPoint, 0, anchorPoint,
-      noiseVal, noiseVal, noiseVal,
-      noiseVal, noiseVal, noiseVal,
-      anchorPoint, 0, -anchorPoint
+      anchorPoint,
+      0,
+      anchorPoint,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      anchorPoint,
+      0,
+      -anchorPoint
     );
     bezier(
-      anchorPoint, 0, -anchorPoint,
-      noiseVal, noiseVal, noiseVal,
-      noiseVal, noiseVal, noiseVal,
-      -anchorPoint, 0, -anchorPoint
+      anchorPoint,
+      0,
+      -anchorPoint,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      -anchorPoint,
+      0,
+      -anchorPoint
     );
     bezier(
-      -anchorPoint, 0, -anchorPoint,
-      noiseVal, noiseVal, noiseVal,
-      noiseVal, noiseVal, noiseVal,
-      -anchorPoint, 0, anchorPoint
+      -anchorPoint,
+      0,
+      -anchorPoint,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      noiseVal,
+      -anchorPoint,
+      0,
+      anchorPoint
     );
     pop();
   }

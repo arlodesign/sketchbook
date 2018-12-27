@@ -7,12 +7,12 @@ const scalar = 36;
 let img;
 
 function preload() {
-  img = loadImage('/images/rope.png');
+  img = loadImage("/images/rope.png");
 }
 
 function setup() {
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
 }
 
 function draw() {

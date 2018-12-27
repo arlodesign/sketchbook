@@ -7,12 +7,12 @@ const gap = 10;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
+  myCanvas.parent("my-canvas");
   noFill();
 }
 
 function draw() {
-  background('white');
+  background("white");
 
   const nearestY = Math.ceil(mouseY / gap) * gap;
   const yBottom = height - mouseY;

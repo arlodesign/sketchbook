@@ -6,8 +6,8 @@ let angle = 0;
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
-  myCanvas.parent('my-canvas');
-  background('white');
+  myCanvas.parent("my-canvas");
+  background("white");
   rectMode(CENTER);
   noFill();
 }
