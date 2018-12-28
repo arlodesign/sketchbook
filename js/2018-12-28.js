@@ -49,24 +49,7 @@ function draw() {
     pass++;
     if (pass === 4) {
       noLoop();
+      drawingComplete = true;
     }
   }
-  // if (y > height && pass === 2) {
-  //   noLoop();
-  // }
-  // if (y > height && pass = ) {
-  // }
 }
-
-// UNCOMMENT FOR INTERACTIVE SKETCHES
-// function touchMoved() {
-//   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-//     return false
-//   };
-// }
-
-// If you want to capture a screenshot of the drawing at a different time,
-// set drawingComplete = true when it makes sense.
-setTimeout(() => {
-  drawingComplete = true;
-}, 1000);
