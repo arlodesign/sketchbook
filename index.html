@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://sketchbook.arlo.me/">
   <meta property="og:description" content="Sketchbook">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://sketchbook.arlo.me/thumbnails/2018-12-29.png">
+  <meta property="og:image" content="https://sketchbook.arlo.me/thumbnails/2018-12-30.png">
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
     header {
@@ -20,12 +20,13 @@
     ul {
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;    
-      justify-content: space-between;
+      flex-wrap: wrap;   
+      margin-right: -1rem; 
     }
     li {
       width: calc(33% - 1rem);
       padding-bottom: 1.2rem;
+      margin-right: 1rem;
     }
     li a {
       display: block;
@@ -73,6 +74,12 @@
   <main>
     <nav>
       <ul>
+        <li id="link-2018-12-30">
+          <a href="/sketch/2018-12-30">
+            <img class="js-lazy" data-src="/thumbnails/2018-12-30.png" alt="2018-12-30">
+            <p>2018-12-30</p>
+          </a>
+        </li>
         <li id="link-2018-12-29">
           <a href="/sketch/2018-12-29">
             <img class="js-lazy" data-src="/thumbnails/2018-12-29.png" alt="2018-12-29">
@@ -280,6 +287,9 @@
       </ul>
     </nav>
   </main>
+  <footer>
+    <p><a href="https://arlo.me">Arlo Bryan Guthrie</a></p>
+  </footer>
   <script src="/js/lazyload.min.js"></script>
   <script>
     var myLazyLoad = new LazyLoad({
