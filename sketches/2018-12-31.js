@@ -10,7 +10,7 @@ function setup() {
   const myCanvas = createCanvas(660, 840);
   myCanvas.parent("my-canvas");
 
-  speed = random([2, 3, 5, 8, 10]);
+  speed = random([2, 3, 4, 5, 6, 8, 10]);
   alpha = random(0.3, 0.8);
 
   background(255);
