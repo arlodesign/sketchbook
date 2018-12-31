@@ -59,6 +59,7 @@ function draw() {
 
   if (maxSize === minSize && noDrawCount === noDrawLimit) {
     noLoop();
+    drawingComplete = true;
   }
 
   circles.forEach(c => c.draw());
@@ -106,16 +107,3 @@ function draw() {
     noDrawCount++;
   }
 }
-
-// UNCOMMENT FOR INTERACTIVE SKETCHES
-// function touchMoved() {
-//   if (mouseX >= 0 && mouseY >= 0 && mouseX <= width && mouseY <= height) {
-//     return false
-//   };
-// }
-
-// If you want to capture a screenshot of the drawing at a different time,
-// set drawingComplete = true when it makes sense.
-setTimeout(() => {
-  drawingComplete = true;
-}, 1000);
