@@ -1,7 +1,3 @@
-/*---
-description: 
----*/
-
 const SHAPES = 3;
 const MAX_SCALE = 3;
 
