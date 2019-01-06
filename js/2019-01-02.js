@@ -1,7 +1,3 @@
-/*---
-description: 
----*/
-
 const w = 30;
 const overlap = 10;
 
