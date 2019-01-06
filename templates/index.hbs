@@ -30,6 +30,7 @@
     }
     li a {
       display: block;
+      position: relative;
     }
     li p {
       padding-left: .5rem;
@@ -38,6 +39,11 @@
     img {
       width: 100%;
       padding-bottom: 0.6rem;
+    }
+    .thumbnail {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     @keyframes pulse {
       0%, 100% {
@@ -81,7 +87,8 @@
         {{#each sketches}}
         <li id="link-{{url}}">
           <a href="/sketch/{{url}}">
-            <img class="js-lazy" data-src="/thumbnails/{{url}}.png" alt="{{url}}">
+            <img src="/images/p.gif" aria-hidden="true">
+            <img class="thumbnail js-lazy" data-src="/thumbnails/{{url}}.png" alt="{{url}}">
             <p>{{url}}</p>
           </a>
         </li>
