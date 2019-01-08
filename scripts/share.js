@@ -7,6 +7,8 @@ const imagemin = require("imagemin");
 const imageminOptipng = require("imagemin-optipng");
 const copydir = require("copy-dir");
 
+const getSketches = require("./getSketches");
+
 const build = require("./build");
 build();
 
@@ -21,9 +23,7 @@ app.use(
 const http = require("http").Server(app);
 
 http.listen(port, () => {
-  const sketchFiles = fs
-    .readdirSync("./sketches/")
-    .map(sketch => path.basename(sketch, ".js"));
+  const sketchFiles = getSketches();
 
   (async () => {
     const browser = await puppeteer.launch();

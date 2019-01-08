@@ -1,16 +1,14 @@
 const fs = require("fs");
-const path = require("path");
 const handlebars = require("handlebars");
 const rimraf = require("rimraf");
 const copydir = require("copy-dir");
 const rss = require("rss");
 const matter = require("gray-matter");
 
+const getSketches = require("./getSketches");
+
 module.exports = (local = false) => {
-  const sketchFiles = fs
-    .readdirSync("./sketches/")
-    .reverse()
-    .map(sketch => path.basename(sketch, ".js"));
+  const sketchFiles = getSketches(local);
   const template = fs.readFileSync("./templates/page.hbs", "utf8");
   const html = handlebars.compile(template);
 
