@@ -7,7 +7,7 @@ const tileSize = 60;
 let img;
 
 function preload() {
-  img = loadImage("/images/susan.png");
+  img = loadImage("/assets/susan.png");
 }
 
 function setup() {
