@@ -14,20 +14,15 @@ function filename(date) {
 
 const DateObj = new Date();
 
-if (fs.existsSync(`./sketches/${filename(DateObj)}.js`)) {
+while (fs.existsSync(`./sketches/${filename(DateObj)}.js`)) {
   DateObj.setDate(DateObj.getDate() + 1);
 }
 
-if (fs.existsSync(`./sketches/${filename(DateObj)}.js`)) {
-  // Wait until tomorrow.
-  console.log("⚠️ Files already exist.");
-} else {
-  fs.copyFile(
-    "./templates/sketch.js",
-    `./sketches/${filename(DateObj)}.js`,
-    error => {
-      if (error) throw error;
-      console.log(`🎉 ${filename(DateObj)}.js created.`);
-    }
-  );
-}
+fs.copyFile(
+  "./templates/sketch.js",
+  `./sketches/${filename(DateObj)}.js`,
+  error => {
+    if (error) throw error;
+    console.log(`🎉 ${filename(DateObj)}.js created.`);
+  }
+);
