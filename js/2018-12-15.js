@@ -7,7 +7,7 @@ const scalar = 36;
 let img;
 
 function preload() {
-  img = loadImage("/images/rope.png");
+  img = loadImage("/assets/rope.png");
 }
 
 function setup() {
