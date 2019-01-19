@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+const build = require("./build");
+
 function leftPad(num) {
   return num < 10 ? `0${num}` : num;
 }
@@ -26,3 +28,5 @@ fs.copyFile(
     console.log(`🎉 ${filename(DateObj)}.js created.`);
   }
 );
+
+build(true);
