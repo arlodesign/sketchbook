@@ -5,6 +5,9 @@ const copydir = require("copy-dir");
 const rss = require("rss");
 const matter = require("gray-matter");
 const concat = require("concat");
+const minify = require("minify");
+const tryToCatch = require("try-to-catch");
+const glob = require("glob");
 
 const getSketches = require("./getSketches");
 
@@ -22,7 +25,7 @@ module.exports = (local = false) => {
   const feedLimit = 20;
   let feedItems = 0;
 
-  console.log("🛠 Building pages...");
+  console.log("🛠  Building pages...");
 
   function getContext(currentSketch) {
     const currentSketchIndex = sketchFiles.findIndex(
@@ -75,6 +78,8 @@ module.exports = (local = false) => {
       });
   });
 
+  concat(fs.readdirSync("./lib").map(f => `./lib/${f}`), "./dist/js/lib.js");
+
   const index = fs.readFileSync("./templates/index.hbs", "utf8");
   const indexHtml = handlebars.compile(index);
 
@@ -91,5 +96,15 @@ module.exports = (local = false) => {
     "./dist/js/lazyload.min.js"
   );
 
-  concat(fs.readdirSync("./lib").map(f => `./lib/${f}`), "./dist/js/lib.js");
+  if (!local) {
+    console.log("✊  Minifying files...");
+    glob(`./dist/**/*.{js,html,css}`, (err, matches) => {
+      if (err) throw err;
+      matches.forEach(async match => {
+        const [error, data] = await tryToCatch(minify, match);
+        if (error) throw error;
+        fs.writeFileSync(match, data);
+      });
+    });
+  }
 };

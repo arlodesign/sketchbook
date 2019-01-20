@@ -40,5 +40,5 @@ io.on("connection", socket => {
 
 http.listen(port, () => {
   require("openurl").open(`http://localhost:${port}/`);
-  console.log(`👂 Listening at http://localhost:${port}/`);
+  console.log(`👂  Listening at http://localhost:${port}/`);
 });

@@ -37,7 +37,7 @@ http.listen(port, () => {
       const thumbnailFile = `./thumbnails/${sketch}.png`;
 
       if (!fs.existsSync(thumbnailFile)) {
-        console.log(`🖼 Generating thumbnail for ${sketch}`);
+        console.log(`🖼  Generating thumbnail for ${sketch}`);
 
         await page.goto(`http://localhost:8080/sketch/${sketch}`);
         try {
@@ -61,12 +61,12 @@ http.listen(port, () => {
 
     await browser.close();
 
-    await console.log("📡 Publishing to GitHub...");
+    await console.log("📡  Publishing to GitHub...");
     !fs.existsSync("./dist/thumbnails") && fs.mkdirSync("./dist/thumbnails");
     copydir.sync("./thumbnails", "./dist/thumbnails");
     await ghpages.publish("./dist", error => {
       if (error) throw error;
-      console.log("🎉 Published!");
+      console.log("🎉  Published!");
     });
     await process.exit();
   })();

@@ -25,7 +25,7 @@ fs.copyFile(
   `./sketches/${filename(DateObj)}.js`,
   error => {
     if (error) throw error;
-    console.log(`🎉 ${filename(DateObj)}.js created.`);
+    console.log(`🎉  ${filename(DateObj)}.js created.`);
   }
 );
 
