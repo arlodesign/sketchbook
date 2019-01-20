@@ -1,17 +1,1 @@
-function setup() {
-  pixelDensity(4);
-  const myCanvas = createCanvas(660, 840);
-  myCanvas.parent("my-canvas");
-  background("white");
-}
-
-function draw() {
-  rectMode(CENTER);
-  strokeWeight(3);
-  for (let index = 0; index < 60; index++) {
-    translate(index, index / 2);
-    rotate(PI / index);
-    rect(index + 200, index + 10, width / 3, height / 3);
-  }
-  drawingComplete = true;
-}
+function setup(){pixelDensity(4),createCanvas(660,840).parent("my-canvas"),background("white")}function draw(){rectMode(CENTER),strokeWeight(3);for(let t=0;t<60;t++)translate(t,t/2),rotate(PI/t),rect(t+200,t+10,width/3,height/3);drawingComplete=!0}
