@@ -4,6 +4,7 @@ const rimraf = require("rimraf");
 const copydir = require("copy-dir");
 const rss = require("rss");
 const matter = require("gray-matter");
+const concat = require("concat");
 
 const getSketches = require("./getSketches");
 
@@ -89,4 +90,6 @@ module.exports = (local = false) => {
     "./node_modules/vanilla-lazyload/dist/lazyload.iife.min.js",
     "./dist/js/lazyload.min.js"
   );
+
+  concat(fs.readdirSync("./lib").map(f => `./lib/${f}`), "./dist/js/lib.js");
 };
