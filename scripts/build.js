@@ -11,9 +11,9 @@ const glob = require("glob");
 
 const getSketches = require("./getSketches");
 
-module.exports = (local = false) => {
+module.exports = async (local = false) => {
   const sketchFiles = getSketches(local);
-  const template = fs.readFileSync("./templates/page.hbs", "utf8");
+  const template = fs.readFileSync("./templates/sketch.hbs", "utf8");
   const html = handlebars.compile(template);
 
   const feed = new rss({
@@ -27,7 +27,7 @@ module.exports = (local = false) => {
 
   console.log("🛠  Building pages...");
 
-  function getContext(currentSketch) {
+  function getContext(currentSketch = sketchFiles[0]) {
     const currentSketchIndex = sketchFiles.findIndex(
       sketch => sketch === currentSketch
     );
@@ -58,6 +58,7 @@ module.exports = (local = false) => {
   }
 
   fs.existsSync("./dist") ? rimraf.sync("./dist/*") : fs.mkdirSync("./dist");
+  fs.mkdirSync("./dist/index");
   fs.mkdirSync("./dist/sketch");
   fs.mkdirSync("./dist/assets");
   fs.mkdirSync("./dist/styles");
@@ -78,12 +79,27 @@ module.exports = (local = false) => {
       });
   });
 
-  concat(fs.readdirSync("./lib").map(f => `./lib/${f}`), "./dist/js/lib.js");
-
   const index = fs.readFileSync("./templates/index.hbs", "utf8");
   const indexHtml = handlebars.compile(index);
+  const indexContext = getContext();
 
-  fs.writeFileSync("./dist/index.html", indexHtml(getContext(sketchFiles[0])));
+  for (let i = 0; i < sketchFiles.length / 12; i++) {
+    const thisIndexContext = Object.assign({}, indexContext, {
+      pageSketches: indexContext.sketches.slice(
+        i * 12,
+        Math.min(i * 12 + 12, sketchFiles.length)
+      ),
+      page: i + 1,
+      totalIndexPages: Math.ceil(sketchFiles.length / 12),
+      prevPage: i,
+      nextPage: i + 1 < sketchFiles.length / 12 ? i + 2 : false
+    });
+    // console.log(sketchFiles.length, totalIndexPages, thisIndexContext.nextPage);
+    i === 0 &&
+      fs.writeFileSync("./dist/index.html", indexHtml(thisIndexContext));
+    fs.writeFileSync(`./dist/index/${i + 1}.html`, indexHtml(thisIndexContext));
+  }
+
   fs.writeFileSync("./dist/feed.rss", feed.xml());
   fs.writeFileSync("./dist/CNAME", "sketchbook.arlo.me");
   copydir.sync("./thumbnails", "./dist/thumbnails");
@@ -94,6 +110,11 @@ module.exports = (local = false) => {
   fs.copyFileSync(
     "./node_modules/vanilla-lazyload/dist/lazyload.iife.min.js",
     "./dist/js/lazyload.min.js"
+  );
+
+  await concat(
+    fs.readdirSync("./lib").map(f => `./lib/${f}`),
+    "./dist/js/lib.js"
   );
 
   if (!local) {

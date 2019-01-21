@@ -5,7 +5,6 @@ html {
 
 * {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-  font-size: 1rem;
   color: #eee;
   margin: 0;
   padding: 0;
@@ -17,9 +16,19 @@ html {
 }
 
 body {
+  font-size: 1rem;
   width: 660px;
   margin: 0 auto 1em;
   background: #111;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
 }
 
 .large {
@@ -27,13 +36,21 @@ body {
 }
 
 .icon {
-  width: 1em;
-  height: 1em;
+  width: 2rem;
+  height: 2rem;
 }
 
-ul,
-li {
-  list-style: none;
+.sr {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[aria-hidden] {
+  opacity: .5;
 }
 
 @media (min-width: 661px) {
@@ -43,5 +60,11 @@ li {
 
   body {
     margin: .5em auto;
+  }
+
+  .icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
   }
 }
