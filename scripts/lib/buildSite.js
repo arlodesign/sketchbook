@@ -110,10 +110,6 @@ module.exports = async (local = false) => {
   copydir.sync("./styles", "./dist/styles");
 
   fs.copyFileSync("./node_modules/p5/lib/p5.min.js", "./dist/js/p5.min.js");
-  fs.copyFileSync(
-    "./node_modules/vanilla-lazyload/dist/lazyload.iife.min.js",
-    "./dist/js/lazyload.min.js"
-  );
 
   await concat(
     fs.readdirSync("./lib").map(f => `./lib/${f}`),

@@ -12,8 +12,7 @@
   "author": "mail@arlo.me",
   "license": "MIT",
   "dependencies": {
-    "p5": "^0.7.2",
-    "vanilla-lazyload": "^10.19.0"
+    "p5": "^0.7.2"
   },
   "devDependencies": {
     "@node-minify/core": "^4.0.5",
