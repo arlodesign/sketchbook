@@ -1,1 +1,70 @@
-undefined
+html {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+* {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
+
+:focus {
+  outline: solid 2px #eee;
+  outline-offset: 2px;
+}
+
+body {
+  font-size: 1rem;
+  width: 660px;
+  margin: 0 auto 1em;
+  background: #111;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+}
+
+.large {
+  font-size: 2rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.sr {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[aria-hidden] {
+  opacity: .5;
+}
+
+@media (min-width: 661px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    margin: .5em auto;
+  }
+
+  .icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
+}
