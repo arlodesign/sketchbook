@@ -7,9 +7,9 @@ const imagemin = require("imagemin");
 const imageminOptipng = require("imagemin-optipng");
 const copydir = require("copy-dir");
 
-const getSketches = require("./getSketches");
+const getSketches = require("./lib/getSketches");
 
-const build = require("./build");
+const build = require("./lib/buildSite");
 build();
 
 const app = express();

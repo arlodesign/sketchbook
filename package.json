@@ -2,7 +2,9 @@
   "name": "sketchbook",
   "description": "Experiments with p5.js",
   "scripts": {
-    "serve": "node scripts/serve.js",
+    "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js --local",
+    "serve:dist": "node scripts/serve.js",
     "sketch": "node scripts/sketch.js",
     "share": "node scripts/share.js"
   },
@@ -14,6 +16,10 @@
     "vanilla-lazyload": "^10.19.0"
   },
   "devDependencies": {
+    "@node-minify/core": "^4.0.5",
+    "@node-minify/csso": "^4.0.5",
+    "@node-minify/html-minifier": "^4.0.5",
+    "@node-minify/terser": "^4.1.0",
     "chokidar": "^2.0.4",
     "concat": "^1.0.3",
     "copy-dir": "^0.4.0",
@@ -27,7 +33,7 @@
     "handlebars": "^4.0.12",
     "imagemin": "^6.0.0",
     "imagemin-optipng": "^6.0.0",
-    "minify": "^4.1.0",
+    "minimist": "^1.2.0",
     "openurl": "^1.1.1",
     "prettier": "^1.15.3",
     "prettier-eslint": "^8.8.2",

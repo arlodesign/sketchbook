@@ -2,12 +2,13 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const chokidar = require("chokidar");
+var { local } = require("minimist")(process.argv.slice(2));
 
 const app = express();
 const port = 8080;
 
-const build = require("./build");
-build(true);
+const build = require("./lib/buildSite");
+build(local);
 
 app.use(
   "/",
@@ -32,7 +33,7 @@ io.on("connection", socket => {
           io.emit("update");
         });
       } else {
-        build(true);
+        build(local);
         io.emit("update");
       }
     });
