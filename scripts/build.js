@@ -119,7 +119,7 @@ module.exports = async (local = false) => {
 
   if (!local) {
     console.log("✊  Minifying files...");
-    glob(`./dist/**/*.{js,html,css}`, (err, matches) => {
+    glob(`./dist/**/*.{js,html}`, (err, matches) => {
       if (err) throw err;
       matches.forEach(async match => {
         const [error, data] = await tryToCatch(minify, match);
