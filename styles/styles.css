@@ -38,6 +38,7 @@ li {
 .icon {
   width: 2rem;
   height: 2rem;
+  padding: 0 .25rem;
 }
 
 .sr {
@@ -47,6 +48,14 @@ li {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.pagination {
+  display: flex;
+}
+
+.pagination>* {
+  padding: 0 .25rem;
 }
 
 [aria-hidden] {

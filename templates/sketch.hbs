@@ -22,7 +22,7 @@
       grid-column-end: 3;
       grid-row-start: 2;
       grid-row-end: 3;
-      text-align: right;
+      justify-self: end;
       padding-right: 1em;
     }
 
@@ -71,14 +71,12 @@
   </header>
   <main class="frame" id="my-canvas"></main>
   <nav>
-    <div>
+    <div class="pagination">
       {{#if prevSketch}}
       <a href="/sketch/{{prevSketch}}" class="large" aria-label="{{prevSketch}}">←</a>
       {{else}}<span class="large" aria-hidden="true">←</span>
       {{/if}}
-
       <a class="large" href="/#link-{{currentSketch}}" aria-label="Index" title="Index">↑</a>
-
       {{#if nextSketch}}
       <a href="/sketch/{{nextSketch}}" class="large" aria-label="{{nextSketch}}">→</a>
       {{else}}<span class="large" aria-hidden="true">→</span>

@@ -113,18 +113,14 @@
     <p><a href="https://arlo.me">Arlo Bryan Guthrie</a></p>
     <nav aria-labelledby="indexes">
       <h2 class="sr" id="indexes">Index Pages</h2>
-      <div>
-        {{#if prevPage}}
-        <a href="/index/{{prevPage}}" class="large" aria-label="Page {{prevPage}} of {{totalIndexPages}}">←</a>
+      <div class="pagination">
+        {{#if prevPage}} <a href="/index/{{prevPage}}" class="large" aria-label="Page {{prevPage}} of {{totalIndexPages}}">←</a>
         {{else}} <span class="large" aria-hidden="true">←</span>
         {{/if}}
-        {{#if prevPage}}
-        <a class="large" href="/" aria-label="Index" title="Index">↑</a>
-        {{else}}
-        <span class="large" aria-hidden="true">↑</span>
+        {{#if prevPage}} <a class="large" href="/" aria-label="Index" title="Index">↑</a>
+        {{else}} <span class="large" aria-hidden="true">↑</span>
         {{/if}}
-        {{#if nextPage}}
-        <a href="/index/{{nextPage}}" class="large" aria-label="Page {{nextPage}} of {{totalIndexPages}}">→</a>
+        {{#if nextPage}} <a href="/index/{{nextPage}}" class="large" aria-label="Page {{nextPage}} of {{totalIndexPages}}">→</a>
         {{else}}<span class="large" aria-hidden="true">→</span>
         {{/if}}
       </div>
