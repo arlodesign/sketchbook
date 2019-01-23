@@ -14,6 +14,8 @@ const terser = require("@node-minify/terser");
 
 const getSketches = require("./getSketches");
 
+const THUMBNAILS_PER_INDEX = 12;
+
 module.exports = async (local = false) => {
   const sketchFiles = getSketches(local);
   const template = fs.readFileSync("./templates/sketch.hbs", "utf8");
@@ -56,6 +58,7 @@ module.exports = async (local = false) => {
       prevSketch,
       nextSketch,
       local,
+      indexPage: Math.ceil((currentSketchIndex + 1) / THUMBNAILS_PER_INDEX),
       description: data.description || false
     };
   }
@@ -86,16 +89,20 @@ module.exports = async (local = false) => {
   const indexHtml = handlebars.compile(index);
   const indexContext = getContext();
 
-  for (let i = 0; i < sketchFiles.length / 12; i++) {
+  for (let i = 0; i < sketchFiles.length / THUMBNAILS_PER_INDEX; i++) {
     const thisIndexContext = Object.assign({}, indexContext, {
       pageSketches: indexContext.sketches.slice(
-        i * 12,
-        Math.min(i * 12 + 12, sketchFiles.length)
+        i * THUMBNAILS_PER_INDEX,
+        Math.min(
+          i * THUMBNAILS_PER_INDEX + THUMBNAILS_PER_INDEX,
+          sketchFiles.length
+        )
       ),
       page: i + 1,
-      totalIndexPages: Math.ceil(sketchFiles.length / 12),
+      totalIndexPages: Math.ceil(sketchFiles.length / THUMBNAILS_PER_INDEX),
       prevPage: i,
-      nextPage: i + 1 < sketchFiles.length / 12 ? i + 2 : false
+      nextPage:
+        i + 1 < sketchFiles.length / THUMBNAILS_PER_INDEX ? i + 2 : false
     });
     // console.log(sketchFiles.length, totalIndexPages, thisIndexContext.nextPage);
     i === 0 &&
