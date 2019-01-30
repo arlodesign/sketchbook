@@ -114,13 +114,13 @@
     <nav aria-labelledby="indexes">
       <h2 class="sr" id="indexes">Index Pages</h2>
       <div class="pagination">
-        {{#if prevPage}} <a href="/index/{{prevPage}}" class="large" aria-label="Page {{prevPage}} of {{totalIndexPages}}">←</a>
+        {{#if nextPage}} <a href="/index/{{nextPage}}" class="large" aria-label="Older Sketches: Page {{prevPage}} of {{totalIndexPages}}">←</a>
         {{else}} <span class="large" aria-hidden="true">←</span>
         {{/if}}
-        {{#if prevPage}} <a class="large" href="/" aria-label="Index" title="Index">↑</a>
+        {{#if prevPage}} <a class="large" href="/" aria-label="Latest Sketches">↑</a>
         {{else}} <span class="large" aria-hidden="true">↑</span>
         {{/if}}
-        {{#if nextPage}} <a href="/index/{{nextPage}}" class="large" aria-label="Page {{nextPage}} of {{totalIndexPages}}">→</a>
+        {{#if prevPage}} <a href="/index/{{prevPage}}" class="large" aria-label="Newer Sketches: Page {{nextPage}} of {{totalIndexPages}}">→</a>
         {{else}}<span class="large" aria-hidden="true">→</span>
         {{/if}}
       </div>
