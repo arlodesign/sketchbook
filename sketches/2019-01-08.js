@@ -11,21 +11,6 @@ let vertices = [];
 let maxDist;
 let showDots = true;
 
-function testPrime(n) {
-  if (n === 1) {
-    return false;
-  } else if (n === 2) {
-    return true;
-  } else {
-    for (var x = 2; x < n; x++) {
-      if (n % x === 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-}
-
 function setup() {
   pixelDensity(4);
   const myCanvas = createCanvas(660, 840);
@@ -33,7 +18,7 @@ function setup() {
   background(255);
 
   magicNumber = floor(random(5, 8));
-  while (!testPrime(vertexCount)) {
+  while (!isPrime(vertexCount)) {
     vertexCount = floor(random(magicNumber * 20, magicNumber * 25));
   }
 
