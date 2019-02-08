@@ -6,13 +6,21 @@ function getSketchTitle(sketch) {
   return path.basename(sketch, ".js");
 }
 
-const untrackedSketches = execSync(
-  "git ls-files --others --exclude-standard | grep sketches/"
-)
-  .toString()
-  .split("\n")
-  .filter(ln => ln.startsWith("sketches/"))
-  .map(sketch => getSketchTitle(sketch));
+let stdout;
+
+try {
+  stdout = execSync(
+    "git ls-files --others --exclude-standard | grep sketches/"
+  );
+} catch (e) {}
+
+const untrackedSketches = stdout
+  ? stdout
+      .toString()
+      .split("\n")
+      .filter(ln => ln.startsWith("sketches/"))
+      .map(sketch => getSketchTitle(sketch))
+  : [];
 
 const sketchFiles = fs
   .readdirSync("./sketches/")
