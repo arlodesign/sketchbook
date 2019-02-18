@@ -24,6 +24,7 @@ const untrackedSketches = stdout
 
 const sketchFiles = fs
   .readdirSync("./sketches/")
+  .filter(sketch => !sketch.startsWith("."))
   .reverse()
   .map(sketch => getSketchTitle(sketch));
 
