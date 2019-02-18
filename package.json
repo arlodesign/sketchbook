@@ -10,7 +10,7 @@
   },
   "repository": "git@github.com:arlodesign/sketchbook.git",
   "author": "mail@arlo.me",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "dependencies": {
     "p5": "^0.7.2"
   },
@@ -39,6 +39,7 @@
     "puppeteer": "^1.11.0",
     "rimraf": "^2.6.2",
     "rss": "^1.2.2",
+    "sharp": "^0.21.3",
     "socket.io": "^2.1.1"
   }
 }
