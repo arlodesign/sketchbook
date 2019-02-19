@@ -3,5 +3,6 @@ node_modules
 dist
 yarn-error.log
 thumbnails
+fullsize
 report.*.json
 .DS_Store

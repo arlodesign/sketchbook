@@ -39,13 +39,12 @@ http.listen(port, () => {
     });
     for (let index = 0; index < sketchFiles.length; index++) {
       const sketch = sketchFiles[index];
-      const fullImageFile = `./thumbnails/${sketch}_full.png`;
+      const fullImageFile = `./fullsize/${sketch}_full.png`;
       const imageFile = `./thumbnails/${sketch}.png`;
       const thumbnailFile = `./thumbnails/${sketch}_thumb.png`;
 
-      if (!fs.existsSync(fullImageFile) || !fs.existsSync(imageFile)) {
+      if (!fs.existsSync(fullImageFile)) {
         console.log(`🖼  Generating thumbnails for ${sketch}...`);
-        toOptimize.push(fullImageFile);
         toOptimize.push(imageFile);
 
         await page.goto(`http://localhost:8080/sketch/${sketch}`);
