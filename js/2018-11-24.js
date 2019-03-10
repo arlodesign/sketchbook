@@ -1,1 +1,0 @@
-function setup(){pixelDensity(4),createCanvas(660,840).parent("my-canvas"),background("white")}function draw(){rectMode(CENTER),strokeWeight(3);for(let t=0;t<60;t++)translate(t,t/2),rotate(PI/t),rect(t+200,t+10,width/3,height/3);drawingComplete=!0}

@@ -1,1 +1,0 @@
-const speed=.3;let angle=2,scalar=3;function setup(){pixelDensity(4),createCanvas(660,840).parent("my-canvas"),background("white"),noStroke(),fill(0)}function draw(){const e=width/2+cos(angle)*scalar,a=height/2+sin(angle)*scalar,n=scalar/speed;rotate(PI/angle),rect(e,a,n,1),n>width&&(noLoop(),drawingComplete=!0),angle+=speed,scalar+=speed}
