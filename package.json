@@ -33,7 +33,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "publish": "node scripts/publish.js",
+    "share": "node scripts/publish.js",
     "sketch": "node scripts/new-sketch.js"
   },
   "repository": "git@github.com:arlodesign/sketchbook.git"
