@@ -1,0 +1,41 @@
+.sketchLayout {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.headline {
+  font-size: var(--font-large);
+  font-weight: 400;
+  margin: 0;
+  padding-top: var(--spacing);
+}
+.description {
+  margin: 0;
+  padding-bottom: var(-spacing);
+}
+
+@media only screen and (orientation: landscape) {
+  .sketchLayout {
+    display: grid;
+    grid-template-columns:
+      max-content
+      minmax(--landscape-description-width, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--spacing);
+  }
+  .headline {
+    padding: 0;
+  }
+  .sketch,
+  .header {
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .sketch {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  .header {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+}

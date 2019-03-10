@@ -1,17 +1,21 @@
 {
-  "extends": [
-    "prettier"
-  ],
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "es6": true
   },
-  "rules": {
-    "prettier/prettier": "error"
-  },
-  "plugins": [
-    "prettier"
-  ]
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["~components", ".src/components"],
+        ["~images", ".src/images"],
+        ["~lib", ".src/lib"]
+      ]
+    }
+  }
 }

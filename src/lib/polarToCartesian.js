@@ -1,0 +1,20 @@
+const polarToCartesianX = (center, angle, distance) => {
+  return center + Math.cos(angle) * distance;
+};
+const polarToCartesianY = (center, angle, distance) => {
+  return center + Math.sin(angle) * distance;
+};
+const polarToCartesian = (
+  centerX,
+  centerY,
+  angle,
+  distance,
+  asArray = false
+) => {
+  const x = polarToCartesianX(centerX, angle, distance);
+  const y = polarToCartesianY(centerY, angle, distance);
+  return asArray ? [x, y] : { x, y };
+};
+
+export { polarToCartesianX, polarToCartesianY };
+export default polarToCartesian;

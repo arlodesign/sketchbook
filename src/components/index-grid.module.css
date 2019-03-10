@@ -1,0 +1,40 @@
+.grid {
+  --grid-columns: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-template-rows: repeat(12 / var(--grid-columns), 1fr);
+  grid-column-gap: var(--spacing);
+  grid-row-gap: var(--spacing);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.item,
+.figure {
+  padding: 0;
+  margin: 0;
+}
+.item {
+  display: block;
+  list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.target {
+  animation: pulse 1s 0.25s ease;
+}
+
+@media only screen and (orientation: landscape) {
+  .grid {
+    --grid-columns: 4;
+  }
+}

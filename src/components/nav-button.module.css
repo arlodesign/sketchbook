@@ -1,0 +1,17 @@
+.navButton,
+.disabled {
+  display: inline-block;
+  width: var(--icon-size);
+  font-size: var(--font-large);
+  color: var(--white);
+  text-align: center;
+  text-decoration: none;
+  line-height: 0;
+  padding: calc(var(--font-large) / 3) 0;
+}
+.disabled {
+  opacity: 0.2;
+}
+.bar {
+  display: flex;
+}

@@ -1,0 +1,14 @@
+import React from "react";
+import SketchLayout from "~components/sketch-layout";
+
+const sketch = function(p) {
+  p.setup = function() {
+    p.createCanvas(660, 840);
+  };
+
+  p.draw = function() {};
+};
+
+export default ({ location }) => (
+  <SketchLayout sketch={sketch} path={location.pathname} description="" />
+);

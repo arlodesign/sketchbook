@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6"
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "lib"
-  ]
+    "baseUrl": ".",
+    "paths": {
+      "~components/*": ["src/components/*"],
+      "~images/*": ["src/images/*"],
+      "~lib/*": ["src/lib/*"]
+    }
+  }
 }
