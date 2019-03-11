@@ -134,7 +134,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       feed.item({
         title: sketchTitle,
-        url: `${siteUrl}/${node.relativePath.replace(
+        url: `${siteUrl}/sketch/${node.relativePath.replace(
           `.${node.extension}`,
           "/"
         )}`,
