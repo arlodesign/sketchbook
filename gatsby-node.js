@@ -70,7 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
             relativePath
             extension
             childImageSharp {
-              resize(width: 1024) {
+              resize(width: 660) {
                 src
               }
             }
@@ -110,8 +110,8 @@ exports.createPages = ({ graphql, actions }) => {
     // redirects
     images.forEach(({ node }) => {
       const sketchTitle = node.relativePath
-      .replace(`.${node.extension}`, "")
-      .replace(/\//g, "-");
+        .replace(`.${node.extension}`, "")
+        .replace(/\//g, "-");
 
       createRedirect({
         fromPath: `/sketch/${sketchTitle}`,
