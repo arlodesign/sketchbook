@@ -8,6 +8,10 @@
   --icon-size: calc(var(--font-large) * var(--line-height));
 }
 
+html,
+body {
+  height: 100%;
+}
 html {
   background: var(--black);
   color: var(--white);

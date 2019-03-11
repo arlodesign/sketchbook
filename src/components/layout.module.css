@@ -4,8 +4,8 @@
   grid-template-columns: 1fr max-content var(--icon-size);
   grid-template-rows: 1fr min-content;
   grid-column-gap: var(--spacing);
-  grid-row-gap: var(--spacing);
-  min-height: 100vh;
+  /* grid-row-gap: var(--spacing); */
+  height: 100%;
 }
 .main {
   grid-row-start: 1;
@@ -83,5 +83,9 @@
     text-align: right;
     padding-bottom: calc(var(--spacing) * 2);
     padding-right: calc(var(--spacing) / 2);
+  }
+}
+@media only screen and (min-height: 40em) {
+  .layout {
   }
 }
