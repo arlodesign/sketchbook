@@ -11,6 +11,10 @@ class Sketch extends React.Component {
   componentDidMount() {
     this.canvas = new p5(this.props.sketch, this.sketchRef.current);
   }
+  componentDidUpdate() {
+    this.canvas.remove();
+    this.canvas = new p5(this.props.sketch, this.sketchRef.current);
+  }
   componentWillUnmount() {
     this.canvas.remove();
   }
