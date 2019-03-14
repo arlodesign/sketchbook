@@ -24,6 +24,15 @@ const imagePath = "./src/images";
 const DateObj = new Date();
 
 (async () => {
+  await mkdir(
+    `${imagePath}/${DateObj.getFullYear()}/${leftPad(DateObj.getMonth() + 1)}`,
+    { recursive: true }
+  );
+  await copyFile(
+    "./scripts/new-sketch.png",
+    `${imagePath}/${makeDateString(DateObj)}.png`
+  );
+
   const template = await readFile("./scripts/new-sketch.template", "utf8");
 
   while (fs.existsSync(`${sketchPath}/${makeDateString(DateObj)}.js`)) {
@@ -40,25 +49,6 @@ const DateObj = new Date();
     "utf8"
   );
 
-  await mkdir(
-    `${imagePath}/${DateObj.getFullYear()}/${leftPad(DateObj.getMonth() + 1)}`,
-    { recursive: true }
-  );
-  await copyFile(
-    "./scripts/new-sketch.png",
-    `${imagePath}/${makeDateString(DateObj)}.png`
-  );
-
   console.log(`🎉  ${sketchPath}/${makeDateString(DateObj)}.js created.`);
   exec(`code ${sketchPath}/${makeDateString(DateObj)}.js`);
-
-  // fs.writeFile(
-  //   `${sketchPath}/${makeDateString(DateObj)}.js`,
-  //   template.replace(/\{\{\sdate\s\}\}/g, makeDateString(DateObj, "-")),
-  //   "utf8",
-  //   error => {
-  //     console.log(`🎉  ${sketchPath}/${makeDateString(DateObj)}.js created.`);
-  //     exec(`code ${sketchPath}/${makeDateString(DateObj)}.js`);
-  //   }
-  // );
 })();
