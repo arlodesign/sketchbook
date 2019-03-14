@@ -75,7 +75,7 @@ export const query = graphql`
           extension
           childImageSharp {
             fluid(maxWidth: 210) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_noBase64
             }
             twitter: resize(width: 1024) {
               src
