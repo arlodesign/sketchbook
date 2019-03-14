@@ -4,6 +4,7 @@ import SketchLayout from "~components/sketch-layout";
 const sketch = function(p) {
   p.setup = function() {
     p.createCanvas(660, 840);
+    p.background(255);
   };
 
   p.draw = function() {};
