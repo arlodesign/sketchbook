@@ -15,6 +15,18 @@ const polarToCartesian = (
   const y = polarToCartesianY(centerY, angle, distance);
   return asArray ? [x, y] : { x, y };
 };
+const polarToCartesianEllipse = (
+  centerX,
+  centerY,
+  angle,
+  radiusX,
+  radiusY,
+  asArray = false
+) => {
+  const x = centerX + Math.cos(angle) * radiusX;
+  const y = centerY + Math.sin(angle) * radiusY;
+  return asArray ? [x, y] : { x, y };
+};
 
-export { polarToCartesianX, polarToCartesianY };
+export { polarToCartesianX, polarToCartesianY, polarToCartesianEllipse };
 export default polarToCartesian;
