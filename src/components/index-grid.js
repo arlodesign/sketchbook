@@ -32,7 +32,9 @@ class IndexGridItem extends React.Component {
       <li className={styles.item} key={path}>
         <Link className={styles.link} to={path}>
           <figure className={this.figureClassName} id={id}>
-            <Img fluid={image.node.childImageSharp.fluid} alt={name} />
+            {image && (
+              <Img fluid={image.node.childImageSharp.fluid} alt={name} />
+            )}
             <figcaption>
               <SR>
                 <time dateTime={name}>{name}</time>
