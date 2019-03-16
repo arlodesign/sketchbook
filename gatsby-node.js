@@ -115,36 +115,41 @@ exports.createPages = ({ graphql, actions }) => {
 
       createRedirect({
         fromPath: `/sketch/${sketchTitle}`,
-        toPath: `/sketch/${node.relativePath.replace(`.${node.extension}`, "")}/`,
-        isPermanent: true
-      });
-    })
-
-    // rss
-    const feed = new rss({
-      title,
-      description,
-      feed_url: `${siteUrl}/feed.rss`,
-      site_url: siteUrl,
-    });
-    images.slice(0, 12).forEach(({ node }) => {
-      const sketchTitle = node.relativePath
-        .replace(`.${node.extension}`, "")
-        .replace(/\//g, "-");
-
-      feed.item({
-        title: sketchTitle,
-        url: `${siteUrl}/sketch/${node.relativePath.replace(
+        toPath: `/sketch/${node.relativePath.replace(
           `.${node.extension}`,
-          "/"
-        )}`,
-        date: sketchTitle,
-        enclosure: {
-          url: `${siteUrl}${node.childImageSharp.resize.src}`,
-          file: `./public${node.childImageSharp.resize.src}`,
-        },
+          ""
+        )}/`,
+        isPermanent: true,
       });
     });
-    await writeFile("./public/feed.rss", feed.xml(), "utf8");
+
+    if (process.env.NODE_ENV === "production") {
+      // rss
+      const feed = new rss({
+        title,
+        description,
+        feed_url: `${siteUrl}/feed.rss`,
+        site_url: siteUrl,
+      });
+      images.slice(0, 12).forEach(({ node }) => {
+        const sketchTitle = node.relativePath
+          .replace(`.${node.extension}`, "")
+          .replace(/\//g, "-");
+
+        feed.item({
+          title: sketchTitle,
+          url: `${siteUrl}/sketch/${node.relativePath.replace(
+            `.${node.extension}`,
+            "/"
+          )}`,
+          date: sketchTitle,
+          enclosure: {
+            url: `${siteUrl}${node.childImageSharp.resize.src}`,
+            file: `./public${node.childImageSharp.resize.src}`,
+          },
+        });
+      });
+      await writeFile("./public/feed.rss", feed.xml(), "utf8");
+    }
   });
 };
