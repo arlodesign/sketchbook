@@ -8,7 +8,6 @@ const path = require("path");
 const rss = require("rss");
 const fs = require("fs");
 const { promisify } = require("util");
-const { createFilePath } = require("gatsby-source-filesystem");
 
 const writeFile = promisify(fs.writeFile);
 
