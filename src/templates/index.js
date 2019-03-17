@@ -32,7 +32,7 @@ export default ({ data, pageContext }) => {
   return (
     <Layout isIndex navigation={navigation}>
       <SEO
-        title="Sketchbook"
+        title="Index"
         ogImage={images[0].node.childImageSharp.og.src}
         twitterImage={images[0].node.childImageSharp.twitter.src}
       />
