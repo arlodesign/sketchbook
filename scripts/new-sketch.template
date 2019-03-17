@@ -8,6 +8,17 @@ const sketch = function(p) {
   };
 
   p.draw = function() {};
+
+  // p.touchMoved = function() {
+  //  if (
+  //    p.mouseX >= 0 &&
+  //    p.mouseY >= 0 &&
+  //    p.mouseX <= p.width &&
+  //    p.mouseY <= p.height
+  //  ) {
+  //    return false;
+  //  }
+  };
 };
 
 export default ({ location }) => (
