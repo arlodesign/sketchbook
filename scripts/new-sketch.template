@@ -18,7 +18,7 @@ const sketch = function(p) {
   //  ) {
   //    return false;
   //  }
-  };
+  // };
 };
 
 export default ({ location }) => (
