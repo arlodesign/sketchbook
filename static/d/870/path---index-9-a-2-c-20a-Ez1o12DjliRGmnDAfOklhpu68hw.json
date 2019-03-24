@@ -1,1 +1,0 @@
-{"errors":[{"message":"Cannot read property 'node' of undefined","locations":[{"line":5,"column":3}],"path":["sketches"]},{"message":"Cannot read property 'node' of undefined","locations":[{"line":12,"column":3}],"path":["images"]}],"data":{"sketches":null,"images":null},"pageContext":{"total":9,"limit":12,"skip":96,"older":9,"newer":8,"current":9}}
