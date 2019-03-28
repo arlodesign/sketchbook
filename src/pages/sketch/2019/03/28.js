@@ -3,10 +3,12 @@ import SketchLayout from "~components/sketch-layout";
 import polarToCartesian from "~lib/polarToCartesian";
 
 const sketch = function(p) {
-  const DEPTH = 20;
-  const HUE = p.random(0, 50);
+  const DEPTH = 5;
+  const HUE = p.random(0, 33);
+  const HUES = [HUE, HUE + 33, HUE + 66];
 
   let angle = 0;
+  let ad = p.random(DEPTH);
 
   class Circle {
     constructor(x, y, z, size) {
@@ -14,19 +16,19 @@ const sketch = function(p) {
       this.y = y;
       this.z = z;
       this.size = size;
-      this.hue = p.random([HUE, HUE + 50]);
+      this.hue = p.random(HUES);
     }
 
     draw() {
-      p.stroke(this.hue, 75, 100);
+      p.stroke(this.hue, 50, 100, 5);
 
-      for (let a = 0; a < p.TWO_PI; a += 0.01 / p.TWO_PI) {
+      for (let a = 0; a < p.TWO_PI; a += 0.001 / p.TWO_PI) {
         p.point(
           ...polarToCartesian(
             p.randomGaussian(this.x, this.z),
             p.randomGaussian(this.y, this.z),
             a,
-            this.size,
+            p.randomGaussian(this.size, this.size / 2),
             true
           )
         );
@@ -37,21 +39,26 @@ const sketch = function(p) {
   p.setup = function() {
     p.createCanvas(660, 840);
     p.colorMode(p.HSB, 100);
-    p.background(HUE, 100, 75);
-    p.blendMode(p.OVERLAY);
+    p.background(p.random(HUES), 100, 25);
+    p.blendMode(p.HARD_LIGHT);
     p.noFill();
   };
 
   p.draw = function() {
     const c = new Circle(
-      p.map(p.sin(angle), -1, 1, p.width, 0),
-      p.map(p.sin(angle), -1, 1, p.height, 0),
+      ...polarToCartesian(
+        p.width / 2,
+        p.height / 2,
+        angle,
+        p.map(p.tan(angle / ad), -1, 1, p.width / 5, 0),
+        true
+      ),
       p.floor(p.random([1, DEPTH, p.random(DEPTH)])),
-      p.randomGaussian(DEPTH, p.width / 3)
+      p.randomGaussian(DEPTH, p.width / (DEPTH * 10))
     );
     c.draw();
-    angle += 0.2 / p.TWO_PI;
-    angle > p.TWO_PI && p.noLoop();
+    angle += 1 / p.TWO_PI;
+    angle > p.TWO_PI * 2 && p.noLoop();
   };
 };
 
