@@ -58,11 +58,3 @@ const sketch = function(p) {
 export default ({ location }) => (
   <SketchLayout sketch={sketch} path={location.pathname} description="" />
 );
-
-/*...polarToCartesian(
-        p.width / 2,
-        p.height / 2,
-        angle,
-        p.map(p.sin(angle), 1, -1, 0, p.width / 3),
-        true
-      )*/
