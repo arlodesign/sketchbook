@@ -7,7 +7,6 @@ const DateObj = new Date();
 (async () => {
   await exec("git stash --include-untracked");
   console.log("🛠  Building website...");
-  await exec("rm -rf .cache");
   await exec("yarn build");
   console.log("📡  Publishing to GitHub...");
   await publish("./public");

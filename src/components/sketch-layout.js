@@ -12,7 +12,7 @@ export default ({ sketch, path, description }) => (
   <StaticQuery
     query={seoImagesQuery}
     render={data => {
-      const { node } = data.allFile.edges.find(edge =>
+      const image = data.allFile.edges.find(edge =>
         edge.node.relativePath.includes(
           path.replace("/sketch/", "").replace(/\/$/, "")
         )
@@ -20,11 +20,14 @@ export default ({ sketch, path, description }) => (
 
       return (
         <Layout navigation={<SketchNav path={path} />} isSketch>
-          <SEO
-            title={sketchTitle(path)}
-            ogImage={node.childImageSharp.og.src}
-            twitterImage={node.childImageSharp.twitter.src}
-          />
+          {image && (
+            <SEO
+              title={sketchTitle(path)}
+              ogImage={image.node.childImageSharp.og.src}
+              twitterImage={image.node.childImageSharp.twitter.src}
+            />
+          )}
+
           <div className={styles.sketchLayout}>
             <header className={styles.header}>
               <h1 className={styles.headline}>

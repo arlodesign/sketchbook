@@ -107,7 +107,7 @@ exports.createPages = ({ graphql, actions }) => {
     });
 
     // redirects
-    images.forEach(({ node }) => {
+    sketches.forEach(({ node }) => {
       const sketchTitle = node.relativePath
         .replace(`.${node.extension}`, "")
         .replace(/\//g, "-");

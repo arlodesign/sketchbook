@@ -44,10 +44,6 @@ const DateObj = new Date();
     `${imagePath}/${DateObj.getFullYear()}/${leftPad(DateObj.getMonth() + 1)}`,
     { recursive: true }
   );
-  await copyFile(
-    "./scripts/new-sketch.png",
-    `${imagePath}/${makeDateString(DateObj)}.png`
-  );
 
   console.log(`🎉  ${sketchPath}/${makeDateString(DateObj)}.js created.`);
   exec(`code ${sketchPath}/${makeDateString(DateObj)}.js`);

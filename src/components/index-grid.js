@@ -35,6 +35,13 @@ class IndexGridItem extends React.Component {
             {image && (
               <Img fluid={image.node.childImageSharp.fluid} alt={name} />
             )}
+            {/* This should only appear in development */}
+            {!image && (
+              <img
+                src="data:image/svg+xml,%3csvg height='840' viewBox='0 0 660 840' width='660' xmlns='http://www.w3.org/2000/svg'%3e%3cg fill='none' fill-rule='evenodd' stroke='white' stroke-width='4'%3e%3cpath d='m2 2h656v836h-656z'/%3e%3cpath d='m0 0 660 840'/%3e%3cpath d='m660 0-660 840'/%3e%3c/g%3e%3c/svg%3e"
+                style={{ width: "100%" }}
+              />
+            )}
             <figcaption>
               <SR>
                 <time dateTime={name}>{name}</time>
