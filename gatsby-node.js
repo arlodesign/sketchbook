@@ -57,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             relativePath
+            extension
           }
         }
       }
