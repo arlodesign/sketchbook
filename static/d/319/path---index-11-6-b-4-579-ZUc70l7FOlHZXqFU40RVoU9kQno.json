@@ -1,0 +1,1 @@
+{"errors":[{"message":"Cannot read property 'node' of undefined","locations":[{"line":12,"column":3}],"path":["images"]}],"data":{"sketches":{"edges":[{"node":{"path":"/sketch/2018/11/24/"}}]},"images":null},"pageContext":{"total":11,"limit":12,"skip":120,"older":11,"newer":10,"current":11}}
