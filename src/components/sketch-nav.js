@@ -35,20 +35,13 @@ export default ({ path }) => (
         edge => edge.node.path === path
       );
       const { next, previous } = sketches.edges[sketchIndex];
-      const { sketchesPerIndexPage } = site.siteMetadata;
-      const numIndexPages = Math.ceil(
-        sketches.edges.length / sketchesPerIndexPage
-      );
-      const sketchIndexPage = Math.floor(sketchIndex / sketchesPerIndexPage);
-      const sketchIndexPageUrl =
-        sketchIndexPage === 0 ? "/" : `/index/${sketchIndexPage + 1}`;
 
       return (
         <NavButtonBar label="Sketch Navigation">
           <NavButton to={next && next.path} icon="left" />
           <NavButton to={previous && previous.path} icon="right" />
           <NavButton
-            to={sketchIndexPageUrl + `#sketch-${sketchTitle(path)}`}
+            to={`/#sketch-${sketchTitle(path)}`}
             label="Back to Index"
             icon="up"
           />

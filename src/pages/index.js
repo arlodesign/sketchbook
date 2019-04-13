@@ -13,36 +13,15 @@ export default ({ data, pageContext }) => {
   const images = data.images.edges;
   const { older, newer, current, total } = pageContext;
 
-  const navigation = (
-    <NavButtonBar label="indexes">
-      <NavButton
-        to={older !== current && `/index/${older}`}
-        label={`Older Sketches, ${older} of ${total}`}
-        icon="left"
-      />
-      <NavButton
-        to={newer !== current && (newer === 1 ? "/" : `/index/${newer}`)}
-        label={`Newer Sketches, ${newer} of ${total}`}
-        icon="right"
-      />
-      <NavButton to={current !== 1 && "/"} label="Latest Sketches" icon="up" />
-    </NavButtonBar>
-  );
-
   return (
-    <Layout isIndex navigation={navigation}>
+    <Layout isIndex>
       <SEO
-        title={`Index ${current} of ${total}`}
+        title={`Index`}
         ogImage={images[0].node.childImageSharp.og.src}
         twitterImage={images[0].node.childImageSharp.twitter.src}
       />
       <SR>
-        <h2>
-          Index{" "}
-          <small>
-            {current} of {total}
-          </small>
-        </h2>
+        <h2>Index</h2>
       </SR>
       <IndexGrid sketches={sketches} images={images} />
     </Layout>
@@ -50,12 +29,10 @@ export default ({ data, pageContext }) => {
 };
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query {
     sketches: allSitePage(
       filter: { path: { regex: "/sketch/" } }
       sort: { fields: path, order: DESC }
-      limit: $limit
-      skip: $skip
     ) {
       edges {
         node {
@@ -66,8 +43,6 @@ export const query = graphql`
     images: allFile(
       filter: { relativePath: { regex: "/[0-9]{4}/" }, ext: { nin: [".js"] } }
       sort: { fields: relativePath, order: DESC }
-      limit: $limit
-      skip: $skip
     ) {
       edges {
         node {

@@ -18,8 +18,10 @@ const Layout = ({ children, navigation, isSketch }) => (
       }
     `}
     render={data => {
-      let layoutClasses = [styles.layout];
-      if (isSketch) layoutClasses.push(styles.isSketch);
+      let layoutClasses = [
+        styles.layout,
+        isSketch ? styles.isSketch : styles.isIndex,
+      ];
 
       return (
         <>
@@ -42,7 +44,9 @@ const Layout = ({ children, navigation, isSketch }) => (
               )}
             </header>
             <main className={styles.main}>{children}</main>
-            <div className={styles.navigation}>{navigation}</div>
+            {navigation && (
+              <div className={styles.navigation}>{navigation}</div>
+            )}
             <div className={styles.footer}>
               <NavButton href="#about" label="About this Site" icon="info" />
             </div>

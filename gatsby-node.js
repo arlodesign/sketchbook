@@ -89,24 +89,6 @@ exports.createPages = ({ graphql, actions }) => {
       sketchesPerIndexPage,
     } = result.data.site.siteMetadata;
 
-    // indexes
-    const total = Math.ceil(sketches.length / sketchesPerIndexPage);
-    Array.from({ length: total }).forEach((_, i) => {
-      const indexNumber = i + 1;
-      createPage({
-        path: i === 0 ? "/" : `/index/${indexNumber}`,
-        component: path.resolve("./src/templates/index.js"),
-        context: {
-          total,
-          limit: sketchesPerIndexPage,
-          skip: i * sketchesPerIndexPage,
-          older: Math.min(indexNumber + 1, total),
-          newer: Math.max(indexNumber - 1, 1),
-          current: indexNumber,
-        },
-      });
-    });
-
     // redirects
     sketches.forEach(({ node }) => {
       const sketchTitle = node.relativePath
