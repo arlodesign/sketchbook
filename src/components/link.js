@@ -1,14 +1,27 @@
 import React from "react";
-import { Link as GatsbyLink } from "gatsby";
-import styles from "./link.module.css";
+import { css } from "@emotion/core";
+import { Link } from "gatsby";
+
+const styles = css`
+  display: inline-block;
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 1.25rem,
+    var(--white) calc(1.25rem + 1px),
+    transparent calc(1.25rem + 1.5px)
+  );
+`;
 
 export default ({ to, href, children }) =>
   to ? (
-    <GatsbyLink className={styles.link} to={to}>
+    <Link css={styles} to={to}>
       {children}
-    </GatsbyLink>
+    </Link>
   ) : (
-    <a className={styles.link} href={href}>
+    <a css={styles} href={href}>
       {children}
     </a>
   );

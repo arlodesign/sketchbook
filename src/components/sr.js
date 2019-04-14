@@ -1,4 +1,13 @@
 import React from "react";
-import styles from "./sr.module.css";
+import styled from "@emotion/styled";
 
-export default ({ children }) => <span className={styles.sr}>{children}</span>;
+const SR = styled.span`
+  position: absolute;
+  left: -10vw;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
+export default ({ children, ...other }) => <SR {...other}>{children}</SR>;

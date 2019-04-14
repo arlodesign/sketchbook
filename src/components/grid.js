@@ -1,16 +1,15 @@
 import React from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
+import { css } from "@emotion/core";
 import SR from "~components/sr";
 import sketchTitle from "~util/sketch-title";
-import styles from "./index-grid.module.css";
 
-class IndexGridItem extends React.Component {
+class GridItem extends React.Component {
   constructor(props) {
     super(props);
     this.name = sketchTitle(props.sketch.node.path);
     this.id = `sketch-${this.name}`;
-    this.figureClassName = styles.figure;
     this.state = {
       targeted: false,
     };
@@ -18,7 +17,6 @@ class IndexGridItem extends React.Component {
 
   componentDidMount() {
     if (window.location.hash && window.location.hash.substr(1) === this.id) {
-      this.figureClassName = [styles.figure, styles.target].join(" ");
       this.setState({ targeted: true });
     }
   }
@@ -29,9 +27,27 @@ class IndexGridItem extends React.Component {
     const { name, id } = this;
 
     return (
-      <li className={styles.item} key={path}>
-        <Link className={styles.link} to={path}>
-          <figure className={this.figureClassName} id={id}>
+      <li
+        key={path}
+        css={css`
+          display: block;
+          list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+        `}
+      >
+        <Link to={path}>
+          <figure
+            id={id}
+            css={
+              this.state.targeted
+                ? css`
+                    padding: var(--spacing) calc(var(--spacing) / 2) 0;
+                    animation: pulse 1s 0.25s ease;
+                  `
+                : css`
+                    padding: var(--spacing) calc(var(--spacing) / 2) 0;
+                  `
+            }
+          >
             {image && (
               <Img fluid={image.node.childImageSharp.fluid} alt={name} />
             )}
@@ -56,9 +72,22 @@ class IndexGridItem extends React.Component {
 
 export default ({ sketches, images }) => (
   <nav aria-labelledby="sketches">
-    <ul className={styles.grid}>
+    <ul
+      css={css`
+        --grid-columns: 3;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-columns), 1fr);
+        grid-template-rows: repeat(12 / var(--grid-columns), 1fr);
+        margin: 0;
+        padding: 0 calc(var(--spacing) / 2);
+        list-style: none;
+        @media only screen and (min-width: 30em) {
+          --grid-columns: 4;
+        }
+      `}
+    >
       {sketches.map(sketch => (
-        <IndexGridItem
+        <GridItem
           key={sketch.node.path}
           sketch={sketch}
           image={images.find(image =>

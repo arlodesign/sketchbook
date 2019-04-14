@@ -1,12 +1,14 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
+import { css } from "@emotion/core";
 import Layout from "~components/layout";
 import SEO from "~components/seo";
+import Header from "~components/header";
+import Icon from "~components/icon";
 import Sketch from "~components/sketch";
 import SketchNav from "~components/sketch-nav";
 import SketchTitle from "~components/sketch-title";
 import sketchTitle from "~util/sketch-title";
-import styles from "~components/sketch-layout.module.css";
 
 export default ({ sketch, path, description }) => (
   <StaticQuery
@@ -19,7 +21,7 @@ export default ({ sketch, path, description }) => (
       );
 
       return (
-        <Layout navigation={<SketchNav path={path} />} isSketch>
+        <Layout>
           {image && (
             <SEO
               title={sketchTitle(path)}
@@ -28,18 +30,41 @@ export default ({ sketch, path, description }) => (
             />
           )}
 
-          <div className={styles.sketchLayout}>
-            <header className={styles.header}>
-              <h1 className={styles.headline}>
-                <SketchTitle path={path} />
-              </h1>
-              {description && (
-                <p className={styles.description}>{description}</p>
-              )}
-            </header>
-            <div className={styles.sketch}>
-              <Sketch sketch={sketch} />
-            </div>
+          <Header>
+            <Icon
+              to={`/#sketch-${sketchTitle(path)}`}
+              label="Back to Index"
+              icon="up"
+              css={css`
+                order: -1;
+              `}
+            />
+            <h1>
+              <SketchTitle path={path} />
+            </h1>
+          </Header>
+
+          <Sketch sketch={sketch} />
+
+          <div
+            css={css`
+              display: flex;
+              padding: var(--spacing);
+              justify-content: space-between;
+            `}
+          >
+            {description ? (
+              <p
+                css={css`
+                  padding-right: var(--spacing);
+                `}
+              >
+                {description}
+              </p>
+            ) : (
+              <span />
+            )}
+            <SketchNav path={path} />
           </div>
         </Layout>
       );

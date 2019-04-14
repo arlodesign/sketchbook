@@ -1,7 +1,8 @@
 import React from "react";
 import { StaticQuery, graphql, Link } from "gatsby";
+import { css } from "@emotion/core";
 import sketchTitle from "~util/sketch-title";
-import NavButton, { NavButtonBar } from "~components/nav-button";
+import Icon from "~components/icon";
 
 export default ({ path }) => (
   <StaticQuery
@@ -37,15 +38,17 @@ export default ({ path }) => (
       const { next, previous } = sketches.edges[sketchIndex];
 
       return (
-        <NavButtonBar label="Sketch Navigation">
-          <NavButton to={next && next.path} icon="left" />
-          <NavButton to={previous && previous.path} icon="right" />
-          <NavButton
-            to={`/#sketch-${sketchTitle(path)}`}
-            label="Back to Index"
-            icon="up"
-          />
-        </NavButtonBar>
+        <nav
+          css={css`
+            white-space: nowrap;
+            & > * {
+              padding-left: var(--spacing);
+            }
+          `}
+        >
+          <Icon to={next && next.path} icon="left" />
+          <Icon to={previous && previous.path} icon="right" />
+        </nav>
       );
     }}
   />
