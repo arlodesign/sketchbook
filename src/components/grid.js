@@ -71,7 +71,7 @@ class GridItem extends React.Component {
 }
 
 export default ({ sketches, images }) => (
-  <nav aria-labelledby="sketches">
+  <nav>
     <ul
       css={css`
         --grid-columns: 3;
