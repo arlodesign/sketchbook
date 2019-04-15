@@ -2,9 +2,6 @@
   --black: #111;
   --white: #eee;
   --spacing: 1rem;
-  --font-default: 1rem;
-  --font-large: 2rem;
-  --line-height: 1.5;
 }
 
 html,
@@ -15,7 +12,7 @@ body {
 html {
   background: var(--black);
   color: var(--white);
-  font: 14px / var(--line-height) SFMono-Regular, Consolas, Liberation Mono,
+  font: 14px / 1.5 SFMono-Regular, Consolas, Liberation Mono,
     Menlo, monospace;
   box-sizing: border-box;
 }
@@ -37,7 +34,6 @@ body {
   padding: 0;
 }
 
-/* 
 @media only screen and (min-width: 40em) {
   :root {
     --spacing: 1.5rem;
@@ -46,7 +42,7 @@ body {
   html {
     font-size: 16px;
   }
-} */
+}
 
 @keyframes pulse {
 

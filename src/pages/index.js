@@ -24,7 +24,13 @@ export default ({ data, pageContext }) => {
       />
 
       <Header>
-        <h1>
+        <h1
+          css={css`
+            grid-column-start: a;
+            grid-column-end: d;
+            text-align: left;
+          `}
+        >
           <Link href="#main">{data.site.siteMetadata.title}</Link>
         </h1>
       </Header>

@@ -9,7 +9,6 @@ const styles = css`
   display: inline-block;
   font-size: var(--font-large);
   color: var(--white);
-  text-align: center;
   text-decoration: none;
   line-height: 0;
 `;
