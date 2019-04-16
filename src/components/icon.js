@@ -31,6 +31,7 @@ const icons = {
     <path
       d="m10 4.94339811-9.09787618 14.55660189h18.19575238z"
       stroke="currentColor"
+      fill="transparent"
       transform="matrix(0 -1 1 0 -2 22)"
     />
   ),
@@ -38,6 +39,7 @@ const icons = {
     <path
       d="m14 4.94339811-9.09787618 14.55660189h18.19575238z"
       stroke="currentColor"
+      fill="transparent"
       transform="matrix(0 -1 -1 0 26 26)"
     />
   ),
