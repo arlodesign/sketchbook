@@ -1,6 +1,5 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-import polarToCartesian from "~lib/polarToCartesian";
 import addNoise from "~lib/addNoise";
 
 const sketch = function(p) {
