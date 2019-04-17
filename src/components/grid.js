@@ -81,7 +81,7 @@ export default ({ sketches, images }) => (
         margin: 0;
         padding: 0 calc(var(--spacing) / 2);
         list-style: none;
-        @media only screen and (min-width: 30em) {
+        @media only screen and (min-width: 35em) {
           --grid-columns: 4;
         }
       `}
