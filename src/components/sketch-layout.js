@@ -38,6 +38,7 @@ export default ({ sketch, path, description }) => (
               css={css`
                 grid-area: c;
                 text-align: center;
+                white-space: nowrap;
               `}
             >
               <SketchTitle path={path} />
