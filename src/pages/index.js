@@ -34,11 +34,12 @@ export default ({ data, pageContext }) => {
           <Link href="#main">{data.site.siteMetadata.title}</Link>
         </h1>
       </Header>
-
-      <SR>
-        <h2>Index</h2>
-      </SR>
-      <Grid sketches={sketches} images={images} />
+      <main>
+        <SR>
+          <h2>Index</h2>
+        </SR>
+        <Grid sketches={sketches} images={images} />
+      </main>
     </Layout>
   );
 };

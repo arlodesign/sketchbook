@@ -51,18 +51,19 @@ export default ({ sketch, path, description }) => (
             <Icon to={next && next.path} icon="left" />
             <Icon to={previous && previous.path} icon="right" />
           </Header>
+          <main>
+            <Sketch sketch={sketch} />
 
-          <Sketch sketch={sketch} />
-
-          {description && (
-            <p
-              css={css`
-                padding: var(--spacing);
-              `}
-            >
-              {description}
-            </p>
-          )}
+            {description && (
+              <p
+                css={css`
+                  padding: var(--spacing);
+                `}
+              >
+                {description}
+              </p>
+            )}
+          </main>
         </Layout>
       );
     }}
