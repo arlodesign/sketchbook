@@ -7618,6 +7618,11 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+open-simplex-noise@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/open-simplex-noise/-/open-simplex-noise-1.6.0.tgz#5c658f64cb6922ba869a9ce75937b0910bc5f4a2"
+  integrity sha512-/oLrC7PdpDDr3c5yM13qaAA5/BdFSRVk/iXnBkGKCahOPeDUVY/wIQQgdPGdUqMneMwL557J3hxcjLuo9hHDWw==
+
 opentracing@^0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/opentracing/-/opentracing-0.14.3.tgz#23e3ad029fa66a653926adbe57e834469f8550aa"
