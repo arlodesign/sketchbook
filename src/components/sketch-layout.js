@@ -25,13 +25,11 @@ export default ({ sketch, path, description }) => (
 
       return (
         <Layout>
-          {image && (
-            <SEO
-              title={sketchTitle(path)}
-              ogImage={image.node.childImageSharp.og.src}
-              twitterImage={image.node.childImageSharp.twitter.src}
-            />
-          )}
+          <SEO
+            title={sketchTitle(path)}
+            ogImage={image ? image.node.childImageSharp.og.src : null}
+            twitterImage={image ? image.node.childImageSharp.twitter.src : null}
+          />
 
           <Header>
             <h1

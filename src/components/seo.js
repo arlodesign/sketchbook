@@ -18,6 +18,9 @@ function SEO({
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description;
+        const { siteUrl, author } = data.site.siteMetadata;
+        const withUrl = path => `${siteUrl}${withPrefix(path)}`;
+
         return (
           <Helmet
             htmlAttributes={{
@@ -45,8 +48,8 @@ function SEO({
               {
                 property: `og:image`,
                 content:
-                  (ogImage && withPrefix(ogImage)) ||
-                  withPrefix("/icons/icon-512x512.png"),
+                  (ogImage && withUrl(ogImage)) ||
+                  withUrl("/icons/icon-512x512.png"),
               },
               {
                 name: `twitter:card`,
@@ -54,7 +57,7 @@ function SEO({
               },
               {
                 name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
+                content: author,
               },
               {
                 name: `twitter:title`,
@@ -67,8 +70,8 @@ function SEO({
               {
                 name: `twitter:image`,
                 content:
-                  (twitterImage && withPrefix(twitterImage)) ||
-                  withPrefix("/icons/icon-512x512.png"),
+                  (twitterImage && withUrl(twitterImage)) ||
+                  withUrl("/icons/icon-512x512.png"),
               },
             ]
               .concat(
@@ -112,6 +115,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }
