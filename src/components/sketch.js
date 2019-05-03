@@ -18,13 +18,6 @@ const SketchWrapper = styled.div`
     width: 100% !important;
     height: 100% !important;
   }
-
-  /*@media only screen and (orientation: landscape) {
-    --height: calc(100vh - var(--spacing) - var(--spacing));
-    width: calc(var(--height) * 0.7857142857);
-    height: var(--height);
-    padding: 0;*/
-  }
 `;
 
 class Sketch extends React.Component {
