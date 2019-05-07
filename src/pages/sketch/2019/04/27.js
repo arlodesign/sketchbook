@@ -1,7 +1,6 @@
 import React from "react";
 import { withPrefix } from "gatsby";
 import SketchLayout from "~components/sketch-layout";
-import shuffle from "~lib/shuffle";
 
 const sketch = function(p) {
   const letter = p.random("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
