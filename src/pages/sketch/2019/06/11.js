@@ -4,7 +4,6 @@ import polarToCartesian from "~lib/polarToCartesian";
 
 const sketch = function(p) {
   const STEPS = 5;
-  const POINTS = 10;
 
   let points = [];
 
@@ -25,7 +24,6 @@ const sketch = function(p) {
         initPoints.map(({ a, d }) => ({ a: a + angle, d }))
       );
     }
-    console.log(points);
   };
 
   p.draw = function() {
