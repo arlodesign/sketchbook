@@ -1261,6 +1261,28 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+amp-extend@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/amp-extend/-/amp-extend-1.0.1.tgz#6c543bee629c116b831857642f0ff940a15ae1ff"
+  integrity sha1-bFQ77mKcEWuDGFdkLw/5QKFa4f8=
+  dependencies:
+    amp-is-object "^1.0.0"
+
+amp-is-array@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/amp-is-array/-/amp-is-array-1.0.1.tgz#e7c42e450191b5e8a48ab02da69ce9e1f9a5058c"
+  integrity sha1-58QuRQGRteikirAtppzp4fmlBYw=
+
+amp-is-number@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/amp-is-number/-/amp-is-number-1.0.1.tgz#f430d2e65d1bbd2cc41dbd9afb7f03d3e328a314"
+  integrity sha1-9DDS5l0bvSzEHb2a+38D0+MooxQ=
+
+amp-is-object@^1.0.0, amp-is-object@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/amp-is-object/-/amp-is-object-1.0.1.tgz#0a8cb5956b9112a16a73677e8cbad37bba247702"
+  integrity sha1-Coy1lWuREqFqc2d+jLrTe7okdwI=
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -2792,6 +2814,16 @@ cookie@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
+
+coordinate-systems@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/coordinate-systems/-/coordinate-systems-1.1.0.tgz#aef2a12c48e114bdc205f6229d840fe7c354cb85"
+  integrity sha1-rvKhLEjhFL3CBfYinYQP58NUy4U=
+  dependencies:
+    amp-extend "^1.0.1"
+    amp-is-array "^1.0.1"
+    amp-is-number "^1.0.1"
+    amp-is-object "^1.0.1"
 
 copy-concurrently@^1.0.0:
   version "1.0.5"
