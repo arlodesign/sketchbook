@@ -1,8 +1,10 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import polarToCartesian from "~lib/polarToCartesian";
+// import "p5.createloop";
 
 const sketch = function(p) {
+  const FRAMES = 600;
   const QTY = 4;
   const HUE = p.random(100 / QTY);
   const COLORS = Array.from({ length: QTY }, (_, i) => HUE + (100 / QTY) * i);
@@ -11,6 +13,13 @@ const sketch = function(p) {
   let margin;
 
   p.setup = function() {
+    p.frameRate(30);
+
+    if (p.createLoop) {
+      p.createLoop(FRAMES / 30, {
+        gif: { render: false, open: true },
+      });
+    }
     p.createCanvas(660, 840);
     count = p.width / 50;
     margin = p.width * (1 / 8);
@@ -26,7 +35,7 @@ const sketch = function(p) {
     p.noFill();
     p.blendMode(p.HARD_LIGHT);
 
-    const a = p.map(p.frameCount % 1200, 0, 1200, 0, p.TWO_PI);
+    const a = p.map(p.frameCount % FRAMES, 0, FRAMES, 0, p.TWO_PI);
     const d = p.map(p.sin(a * 3), -1, 1, 0, p.width / 2 - margin * 2);
 
     let centerPoints = Array.from({ length: COLORS.length }, (_, i) =>
