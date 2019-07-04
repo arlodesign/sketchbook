@@ -3275,6 +3275,14 @@ create-react-context@^0.2.1:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
+createloop@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/createloop/-/createloop-0.0.12.tgz#cdffccc3438dbcfba66b80b3fdf7394c3b04f7c2"
+  integrity sha512-KqqcmomV2Q9PNjRdoa3+fgXosDm21Hc9J9u/ei3tUHawyYiJmx+qbHn84kV2EXl2kEofg62osx7hYsvV3D3rUw==
+  dependencies:
+    gif.js "^0.2.0"
+    simplex-noise "^2.4.0"
+
 cross-fetch@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-2.2.2.tgz#a47ff4f7fc712daba8f6a695a11c948440d45723"
@@ -5570,6 +5578,11 @@ gh-pages@^2.0.1:
     globby "^6.1.0"
     graceful-fs "^4.1.11"
     rimraf "^2.6.2"
+
+gif.js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gif.js/-/gif.js-0.2.0.tgz#615e6e3788850cd3a20c85fe9f09539e784903e8"
+  integrity sha1-YV5uN4iFDNOiDIX+nwlTnnhJA+g=
 
 github-from-package@0.0.0:
   version "0.0.0"
@@ -8454,6 +8467,14 @@ p-try@^2.0.0, p-try@^2.1.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
+p5.createloop@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/p5.createloop/-/p5.createloop-0.1.3.tgz#b9576c61b878bd9562a0eed155be24f2aa1c9d84"
+  integrity sha512-YygsfqKloCCLZJ8NKqWvxj8zODryXb3F1URpxVdxyzkItQOrhhCkC7kOgCzJrbWp7CMwd+DnEPTuV0x3ziIMUQ==
+  dependencies:
+    createloop "0.0.12"
+    p5 "^0.8.0"
+
 p5@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/p5/-/p5-0.8.0.tgz#af4cd2f25b2e77023dff24d845cbdbdaa47d4fd2"
@@ -10292,6 +10313,11 @@ simple-swizzle@^0.2.2:
   integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
   dependencies:
     is-arrayish "^0.3.1"
+
+simplex-noise@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-2.4.0.tgz#81b3458fb22dccc3bc8dd9a977c73797f86f523a"
+  integrity sha512-OjyDWm/QZjVbMrPxDVi9b2as+SeNn9EBXlrWVRlFW+TSyWMSXouDryXkQN0vf5YP+QZKobrmkvx1eQYPLtuqfw==
 
 sisteransi@^1.0.0:
   version "1.0.2"

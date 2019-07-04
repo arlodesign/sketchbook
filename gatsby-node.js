@@ -118,6 +118,23 @@ exports.createPages = ({ graphql, actions }) => {
           .replace(`.${node.extension}`, "")
           .replace(/\//g, "-");
 
+        const video = fs.existsSync(
+          "./static/videos/" +
+            node.relativePath.replace(`.${node.extension}`, ".mp4")
+        );
+        const url = video
+          ? `${siteUrl}/videos/${node.relativePath.replace(
+              `.${node.extension}`,
+              ".mp4"
+            )}`
+          : `${siteUrl}${node.childImageSharp.resize.src}`;
+        const file = video
+          ? `./public/videos/${node.relativePath.replace(
+              `.${node.extension}`,
+              ".mp4"
+            )}`
+          : `./public${node.childImageSharp.resize.src}`;
+
         feed.item({
           title: sketchTitle,
           url: `${siteUrl}/sketch/${node.relativePath.replace(
@@ -126,8 +143,8 @@ exports.createPages = ({ graphql, actions }) => {
           )}`,
           date: sketchTitle,
           enclosure: {
-            url: `${siteUrl}${node.childImageSharp.resize.src}`,
-            file: `./public${node.childImageSharp.resize.src}`,
+            url,
+            file,
           },
         });
       });
