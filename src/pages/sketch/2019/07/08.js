@@ -1,5 +1,6 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
+import "p5.createloop";
 
 const RENDER = false;
 
