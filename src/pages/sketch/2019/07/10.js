@@ -3,7 +3,7 @@ import SketchLayout from "~components/sketch-layout";
 import lerpLine from "~lib/lerpLine";
 import "p5.createloop";
 
-const RENDER = false;
+const RENDER = window.location.hostname === "localhost" && false;
 
 const sketch = function(p) {
   const GRID_SIZE = 10;

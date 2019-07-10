@@ -1,10 +1,23 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
+// import "p5.createloop";
+
+// const RENDER = window.location.hostname === "localhost" && false;
 
 const sketch = function(p) {
   p.setup = function() {
+    // if (RENDER) {
+    //  p.pixelDensity(1);
+    //  p.frameRate(30);
+    // }
+
     p.createCanvas(660, 840);
     p.background(255);
+
+    // p.createLoop(20, {
+    //  gif: RENDER ? { render: false, open: true } : false,
+    //  noiseRadius: 0.1,
+    // });
   };
 
   p.draw = function() {};
