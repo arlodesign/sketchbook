@@ -2,7 +2,7 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 // import "p5.createloop";
 
-// const RENDER = window.location.hostname === "localhost" && false;
+// const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   p.setup = function() {
