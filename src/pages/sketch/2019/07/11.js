@@ -3,7 +3,7 @@ import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import polarToCartesian from "~lib/polarToCartesian";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   const COLORS = p.shuffle(["cyan", "magenta", "yellow"]);
