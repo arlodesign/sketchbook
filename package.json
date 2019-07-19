@@ -3,6 +3,10 @@
   "private": true,
   "description": "Experiments with generative art",
   "author": "Arlo Bryan Guthrie <mail@arlo.me>",
+  "engines": {
+    "node": "^12",
+    "npm": "^6"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
