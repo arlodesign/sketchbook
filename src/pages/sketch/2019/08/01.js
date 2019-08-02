@@ -111,8 +111,6 @@ const sketch = function(p) {
         }
       }
     }
-
-    console.log(boxes, grid);
   };
 
   p.draw = function() {
