@@ -22,7 +22,6 @@ const sketch = function(p) {
     p.createCanvas(660, 840, p.WEBGL);
     p.noStroke();
     p.colorMode(p.HSB, 100);
-    1;
 
     margin = p.width / 20;
 
