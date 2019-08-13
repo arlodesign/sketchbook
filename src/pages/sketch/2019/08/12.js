@@ -3,7 +3,7 @@ import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import { spherical } from "coordinate-systems";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   const GRID = 30;
