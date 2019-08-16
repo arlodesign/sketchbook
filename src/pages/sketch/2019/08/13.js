@@ -6,7 +6,7 @@ import { spherical } from "coordinate-systems";
 const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
-  const GRID = 30;
+  const GRID = 60;
   const HUE = p.random(100);
 
   let wx;
@@ -28,7 +28,7 @@ const sketch = function(p) {
 
     p.noStroke();
 
-    p.createLoop(60, {
+    p.createLoop(45, {
       gif: RENDER ? { render: false, open: true } : false,
       noiseRadius: 1,
     });
@@ -36,8 +36,8 @@ const sketch = function(p) {
 
   p.draw = function() {
     const { noise1D, noise2D, theta } = p.animLoop;
-    const xPos = p.map(theta, 0, p.TWO_PI, -p.width / 2, p.width / 2);
-    const yPos = p.map(theta, 0, p.TWO_PI, p.height / 2, -p.height / 2);
+    const xPos = p.map(p.sin(theta), -1, 1, -p.width / 2, p.width / 2);
+    const yPos = p.map(p.cos(theta), -1, 1, p.height / 2, -p.height / 2);
 
     p.background(HUE, 100, 50);
     p.specularMaterial(HUE, 100, 75);
@@ -56,10 +56,13 @@ const sketch = function(p) {
       for (let y = -wy / 2; y < wy; y++) {
         p.push();
         p.translate(x * GRID - GRID / 2, y * GRID - GRID / 2);
-        p.rotateX(
+        p.rotateZ(
           p.map(p.dist(x, y, xPos, yPos), 0, maxDist, 0, -p.TWO_PI * 15)
         );
-        p.box(GRID + 1, GRID + 1, 3);
+        p.rotateX(
+          p.map(p.dist(x, y, xPos, yPos), 0, maxDist, 0, p.TWO_PI * 30)
+        );
+        p.cylinder(GRID / 3, GRID / 3);
         p.pop();
       }
     }
