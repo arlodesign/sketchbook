@@ -4,14 +4,13 @@ import "p5.createloop";
 import { easeInOutQuint as ease } from "~lib/easing";
 import Link from "~components/link";
 
-const RENDER = process.env.DEV && true;
-const DURATION = 6;
+const RENDER = process.env.DEV && false;
+const DURATION = 10;
 
 const sketch = function(p) {
-  const GRID = 60;
+  const GRID = 66;
 
   let boxes = [];
-  let prevMod = 0;
 
   class Box {
     constructor(x, y) {
@@ -21,18 +20,22 @@ const sketch = function(p) {
       this.rotate = p.random([0, p.HALF_PI, p.PI, p.HALF_PI + p.PI]);
       this.rotateDirection = p.random([-1, 1]);
       this.turning = false;
-      this.offset = p.noise(x, y) * p.TWO_PI;
+      this.offset = p.noise(x, y) * p.QUARTER_PI;
+      this.prevMod = 0;
     }
 
-    draw(turn) {
+    draw() {
       const { theta } = p.animLoop;
 
-      if (turn) {
+      const myTheta = theta + this.offset;
+
+      if (myTheta % p.HALF_PI <= this.prevMod) {
         this.rotate += p.HALF_PI * this.rotateDirection;
       }
 
-      const turnVal = p.map(theta % p.HALF_PI, 0, p.HALF_PI, 0, 1);
+      const turnVal = p.map(myTheta % p.HALF_PI, 0, p.HALF_PI, 0, 1);
 
+      this.canvas.background(255);
       this.canvas.push();
       this.canvas.translate(GRID / 2, GRID / 2);
       this.canvas.rotate(
@@ -44,13 +47,29 @@ const sketch = function(p) {
           this.rotate + p.HALF_PI * this.rotateDirection
         )
       );
-      this.canvas.background(255);
-      this.canvas.strokeWeight(GRID / 10);
+
+      this.canvas.fill(192);
+      this.canvas.noStroke();
+      this.canvas.circle(-GRID / 2, -GRID / 2, GRID / 2);
+      this.canvas.circle(GRID / 2, GRID / 2, GRID / 2);
+      this.canvas.circle(GRID / 2, -GRID / 2, GRID / 2);
+      this.canvas.circle(-GRID / 2, GRID / 2, GRID / 2);
+
+      this.canvas.stroke(192);
+      this.canvas.strokeWeight(GRID / 12);
+      this.canvas.line(-GRID / 2, GRID / 2, GRID / 2, -GRID / 2);
+
+      this.canvas.noFill();
+      this.canvas.stroke(0);
+      this.canvas.strokeWeight(GRID / 6);
       this.canvas.circle(-GRID / 2, -GRID / 2, GRID);
       this.canvas.circle(GRID / 2, GRID / 2, GRID);
+
       this.canvas.pop();
 
       p.image(this.canvas, this.x, this.y);
+
+      this.prevMod = myTheta % p.HALF_PI;
     }
   }
 
@@ -76,8 +95,7 @@ const sketch = function(p) {
   p.draw = function() {
     p.background(255);
 
-    boxes.forEach(b => b.draw(p.animLoop.theta % p.HALF_PI <= prevMod));
-    prevMod = p.animLoop.theta % p.HALF_PI;
+    boxes.forEach(b => b.draw());
   };
 };
 
@@ -85,13 +103,6 @@ export default ({ location }) => (
   <SketchLayout
     sketch={sketch}
     path={location.pathname}
-    description={
-      <>
-        Hat-tip to{" "}
-        <Link href="https://www.instagram.com/p/BwKuLHMA1Ho/">Jack Rusher</Link>
-        . Inspired by those rotating truchet tiles, and I wanted to reverse
-        engineer it.
-      </>
-    }
+    description="Same as yesterday, but now rotating at slightly different intervals."
   />
 );
