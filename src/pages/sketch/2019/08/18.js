@@ -4,7 +4,7 @@ import "p5.createloop";
 import { easeInOutQuint as ease } from "~lib/easing";
 import Link from "~components/link";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 const DURATION = 6;
 
 const sketch = function(p) {
