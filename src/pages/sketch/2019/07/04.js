@@ -16,9 +16,7 @@ const sketch = function(p) {
     p.frameRate(30);
 
     if (p.createLoop) {
-      p.createLoop(FRAMES / 30, {
-        gif: { render: false, open: true },
-      });
+      p.createLoop(FRAMES / 30);
     }
     p.createCanvas(660, 840);
     count = p.width / 50;
