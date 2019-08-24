@@ -73,4 +73,5 @@ yarn-error.log
 # animations and other images
 src/images/**/*.gif
 src/images/**/*.mp4
+src/images/**/*.mov
 src/images/**/*-*.png
