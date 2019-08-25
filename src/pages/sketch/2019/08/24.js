@@ -4,7 +4,7 @@ import SketchLayout from "~components/sketch-layout";
 import polarToCartesian from "~lib/polarToCartesian";
 import "p5.createloop";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   const STROKEWEIGHT = 20;
