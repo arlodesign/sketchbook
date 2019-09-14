@@ -4,7 +4,7 @@ import { easeInOutQuad as ease } from "~lib/easing";
 import "p5.createloop";
 import polarToCartesian from "~lib/polarToCartesian";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 const GRID = 15;
 
 const sketch = function(p) {
