@@ -13,14 +13,14 @@ const sketch = function(p) {
     p.colorMode(p.HSL, 1);
     p.rectMode(p.CENTER);
 
-    p.createLoop(2, {
+    p.createLoop(3, {
       gif: RENDER ? { render: false, open: true } : false,
       noiseRadius: 0.5,
     });
   };
 
   p.draw = function() {
-    const { noise2D, theta } = p.animLoop;
+    const { theta } = p.animLoop;
 
     p.blendMode(p.BLEND);
     p.background(0);
