@@ -4,7 +4,7 @@ import Link from "~components/link";
 import { easeInOutQuint as ease } from "~lib/easing";
 import "p5.createloop";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 const LINES = 20;
 const POINTS = 50;
 
