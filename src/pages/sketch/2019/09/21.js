@@ -3,7 +3,7 @@ import SketchLayout from "~components/sketch-layout";
 import polarToCartesian from "~lib/polarToCartesian";
 import "p5.createloop";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 const CIRCLES = 100;
 
 const sketch = function(p) {
@@ -18,6 +18,10 @@ const sketch = function(p) {
   }
 
   p.setup = function() {
+    if (RENDER) {
+      p.pixelDensity(1);
+    }
+
     p.createCanvas(660, 840);
     p.noFill();
     p.strokeWeight(2);

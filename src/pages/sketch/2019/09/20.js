@@ -2,7 +2,7 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const MAX_CIRCLES = 75;
 
@@ -18,14 +18,26 @@ const sketch = function(p) {
 
   p.setup = function() {
     p.createCanvas(660, 840);
+    p.pixelDensity(1);
     p.strokeWeight(2);
     p.noFill();
 
     maxDiameter = p.dist(0, 0, p.width, p.height);
 
-    p.createLoop(60, {
-      gif: RENDER ? { render: false, open: true } : false,
-      noiseRadius: 0.1,
+    p.createLoop(50, {
+      gif: RENDER
+        ? {
+            render: false,
+            download: true,
+            options: {
+              quality: 1,
+              workers: 10,
+              dither: "FloydSteinberg-serpentine",
+              debug: true,
+            },
+          }
+        : false,
+      noiseRadius: 0.5,
     });
   };
 
