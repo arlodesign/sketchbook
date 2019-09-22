@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import p5 from "p5";
 import styled from "@emotion/styled";
 
@@ -20,25 +20,15 @@ const SketchWrapper = styled.div`
   }
 `;
 
-class Sketch extends React.Component {
-  constructor(props) {
-    super(props);
-    this.sketchRef = React.createRef();
-    this.canvas = null;
-  }
-  componentDidMount() {
-    this.canvas = new p5(this.props.sketch, this.sketchRef.current);
-  }
-  componentDidUpdate() {
-    this.canvas.remove();
-    this.canvas = new p5(this.props.sketch, this.sketchRef.current);
-  }
-  componentWillUnmount() {
-    this.canvas.remove();
-  }
-  render() {
-    return <SketchWrapper ref={this.sketchRef} />;
-  }
-}
+const Sketch = ({ sketch }) => {
+  const sketchRef = useRef(null);
+  let canvas;
+
+  useEffect(() => {
+    canvas = new p5(sketch, sketchRef.current);
+  });
+
+  return <SketchWrapper ref={sketchRef} />;
+};
 
 export default Sketch;
