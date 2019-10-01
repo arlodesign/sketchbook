@@ -1,8 +1,9 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
 
+const { spherical } = Coordinate;
 const RENDER = process.env.DEV && true;
 
 const sketch = function(p) {
@@ -45,7 +46,7 @@ const sketch = function(p) {
       100 - HUE,
       25,
       50,
-      ...spherical([p.sin(theta) * 500, 0, 0]).cart()
+      ...spherical([p.sin(theta) * 500, 0, 0]).cartesian()
     );
     for (let x = -wx / 2; x < wx; x++) {
       for (let y = -wy / 2; y < wy; y++) {

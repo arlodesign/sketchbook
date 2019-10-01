@@ -1,6 +1,7 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 
 import "p5.createloop";
 
@@ -32,7 +33,7 @@ const sketch = function(p) {
     p.background(0);
 
     p.camera(
-      ...spherical([size * COUNT + size, 0, p.animLoop.theta]).cart(),
+      ...spherical([size * COUNT + size, 0, p.animLoop.theta]).cartesian(),
       0,
       0,
       0,

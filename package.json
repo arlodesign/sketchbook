@@ -11,7 +11,7 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
     "@thi.ng/geom-voronoi": "^0.1.25",
-    "coordinate-systems": "^1.1.0",
+    "coordinate-systems": "^2.0.0",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-client-side-redirect": "^0.0.2",

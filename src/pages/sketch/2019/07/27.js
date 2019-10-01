@@ -1,6 +1,7 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 
 import "p5.createloop";
 
@@ -26,7 +27,15 @@ const sketch = function(p) {
   p.draw = function() {
     p.background(0);
 
-    p.camera(...spherical([500, 0, p.animLoop.theta]).cart(), 0, 0, 0, 0, 1, 0);
+    p.camera(
+      ...spherical([500, 0, p.animLoop.theta]).cartesian(),
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    );
     p.directionalLight(
       255,
       255,

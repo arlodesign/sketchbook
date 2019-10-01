@@ -1,5 +1,6 @@
 import React from "react";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 import SketchLayout from "~components/sketch-layout";
 
 const sketch = function(p) {
@@ -14,7 +15,7 @@ const sketch = function(p) {
   p.draw = function() {
     p.background(255);
     p.camera(
-      ...spherical([100, 0, p.frameCount / 100]).cart(),
+      ...spherical([100, 0, p.frameCount / 100]).cartesian(),
       0,
       0,
       0,

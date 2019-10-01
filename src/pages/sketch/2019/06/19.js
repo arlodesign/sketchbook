@@ -1,6 +1,8 @@
 import React from "react";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
 import SketchLayout from "~components/sketch-layout";
+
+const { spherical } = Coordinate;
 
 const sketch = function(p) {
   const SIZE = 200;
@@ -45,13 +47,13 @@ const sketch = function(p) {
     p.specularMaterial(255, 255, 255);
 
     points.forEach((pt, i) => {
-      const v = p.createVector(...spherical(pt).cart());
+      const v = p.createVector(...spherical(pt).cartesian());
       v.normalize();
 
       p.push();
       p.translate(
         ...spherical(pt)
-          .cart()
+          .cartesian()
           .map(c => c / 2)
       );
       p.rotateX(p.atan2(v.y, v.z));

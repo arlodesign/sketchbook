@@ -1,7 +1,8 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 import polarToCartesian from "~lib/polarToCartesian";
 
 const RENDER = process.env.DEV && false;
@@ -36,7 +37,7 @@ const sketch = function(p) {
     p.colorMode(p.HSB, 100);
 
     p.background(HUE, 20, 1);
-    p.camera(...spherical([2500, 0, theta]).cart(), 0, 0, 0, 0, 1, 0);
+    p.camera(...spherical([2500, 0, theta]).cartesian(), 0, 0, 0, 0, 1, 0);
 
     for (let a = 0; a < p.TWO_PI; a += p.TWO_PI / 15) {
       const { x, y } = polarToCartesian(0, 0, a, p.width);
@@ -47,7 +48,7 @@ const sketch = function(p) {
         255,
         255,
         255,
-        ...spherical([5000 * noise1D(p.sin(theta)), 0, theta]).cart()
+        ...spherical([5000 * noise1D(p.sin(theta)), 0, theta]).cartesian()
       );
 
       p.colorMode(p.HSB, 100);

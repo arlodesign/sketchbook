@@ -1,7 +1,8 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 import polarToCartesian from "~lib/polarToCartesian";
 
 const RENDER = process.env.DEV && false;
@@ -35,7 +36,7 @@ const sketch = function(p) {
     const { noise1D, theta } = p.animLoop;
 
     p.background(HUE, 20, 1);
-    p.camera(...spherical([1500, 0, theta]).cart(), 0, 0, 0, 0, 1, 0);
+    p.camera(...spherical([1500, 0, theta]).cartesian(), 0, 0, 0, 0, 1, 0);
 
     for (let a = 0; a < p.TWO_PI; a += p.TWO_PI / 300) {
       const { x, y } = polarToCartesian(0, 0, a, p.width);

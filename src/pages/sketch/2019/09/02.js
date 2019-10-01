@@ -1,10 +1,11 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
 import { easeOutQuint as ease } from "~lib/easing";
 
 import "p5.createloop";
 
+const { spherical } = Coordinate;
 const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
@@ -33,7 +34,7 @@ const sketch = function(p) {
     p.background(HUE, 0.5, 0.5);
 
     p.camera(
-      ...spherical([size * COUNT * 3, 10, theta]).cart(),
+      ...spherical([size * COUNT * 3, 10, theta]).cartesian(),
       0,
       0,
       0,

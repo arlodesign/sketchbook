@@ -1,5 +1,6 @@
 import React from "react";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 import SketchLayout from "~components/sketch-layout";
 
 const sketch = function(p) {
@@ -23,7 +24,7 @@ const sketch = function(p) {
       0
     );
 
-    p.camera(...spherical([150, 0, 0]).cart(), 0, 0, 0, 0, 1, 0);
+    p.camera(...spherical([150, 0, 0]).cartesian(), 0, 0, 0, 0, 1, 0);
 
     p.specularMaterial(255, 255, 255);
 

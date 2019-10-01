@@ -1,9 +1,11 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
 import { easeInOutQuint as ease } from "~lib/easing";
 import Link from "~components/link";
+
+const { spherical } = Coordinate;
 
 const RENDER = process.env.DEV && true;
 const DURATION = 20;
@@ -98,7 +100,7 @@ const sketch = function(p) {
   p.draw = function() {
     p.background(0);
     p.specularMaterial(HUE, 100, 75);
-    p.pointLight(0, 0, 100, ...spherical([1000, 0, p.PI]).cart());
+    p.pointLight(0, 0, 100, ...spherical([1000, 0, p.PI]).cartesian());
     boxes.forEach(b => b.draw());
   };
 };

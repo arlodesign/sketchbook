@@ -1,7 +1,8 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 
 const RENDER = process.env.DEV && false;
 
@@ -41,7 +42,7 @@ const sketch = function(p) {
 
     p.background(HUE, 100, 50);
     p.specularMaterial(HUE, 100, 75);
-    p.pointLight(0, 0, 100, ...spherical([100, theta, 0]).cart());
+    p.pointLight(0, 0, 100, ...spherical([100, theta, 0]).cartesian());
     p.pointLight(
       100 - HUE,
       25,
@@ -50,7 +51,7 @@ const sketch = function(p) {
         1000,
         p.map(p.sin(theta), -1, 1, 0, p.PI),
         p.map(p.cos(theta), -1, 1, 0, p.PI),
-      ]).cart()
+      ]).cartesian()
     );
     for (let x = -wx / 2; x < wx; x++) {
       for (let y = -wy / 2; y < wy; y++) {

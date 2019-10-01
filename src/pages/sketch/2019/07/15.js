@@ -1,6 +1,7 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-import { spherical } from "coordinate-systems";
+import { Coordinate } from "coordinate-systems";
+const { spherical } = Coordinate;
 
 import "p5.createloop";
 
