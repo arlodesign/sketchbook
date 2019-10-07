@@ -4,7 +4,7 @@ import { Coordinate } from "coordinate-systems";
 import { easeInOutQuad as ease } from "~lib/easing";
 import "p5.createloop";
 
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   const HUE = p.random();

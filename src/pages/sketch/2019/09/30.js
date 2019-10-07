@@ -5,7 +5,7 @@ import { Coordinate, CoordinateType } from "coordinate-systems";
 import "p5.createloop";
 
 const POINTS = 100;
-const RENDER = process.env.DEV && true;
+const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
   const HUE = p.random(0.9);
