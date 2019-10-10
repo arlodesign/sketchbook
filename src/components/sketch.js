@@ -26,7 +26,7 @@ const Sketch = ({ sketch }) => {
 
   useEffect(() => {
     canvas = new p5(sketch, sketchRef.current);
-  });
+  }, []);
 
   return <SketchWrapper ref={sketchRef} />;
 };
