@@ -5,37 +5,63 @@ import "p5.createloop";
 const RENDER = process.env.DEV && false;
 
 const sketch = function(p) {
-  let phaseShift = 0;
+  const curves = [
+    {
+      xPeriod: 3,
+      yPeriod: 4,
+      color: "red",
+      rotationDir: -1,
+    },
+    {
+      xPeriod: 3,
+      yPeriod: 2,
+      color: "green",
+      rotationDir: 0,
+    },
+    {
+      xPeriod: 5,
+      yPeriod: 4,
+      color: "blue",
+      rotationDir: 1,
+    },
+  ];
 
-  function drawCurve(xAmplitude, yAmplitude, xPeriod, yPeriod, phaseShift) {
-    for (let theta = 0; theta < p.TWO_PI; theta += 0.01) {
-      let x = xAmplitude * p.sin(xPeriod * theta);
-      let y = yAmplitude * p.sin(yPeriod * theta + phaseShift);
-      p.ellipse(x, y, 5, 5);
-    }
-  }
+  let amplitude;
 
   p.setup = function() {
     p.createCanvas(660, 840);
-
-    p.createLoop(5, {
+    p.createLoop(49, {
       gif: RENDER ? { render: false, open: true } : false,
       noiseRadius: 0.1,
     });
+    p.noFill();
+    p.strokeWeight(30);
+
+    amplitude = p.width / 2 - 50;
   };
 
   p.draw = function() {
-    const { theta } = p.animLoop;
-    let xPeriod = 3;
-    let yPeriod = 5;/
-    let xAmplitude = 100;
-    let yAmplitude = 100;
+    const { theta, noise1D } = p.animLoop;
 
-    p.background(255);
+    p.blendMode(p.BLEND);
+    p.background(0);
+    p.blendMode(p.SCREEN);
+
     p.translate(p.width / 2, p.height / 2);
 
-    phaseShift += 0.01;
-    drawCurve(xAmplitude, yAmplitude, xPeriod, yPeriod, theta);
+    curves.forEach(({ xPeriod, yPeriod, color, rotationDir }, i) => {
+      p.push();
+      p.rotate(theta * rotationDir);
+      p.stroke(color);
+      p.beginShape();
+      for (let th = -0.02; th < p.TWO_PI + 0.04; th += 0.02) {
+        let x = amplitude * p.sin(xPeriod * th);
+        let y = amplitude * p.sin(yPeriod * th + theta * 3);
+        p.curveVertex(x, y);
+      }
+      p.endShape();
+      p.pop();
+    });
   };
 };
 
