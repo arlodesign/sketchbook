@@ -4,12 +4,13 @@ import "p5.createloop";
 import { easeInOutQuint as ease } from "~lib/easing";
 import Link from "~components/link";
 
-const RENDER = process.env.DEV && false;
+const RENDER = process.env.DEV && true;
 const DURATION = 15;
+const GRID = 45;
 
 const sketch = function(p) {
-  const GRID = 60;
   const HUE = p.random();
+  const R = p.HALF_PI;
 
   let boxes = [];
   let prevMod = 0;
@@ -21,20 +22,20 @@ const sketch = function(p) {
       this.x = x;
       this.y = y;
       this.rotate = p.random([0, p.HALF_PI, p.PI, p.HALF_PI + p.PI]);
+      this.scale = p.random([1, -1]);
       this.rotateDirection = p.random([-1, 1]);
       this.turning = false;
       this.offset = p.noise(x, y) * p.TWO_PI;
-      this.thirdLine = p.random() < 0.5;
     }
 
     draw(turn) {
       const { theta } = p.animLoop;
 
       if (turn) {
-        this.rotate += p.QUARTER_PI * this.rotateDirection;
+        this.rotate += R * this.rotateDirection;
       }
 
-      const turnVal = p.map(theta % p.QUARTER_PI, 0, p.QUARTER_PI, 0, 1);
+      const turnVal = p.map(theta % R, 0, R, 0, 1);
 
       p.push();
       p.translate(this.x + GRID / 2, this.y + GRID / 2);
@@ -44,19 +45,28 @@ const sketch = function(p) {
           0,
           1,
           this.rotate,
-          this.rotate + p.QUARTER_PI * this.rotateDirection
+          this.rotate + R * this.rotateDirection
         )
       );
+      p.scale(this.scale, 1);
       p.strokeWeight(w);
 
-      p.line(0, 0, -GRID / 2, -GRID / 2);
-      p.line(0, 0, GRID / 2, GRID / 2);
-      this.thirdLine && p.line(0, 0, -GRID / 2, GRID / 2);
+      p.bezier(
+        -GRID / 2,
+        -GRID / 2,
+        GRID / 2,
+        -GRID / 2,
+        -GRID / 2,
+        GRID / 2,
+        GRID / 2,
+        GRID / 2
+      );
       p.pop();
     }
   }
 
   p.setup = function() {
+    p.pixelDensity(RENDER ? 1 : 2);
     p.createCanvas(660, 840);
     p.colorMode(p.HSB, 1);
     p.stroke(HUE, 0.8, 0.7);
@@ -77,8 +87,8 @@ const sketch = function(p) {
     p.background(1 - HUE, 1, 1);
     p.blendMode(p.DARKEST);
 
-    boxes.forEach(b => b.draw(p.animLoop.theta % p.QUARTER_PI <= prevMod));
-    prevMod = p.animLoop.theta % p.QUARTER_PI;
+    boxes.forEach(b => b.draw(p.animLoop.theta % R <= prevMod));
+    prevMod = p.animLoop.theta % R;
   };
 };
 
