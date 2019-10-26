@@ -9046,6 +9046,11 @@ p5@^0.8.0:
   resolved "https://registry.yarnpkg.com/p5/-/p5-0.8.0.tgz#af4cd2f25b2e77023dff24d845cbdbdaa47d4fd2"
   integrity sha512-X415HATmOwcbWpgXTCHyDNdcGTNuzuZFaW9GoOsZd3PFrTmugdf+xLr9AO+rGHxBOFgdqfaj766vJeH1wPkCrQ==
 
+pack-spheres@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/pack-spheres/-/pack-spheres-1.0.4.tgz#91c50dcf3da8bd8d9c0d5d301add34a1cf3fabf9"
+  integrity sha512-q4xdU6MVC2ZhqhAsFUpZDlYo82C2/fw1ea+8Wdyv4vyOn0HJvPboFHuOpJEuEVj28iliBo3PT0+/NYRw1Q8Scg==
+
 package-json@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/package-json/-/package-json-4.0.1.tgz#8869a0401253661c4c4ca3da6c2121ed555f5eed"
