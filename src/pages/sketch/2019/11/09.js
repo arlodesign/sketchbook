@@ -21,7 +21,7 @@ const sketch = function(p) {
   p.draw = function() {
     p.background(255);
 
-    const { theta, noise2D } = p.animLoop;
+    const { noise2D } = p.animLoop;
     const H1 = p.color(H, 1, 0.5);
     const H2 = p.color(H, 0, 1);
 
