@@ -2,7 +2,6 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import polarToCartesian from "~lib/polarToCartesian";
-import lerpLine from "~lib/lerpLine";
 
 const sketch = function(p) {
   const RENDER = p.getURLParams().render;
