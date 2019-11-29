@@ -2,6 +2,8 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import lerpLine from "~lib/lerpLine";
+import Link from "~components/link";
+import { withPrefix } from "gatsby";
 
 const sketch = function(p) {
   const RENDER = p.getURLParams().render;
@@ -71,6 +73,11 @@ export default ({ location }) => (
   <SketchLayout
     sketch={sketch}
     path={location.pathname}
-    description="Runs slow in browser, but makes a great GIF!"
+    description={
+      <>
+        Runs slow in browser, but makes a{" "}
+        <Link href={withPrefix("/assets/2019-11-29.gif")}>great GIF!</Link>
+      </>
+    }
   />
 );
