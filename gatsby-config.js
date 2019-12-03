@@ -1,3 +1,17 @@
+const glob = require("glob");
+const sharp = require("sharp");
+const deasync = require("deasync");
+const icon = glob
+  .sync("src/images/**/*.png")
+  .filter(f => /\d{4}\/\d{2}\/\d{2}\.png/.test(f))
+  .slice(-1)[0];
+
+deasync(
+  sharp(icon)
+    .resize(512, 512)
+    .toFile("src/images/icon.png")
+);
+
 module.exports = {
   siteMetadata: {
     title: `sketchbook.arlo.me`,
@@ -33,7 +47,7 @@ module.exports = {
         background_color: `#111111`,
         theme_color: `#111111`,
         display: `minimal-ui`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        icon: "src/images/icon.png",
       },
     },
     `gatsby-plugin-offline`,

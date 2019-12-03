@@ -35,10 +35,13 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-gatsby": "^0.2.20",
+    "deasync": "^0.1.16",
     "eslint-import-resolver-alias": "^1.1.2",
     "gh-pages": "^2.0.1",
+    "glob": "^7.1.6",
     "prettier": "^1.16.4",
-    "rss": "^1.2.2"
+    "rss": "^1.2.2",
+    "sharp": "^0.23.3"
   },
   "license": "AGPL-3.0",
   "scripts": {
