@@ -1,8 +1,6 @@
 const addNoise = (p, intensity = 0.5) => {
   const PTS = p.width * p.height * 0.02;
 
-  console.log(PTS);
-
   p.push();
   for (let i = 0; i < PTS; i++) {
     p.fill(
