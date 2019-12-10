@@ -2,7 +2,7 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import { polarToCartesianEllipse } from "~lib/polarToCartesian";
 import addNoise from "~lib/addNoise";
-// import "p5.createloop";
+import "p5.createloop";
 
 const sketch = function(p) {
   const RENDER = p.getURLParams().render;
