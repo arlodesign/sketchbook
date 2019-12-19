@@ -78,3 +78,6 @@ src/images/**/*-*.png
 
 # in progress ideas
 doodles
+
+# icon is dynamic
+src/images/icon.png
