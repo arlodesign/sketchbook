@@ -2,11 +2,7 @@ import React from "react";
 import SketchLayout from "~components/sketch-layout";
 import { withPrefix } from "gatsby";
 
-// import "p5.createloop";
-
 const sketch = function(p) {
-  //  const RENDER = p.getURLParams().render;
-
   let img;
 
   p.preload = function() {
@@ -14,20 +10,12 @@ const sketch = function(p) {
   };
 
   p.setup = function() {
-    // if (RENDER) {
     p.pixelDensity(1);
-    //  p.frameRate(30);
-    // }
 
     p.createCanvas(660, 840);
     p.background(255);
 
     p.image(img, 0, 0, p.width, p.height);
-
-    // p.createLoop(20, {
-    //  gif: RENDER ? { render: false, open: true } : false,
-    //  noiseRadius: 0.1,
-    // });
   };
 
   p.draw = function() {
@@ -42,7 +30,6 @@ const sketch = function(p) {
           p.set(p.frameCount - 1, i, p.color(...c));
         });
     } else if (p.frameCount >= p.width && p.frameCount < p.height + p.width) {
-      console.log(p.frameCount - 1 - p.width);
       let row = [];
       for (let x = 0; x < p.width; x++) {
         row.push(p.get(x, p.frameCount - 1 - p.width));
