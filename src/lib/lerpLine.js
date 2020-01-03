@@ -20,14 +20,12 @@ export default function(
   showFirstDot = true,
   noisy = true
 ) {
-  if (rate > 0) {
-    for (let l = 0; l < 1; l += rate) {
-      if (l === 0 && !showFirstDot) continue;
-      if ((noisy && p.random() > l) || !noisy) {
-        p.point(p.lerp(x1, x2, l), p.lerp(y1, y2, l));
-      }
+  const thisRate = Math.max(rate, 0.01 / p.dist(x1, y1, x2, y2));
+
+  for (let l = 0; l < 1; l += thisRate) {
+    if (l === 0 && !showFirstDot) continue;
+    if ((noisy && p.random() > l) || !noisy) {
+      p.point(p.lerp(x1, x2, l), p.lerp(y1, y2, l));
     }
-  } else {
-    p.line(x1, y1, x2, y2);
   }
 }
