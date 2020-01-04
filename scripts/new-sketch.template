@@ -3,35 +3,27 @@ import SketchLayout from "~components/sketch-layout";
 // import "p5.createloop";
 
 const sketch = function(p) {
-  //  const RENDER = p.getURLParams().render;
+  const RENDER = p.getURLParams().render;
+  // const DURATION = 20;
+  const RATE = 30;
 
   p.setup = function() {
-    // if (RENDER) {
-    //  p.pixelDensity(1);
-    //  p.frameRate(30);
-    // }
-
+    p.pixelDensity(RENDER ? 2 : 1);
+    p.frameRate(RATE);
     p.createCanvas(660, 840);
     p.background(255);
 
-    // p.createLoop(20, {
+    // p.createLoop(DURATION, {
     //  gif: RENDER ? { render: false, open: true } : false,
     //  noiseRadius: 0.1,
     // });
   };
 
-  p.draw = function() {};
-
-  // p.touchMoved = function() {
-  //  if (
-  //    p.mouseX >= 0 &&
-  //    p.mouseY >= 0 &&
-  //    p.mouseX <= p.width &&
-  //    p.mouseY <= p.height
-  //  ) {
-  //    return false;
-  //  }
-  // };
+  p.draw = function() {
+    // p.background(255);
+    // ## DRAW ##
+    // !RENDER && p.frameCount === DURATION * RATE && p.noLoop();
+  };
 };
 
 export default ({ location }) => (
