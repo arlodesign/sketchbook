@@ -1,5 +1,4 @@
 import React from "react";
-import { withPrefix } from "gatsby";
 import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import { Coordinate } from "coordinate-systems";
