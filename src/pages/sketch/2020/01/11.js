@@ -6,7 +6,6 @@ import polarToCartesian from "~lib/polarToCartesian";
 import { easeInOutQuint as ease } from "~lib/easing";
 
 const sketch = function(p) {
-  const RENDER = p.getURLParams().render;
   const DURATION = 360;
   const RATE = 60;
   const ITERATIONS = 2;
@@ -20,7 +19,6 @@ const sketch = function(p) {
     p.background(192);
     p.colorMode(p.HSB, ITERATIONS);
     p.createLoop(DURATION, {
-      gif: RENDER ? { render: false, open: true } : false,
       noiseRadius: 0.8,
     });
     p.blendMode(p.HARD_LIGHT);
