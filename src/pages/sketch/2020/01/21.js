@@ -3,7 +3,6 @@ import SketchLayout from "~components/sketch-layout";
 import "p5.createloop";
 import polarToCartesian from "~lib/polarToCartesian";
 import lineIntersection from "~lib/lineIntersection";
-import { easeInOutQuad } from "~lib/easing";
 
 const sketch = function(p) {
   const DURATION = 60;
