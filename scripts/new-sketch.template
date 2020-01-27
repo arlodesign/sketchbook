@@ -20,6 +20,7 @@ const sketch = function(p) {
   };
 
   p.draw = function() {
+    // const { theta, noise } = p.animLoop;
     // p.background(255);
     // ## DRAW ##
     // !RENDER && p.frameCount === DURATION * RATE && p.noLoop();
