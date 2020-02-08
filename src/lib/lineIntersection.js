@@ -1,3 +1,14 @@
+/**
+ *
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ * @param {number} x3
+ * @param {number} y3
+ * @param {number} x4
+ * @param {number} y4
+ */
 export default function lineIntersection(x1, y1, x2, y2, x3, y3, x4, y4) {
   const uA =
     ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) /

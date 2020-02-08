@@ -20,17 +20,18 @@ const sketch = function(p) {
   };
 
   p.draw = function() {
-    const { theta, noise } = p.animLoop;
+    const { progress, theta, noise } = p.animLoop;
     p.background(255);
     
     /*
       DRAW
     */
 
-    p.frameCount % 100 === 0 &&
-      console.info(`${p.frameCount} / ${DURATION * RATE}`);
-
-    !RENDER && p.frameCount === DURATION * RATE && p.noLoop();
+    p.frameCount % 100 === 0 && console.info(`${p.floor(progress * 100)}%`);
+    if (!RENDER && p.frameCount === DURATION * RATE) {
+      console.info("100%") ;
+      p.noLoop();
+    }
   };
 };
 

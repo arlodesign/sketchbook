@@ -4,6 +4,15 @@ const polarToCartesianX = (center, angle, distance) => {
 const polarToCartesianY = (center, angle, distance) => {
   return center + Math.sin(angle) * distance;
 };
+
+/**
+ *
+ * @param {number} centerX
+ * @param {number} centerY
+ * @param {number} angle
+ * @param {number} distance
+ * @param {bool} asArray
+ */
 const polarToCartesian = (
   centerX,
   centerY,
