@@ -1,10 +1,10 @@
 import React from "react";
 import SketchLayout from "~components/sketch-layout";
-// import "p5.createloop";
+import "p5.createloop";
 
 const sketch = function(p) {
   const RENDER = p.getURLParams().render;
-  // const DURATION = 20;
+  const DURATION = 20;
   const RATE = 30;
 
   p.setup = function() {
@@ -13,17 +13,24 @@ const sketch = function(p) {
     p.createCanvas(660, 840);
     p.background(255);
 
-    // p.createLoop(DURATION, {
-    //  gif: RENDER ? { render: false, open: true } : false,
-    //  noiseRadius: 0.1,
-    // });
+    p.createLoop(DURATION, {
+     gif: RENDER ? { render: false, open: true } : false,
+     noiseRadius: 0.1,
+    });
   };
 
   p.draw = function() {
-    // const { theta, noise } = p.animLoop;
-    // p.background(255);
-    // ## DRAW ##
-    // !RENDER && p.frameCount === DURATION * RATE && p.noLoop();
+    const { theta, noise } = p.animLoop;
+    p.background(255);
+    
+    /*
+      DRAW
+    */
+
+    p.frameCount % 100 === 0 &&
+      console.info(`${p.frameCount} / ${DURATION * RATE}`);
+
+    !RENDER && p.frameCount === DURATION * RATE && p.noLoop();
   };
 };
 
