@@ -47,7 +47,6 @@ const sketch = function(p) {
       p.acos(p.cos(theta * 5)) + p.PI / 2,
       ((-(2 * progress * progress) + 2 * progress) / 2) * p.PI
     );
-    // p.curveTightness(noise1D(0.5) * 5);
 
     let points = Array(POINT_COUNT)
       .fill()
