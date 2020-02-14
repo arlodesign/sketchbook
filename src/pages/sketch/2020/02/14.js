@@ -5,10 +5,11 @@ import "p5.createloop";
 
 const sketch = function(p) {
   const RENDER = p.getURLParams().render;
-  const DURATION = 120;
   const RATE = 60;
-  const H = p.random(0.7);
+  const H = p.random();
   const START = p.random(p.TWO_PI);
+  const SCALE = 1000;
+  const DURATION = SCALE / 2;
 
   let coord = [];
 
@@ -16,12 +17,12 @@ const sketch = function(p) {
     p.frameRate(RATE);
     p.noSmooth();
     p.createCanvas(660, 840);
-    p.background(128);
+    p.background(64);
     p.colorMode(p.HSB, 1);
     p.noFill();
     p.createLoop(DURATION, {
       gif: RENDER ? { render: false, open: true } : false,
-      noiseRadius: 0.1,
+      noiseRadius: 0.5,
     });
   };
 
@@ -32,15 +33,15 @@ const sketch = function(p) {
     const startPoint = polarToCartesian(
       p.width / 2,
       p.height / 2,
-      START + theta * 1.5,
-      p.width / 2 - p.width / 30,
+      START + theta,
+      p.width / 2 - p.width / 10,
       true
     );
     const endPoint = polarToCartesian(
       p.width / 2,
       p.height / 2,
-      START + theta * 1.5 + p.PI,
-      p.width / 2 - p.width / 30,
+      START + theta * 4,
+      p.width / 2 - p.width / 10,
       true
     );
 
@@ -48,16 +49,16 @@ const sketch = function(p) {
     bezierPoints.push(
       polarToCartesian(
         ...startPoint,
-        theta * (400 + noise1D(0.05) * 100),
-        p.height * noise1D(0.07),
+        theta * SCALE,
+        p.width * noise1D(0.07),
         true
       )
     );
     bezierPoints.push(
       polarToCartesian(
         ...endPoint,
-        -theta * (400 + noise1D(0.06) * 100),
-        p.height * -noise1D(0.08),
+        -theta * SCALE,
+        p.width * noise1D(0.08),
         true
       )
     );
@@ -69,11 +70,9 @@ const sketch = function(p) {
     ]);
 
     p.stroke(
-      p.lerpColor(
-        p.color(H, progress, 1 - progress),
-        p.color(H + 0.3, 1 - progress, progress),
-        progress
-      )
+      H,
+      p.map(p.sin(theta * SCALE), -1, 1, 0, 1),
+      p.map(p.cos(theta * SCALE), -1, 1, 1, 0)
     );
 
     if (coord.length > 3) {
