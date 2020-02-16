@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
 import { css } from "@emotion/core";
 import Layout from "~components/layout";
 import SEO from "~components/seo";
@@ -8,7 +7,6 @@ import Header from "~components/header";
 import Link from "~components/link";
 import Grid from "~components/grid";
 import SR from "~components/sr";
-import sketchTitle from "~util/sketch-title";
 
 export default ({ data, pageContext }) => {
   const sketches = data.sketches.edges;

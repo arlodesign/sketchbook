@@ -65,3 +65,5 @@ const sketch = function(p) {
 export default ({ location }) => (
   <SketchLayout sketch={sketch} path={location.pathname} description="" />
 );
+
+export { sketch };
