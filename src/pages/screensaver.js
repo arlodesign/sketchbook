@@ -57,7 +57,7 @@ const Screensaver = () => (
         }
       `}</style>
     </Helmet>
-    <ScreensaverSketch sketch={sketch} />
+    <ScreensaverSketch sketch={sketch()} />
   </>
 );
 
