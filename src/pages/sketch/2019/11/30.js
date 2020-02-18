@@ -10,15 +10,11 @@ const sketch = (w, h) =>
     let maxR;
 
     p.setup = function() {
-      if (RENDER) {
-        p.pixelDensity(1);
-        p.frameRate(30);
-      }
+      p.pixelDensity(1);
+      p.frameRate(30);
 
       const w = w || p.min(p.windowWidth, 1920);
       const h = h || p.floor(w * (p.windowHeight / p.windowWidth));
-
-      console.log(w, h, p.windowWidth, p.windowHeight);
 
       p.createCanvas(w, h);
 

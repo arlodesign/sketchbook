@@ -1,9 +1,14 @@
-import React from "react";
+import React, { Component, useEffect, useRef } from "react";
 import SEO from "~components/seo";
 import Helmet from "react-helmet";
 import styled from "@emotion/styled";
+import shuffle from "~lib/shuffle";
 
-import { sketch } from "./sketch/2019/11/30";
+import { sketch as sketch20191130 } from "./sketch/2019/11/30";
+import { sketch as sketch20191118 } from "./sketch/2019/11/18";
+import { useState } from "react";
+
+const sketches = shuffle([sketch20191130, sketch20191118]);
 
 const ScreensaverWrapper = styled.div`
   position: absolute;
@@ -44,21 +49,32 @@ class ScreensaverSketch extends React.Component {
   }
 }
 
-const Screensaver = () => (
-  <>
-    <SEO title="Screensaver" />
-    <Helmet>
-      <style type="text/css">{`
-        html, body {
-          width: 100%;
-          max-width: 100%;
-          margin: 0;
-          overflow: hidden;
-        }
-      `}</style>
-    </Helmet>
-    <ScreensaverSketch sketch={sketch()} />
-  </>
-);
+const Screensaver = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      setIndex(index + 1 === sketches.length ? 0 : index + 1);
+    }, 10000);
+  }, []);
+
+  return (
+    <>
+      <SEO title="Screensaver" />
+      <Helmet>
+        <style type="text/css">{`
+            html, body {
+              width: 100%;
+              max-width: 100%;
+              margin: 0;
+              overflow: hidden;
+            }
+          `}</style>
+      </Helmet>
+
+      <ScreensaverSketch sketch={sketches[index]()} />
+    </>
+  );
+};
 
 export default Screensaver;
