@@ -1,14 +1,8 @@
-import React, { Component, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import SEO from "~components/seo";
 import Helmet from "react-helmet";
 import styled from "@emotion/styled";
-import shuffle from "~lib/shuffle";
-
-import { sketch as sketch20191130 } from "./sketch/2019/11/30";
-import { sketch as sketch20191118 } from "./sketch/2019/11/18";
-import { useState } from "react";
-
-const sketches = shuffle([sketch20191130, sketch20191118]);
+import sketches from "../util/screensaver-sketches";
 
 const ScreensaverWrapper = styled.div`
   position: absolute;
@@ -52,11 +46,20 @@ class ScreensaverSketch extends React.Component {
 const Screensaver = () => {
   const [index, setIndex] = useState(0);
 
+  let interval;
+
   useEffect(() => {
-    setInterval(() => {
-      setIndex(index + 1 === sketches.length ? 0 : index + 1);
-    }, 10000);
-  }, []);
+    interval = setInterval(
+      () => {
+        setIndex(index + 1 === sketches.length ? 0 : index + 1);
+      },
+      process.env.DEV ? 5000 : 120000
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 
   return (
     <>
