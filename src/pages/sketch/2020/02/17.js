@@ -92,8 +92,8 @@ const sketch = (w, h) =>
       p.pixelDensity(1);
       p.frameRate(RATE);
 
-      const w = w || p.min(p.windowWidth, 1920);
-      const h = h || p.floor(w * (p.windowHeight / p.windowWidth));
+      w = w || p.min(p.windowWidth, 1280);
+      h = h || p.floor(w * (p.windowHeight / p.windowWidth));
 
       p.createCanvas(w, h);
       p.createLoop(DURATION, {

@@ -15,7 +15,7 @@ const sketch = (w, h) =>
     let boxes = [];
     let prevMod = 0;
     let d = p.sqrt(GRID * GRID + GRID * GRID);
-    let w = GRID / 2;
+    let wGrid = GRID / 2;
 
     class Box {
       constructor(x, y) {
@@ -48,7 +48,7 @@ const sketch = (w, h) =>
             this.rotate + p.QUARTER_PI * this.rotateDirection
           )
         );
-        p.strokeWeight(w);
+        p.strokeWeight(wGrid);
 
         p.line(0, 0, -GRID / 2, -GRID / 2);
         p.line(0, 0, GRID / 2, GRID / 2);
@@ -61,8 +61,8 @@ const sketch = (w, h) =>
       p.pixelDensity(1);
       p.frameRate(30);
 
-      const w = w || p.min(p.windowWidth, 1920);
-      const h = h || p.floor(w * (p.windowHeight / p.windowWidth));
+      w = w || p.min(p.windowWidth, 1920);
+      h = h || p.floor(w * (p.windowHeight / p.windowWidth));
 
       p.createCanvas(w, h);
       p.colorMode(p.HSB, 1);
