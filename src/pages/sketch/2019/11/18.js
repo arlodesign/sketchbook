@@ -11,7 +11,7 @@ const sketch = (w, h) =>
       p.pixelDensity(1);
       p.frameRate(30);
 
-      w = w || p.min(p.windowWidth, 1920);
+      w = w || p.min(p.windowWidth, 1280);
       h = h || p.floor(w * (p.windowHeight / p.windowWidth));
 
       p.createCanvas(w, h);
