@@ -19,7 +19,16 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
         "~images": path.resolve(__dirname, "src/images"),
         "~lib": path.resolve(__dirname, "src/lib"),
         "~util": path.resolve(__dirname, "src/util"),
+        "~shaders": path.resolve(__dirname, "src/shaders"),
       },
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(vert|frag)$/i,
+          use: "raw-loader",
+        },
+      ],
     },
   });
   if (stage === "build-html") {
