@@ -9340,10 +9340,10 @@ p5.createloop@^0.1.3:
     createloop "0.0.12"
     p5 "^0.8.0"
 
-p5@0.10.2, p5@^0.8.0:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/p5/-/p5-0.10.2.tgz#9437b28e803b9c8a94383c6b5f4d05b13603e1cc"
-  integrity sha512-kZnC7JllCEnEUTB3sv2iETUg1ulNvB60h3MHb63u7W/nCJc3XIlMGXcKk28cuezdQ7TOlKScm0qmWCsol+302Q==
+p5@^0.8.0, p5@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p5/-/p5-1.0.0.tgz#d27c77c1c11450ede27af4614a5d24470ffab0c4"
+  integrity sha512-SYYc6NSHA/mMoF00SdI39FmhifMWl0B74/Bg3T793v+KOAWgXsBfr7snv9cjHFqpcmjtJMuZSOoA55qAETCu1w==
 
 pack-spheres@^1.0.4:
   version "1.0.4"
