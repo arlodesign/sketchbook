@@ -71,6 +71,17 @@ const sketch = function(p) {
 
   p.mousePressed = pushParticle;
   p.mouseDragged = pushParticle;
+  p.touchMoved = function() {
+    if (
+      p.mouseX >= 0 &&
+      p.mouseY >= 0 &&
+      p.mouseX <= p.width &&
+      p.mouseY <= p.height
+    ) {
+      pushParticle();
+      return false;
+    }
+  };
 
   p.setup = function() {
     p.pixelDensity(1);
