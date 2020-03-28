@@ -87,7 +87,7 @@ const query = graphql`
       }
     }
     images: allFile(
-      filter: { relativePath: { regex: "/[0-9]{4}/" }, ext: { nin: [".js"] } }
+      filter: { relativePath: { regex: "/[0-9]{4}/" }, ext: { in: [".png"] } }
       sort: { fields: relativePath, order: DESC }
     ) {
       edges {
