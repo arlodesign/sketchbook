@@ -33,16 +33,23 @@
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@types/react": "^16.9.27",
     "babel-eslint": "^10.0.1",
     "babel-preset-gatsby": "^0.2.27",
     "deasync": "^0.1.19",
+    "eslint": "^6.8.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.20.1",
     "gh-pages": "^2.2.0",
     "glob": "^7.1.6",
     "prettier": "^1.16.4",
     "raw-loader": "^4.0.0",
     "rss": "^1.2.2",
-    "sharp": "^0.23.4"
+    "sharp": "^0.25.2",
+    "tsutils": "^3.17.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1"
   },
   "resolutions": {
     "p5.createloop/p5": "^1.0.0"
@@ -53,7 +60,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
-    "serve": "gatsby build && gatsby serve",
+    "serve": "gatsby build && gatsby servyarn e",
     "deploy": "git stash --include-untracked && git push origin master && gatsby build && node scripts/publish.js && git stash pop",
     "sketch": "node scripts/new-sketch.js"
   },
