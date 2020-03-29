@@ -60,7 +60,7 @@
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
-    "serve": "gatsby build && gatsby servyarn e",
+    "serve": "gatsby build && gatsby serve",
     "deploy": "git stash --include-untracked && git push origin master && gatsby build && node scripts/publish.js && git stash pop",
     "sketch": "node scripts/new-sketch.js"
   },
