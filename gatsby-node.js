@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
       images: allFile(
-        filter: { relativePath: { regex: "/[0-9]{4}/" }, ext: { eq: ".png" } }
+        filter: { relativePath: { regex: "/[0-9]{4}/[0-9]{2}/[0-9]{2}.png/" } }
         sort: { fields: relativePath, order: DESC }
       ) {
         edges {

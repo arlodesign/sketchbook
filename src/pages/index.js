@@ -60,7 +60,7 @@ export const query = graphql`
       }
     }
     images: allFile(
-      filter: { relativePath: { regex: "/[0-9]{4}/" }, ext: { in: [".png"] } }
+      filter: { relativePath: { regex: "/[0-9]{4}/[0-9]{2}/[0-9]{2}.png/" } }
       sort: { fields: relativePath, order: DESC }
     ) {
       edges {
