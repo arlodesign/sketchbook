@@ -6,6 +6,7 @@ import { sketch as sketch20191130 } from "../pages/sketch/2019/11/30";
 import { sketch as sketch20200113 } from "../pages/sketch/2020/01/13";
 import { sketch as sketch20200204 } from "../pages/sketch/2020/02/04";
 import { sketch as sketch20200217 } from "../pages/sketch/2020/02/17";
+import { sketch as sketch20200329 } from "../pages/sketch/2020/03/29";
 
 import shuffle from "~lib/shuffle";
 
@@ -18,6 +19,7 @@ const sketches = shuffle([
   sketch20200113,
   sketch20200204,
   sketch20200217,
+  sketch20200329,
 ]);
 
 export default sketches;
