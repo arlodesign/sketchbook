@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SEO from "~components/seo";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import styled from "@emotion/styled";
 import sketches from "../util/screensaver-sketches";
 

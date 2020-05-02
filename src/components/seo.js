@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { StaticQuery, graphql, withPrefix } from "gatsby";
 
 function SEO({
@@ -15,11 +15,11 @@ function SEO({
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         const { siteUrl, author } = data.site.siteMetadata;
-        const withUrl = path => `${siteUrl}${withPrefix(path)}`;
+        const withUrl = (path) => `${siteUrl}${withPrefix(path)}`;
 
         return (
           <Helmet
