@@ -23,6 +23,7 @@
     "gatsby-plugin-sharp": "^2.3.13",
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-sharp": "^2.3.12",
+    "glitch-canvas": "^1.1.8",
     "open-simplex-noise": "^1.7.0",
     "p5": "^1.0.0",
     "p5.createloop": "^0.1.3",
