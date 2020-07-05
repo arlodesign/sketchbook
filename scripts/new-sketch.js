@@ -1,50 +1,100 @@
+const template = `import p5 from "p5";
+import "p5.createloop";
+
+const sketch = function (p) {
+  const RENDER = p.getURLParams().render;
+  const DURATION = 20;
+  const RATE = 30;
+
+  p.setup = function () {
+    p.pixelDensity(RENDER ? 2 : 1);
+    p.frameRate(RATE);
+    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.background(255);
+    p.noSmooth();
+    p.createLoop(DURATION, {
+      gif: RENDER ? { render: false, open: true } : false,
+      noiseRadius: 0.1,
+    });
+  };
+
+  p.draw = function () {
+    const { progress, theta, noise } = p.animLoop;
+    p.background(255);
+
+    /*
+      DRAW
+    */
+
+    p.frameCount % 100 === 0 && console.info(\`\${p.floor(progress * 100)}%\`);
+    if (!RENDER && p.frameCount === DURATION * RATE) {
+      console.info("100%");
+      p.noLoop();
+    }
+  };
+
+  p.windowResized = function () {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  };
+};
+
+new p5(sketch, "sketch");
+
+`;
+
+const placeholder = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <g fill="none" stroke="#fff">
+    <rect x="0.5" y="0.5" width="99" height="99"/>
+    <line x1="1" y1="1" x2="100" y2="100"/>
+    <line x1="100" y1="1" x2="1" y2="100"/>
+  </g>
+</svg>`;
+
 const fs = require("fs");
 const exec = require("child_process").exec;
 const { promisify } = require("util");
+const svg2img = require("svg2img");
 
-const readFile = promisify(fs.readFile);
 const mkdir = promisify(fs.mkdir);
 const writeFile = promisify(fs.writeFile);
-const copyFile = promisify(fs.copyFile);
 
 function leftPad(num) {
-  return num < 10 ? `0${num}` : num;
+  return String(num).padStart(2, "0");
 }
 
-function makeDateString(date, joinChar = "/") {
-  return [
-    date.getFullYear(),
-    leftPad(date.getMonth() + 1),
-    leftPad(date.getDate()),
-  ].join(joinChar);
+function makeDateString(date, withDay = false, joinChar = "/") {
+  let dateEls = [date.getFullYear(), leftPad(date.getMonth() + 1)];
+
+  withDay && dateEls.push(leftPad(date.getDate()));
+
+  return dateEls.join(joinChar);
 }
 
-const sketchPath = "./src/pages/sketch";
-const imagePath = "./src/images";
+const sketchPath = "./src/sketch";
+const imagePath = "./src/thumbnails";
 const DateObj = new Date();
 
 (async () => {
-  const template = await readFile("./scripts/new-sketch.template", "utf8");
+  let sketchFile = () => `${sketchPath}/${makeDateString(DateObj, true)}.js`;
+  let imageFile = () => `${imagePath}/${makeDateString(DateObj, true)}.png`;
 
-  while (fs.existsSync(`${sketchPath}/${makeDateString(DateObj)}.js`)) {
+  while (fs.existsSync(sketchFile())) {
     DateObj.setDate(DateObj.getDate() + 1);
   }
 
-  await mkdir(
-    `${sketchPath}/${DateObj.getFullYear()}/${leftPad(DateObj.getMonth() + 1)}`,
-    { recursive: true }
-  );
-  await writeFile(
-    `${sketchPath}/${makeDateString(DateObj)}.js`,
-    template.replace(/\{\{\sdate\s\}\}/g, makeDateString(DateObj, "-")),
-    "utf8"
-  );
+  await mkdir(`${sketchPath}/${makeDateString(DateObj, false)}`, {
+    recursive: true,
+  });
+  await writeFile(sketchFile(), template, "utf8");
 
-  await mkdir(
-    `${imagePath}/${DateObj.getFullYear()}/${leftPad(DateObj.getMonth() + 1)}`,
-    { recursive: true }
-  );
+  await mkdir(`${imagePath}/${makeDateString(DateObj, false)}`, {
+    recursive: true,
+  });
+  svg2img(placeholder, { width: 500, height: 500 }, async (error, buffer) => {
+    await writeFile(imageFile(), buffer);
+    console.log(`🎉  ${imageFile()} created.`);
+  });
 
-  console.log(`🎉  ${sketchPath}/${makeDateString(DateObj)}.js created.`);
-  exec(`code ${sketchPath}/${makeDateString(DateObj)}.js`);
+  console.log(`🎉  ${sketchFile()} created.`);
+  exec(`code ${sketchFile()}`);
 })();

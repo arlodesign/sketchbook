@@ -1,0 +1,46 @@
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-align: right;
+  padding: var(--spacing);
+  z-index: var(--elevation-nav);
+}
+
+h1,
+nav li a {
+  margin-bottom: var(--spacing-small);
+}
+
+h1 {
+  display: inline-block;
+  background: var(--black);
+  padding-right: var(--spacing-small);
+  padding-left: var(--spacing-small);
+}
+
+.nav--link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.nav--link * {
+  background: var(--black);
+}
+.nav--link span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  padding: 0;
+}
+.nav--link:hover span {
+  padding-right: var(--spacing-small);
+  padding-left: var(--spacing-small);
+  width: auto;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <title>index</title>
+  <g fill="none" stroke="currentColor">
+    <path d="M4.5,4.5h3v3h-3Z"/>
+    <path d="M4.5,10.5h3v3h-3Z"/>
+    <path d="M4.5,16.5h3v3h-3Z"/>
+    <path d="M10.5,4.5h3v3h-3Z"/>
+    <path d="M10.5,10.5h3v3h-3Z"/>
+    <path d="M10.5,16.5h3v3h-3Z"/>
+    <path d="M16.5,4.5h3v3h-3Z"/>
+    <path d="M16.5,10.5h3v3h-3Z"/>
+    <path d="M16.5,16.5h3v3h-3Z"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+@import "./theme.css";
+
+main,
+#sketch,
+#sketch > canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: var(--elevation-content);
+}
+
+#sketch > canvas {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+#description {
+  position: absolute;
+  top: var(--spacing);
+  left: var(--spacing);
+  max-width: 30ch;
+  z-index: var(--elevation-content);
+  background: var(--black);
+  padding: 0 var(--spacing-small);
+}

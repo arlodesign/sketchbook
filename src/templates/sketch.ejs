@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %> | <%= siteName %></title>
+    <link rel="prev" href="<%= domain %>/<%= prevSketch.url %>" />
+    <link rel="next" href="<%= domain %>/<%= nextSketch.url %>" />
+    <link rel="prefetch" href="<%= domain %>/<%= prevSketch.url %>" />
+    <link rel="prefetch" href="<%= domain %>/<%= nextSketch.url %>" />
+    <link rel="prefetch" href="<%= domain %>/" />
+    <link rel="canonical" href="<%= domain %>/<%= sketch.url %>" />
+    <meta name="description" content="Experiments with generative art" />
+    <meta property="og:description" content="Experiments with generative art" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="<%= domain %><%=
+    require(`../${sketch.image}?preset=facebook`).default %>"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@arlodesign" />
+    <meta
+      name="twitter:description"
+      content="Experiments with generative art"
+    />
+    <meta
+      property="twitter:image"
+      content="<%= domain %><%=
+    require(`../${sketch.image}?preset=twitter`).default %>"
+    />
+  </head>
+  <body>
+    <header>
+      <h1><%= htmlWebpackPlugin.options.title %></h1>
+      <nav>
+        <ul>
+          <li>
+            <a class="nav--link" href="#about">
+              <span>About</span>
+              <img inline src="src/icons/info.svg" class="icon" />
+            </a>
+          </li>
+          <li>
+            <a class="nav--link" href="/">
+              <span>Back to Index</span>
+              <img inline src="src/icons/index.svg" class="icon" />
+            </a>
+          </li>
+          <% if (prevSketch) { %>
+          <li>
+            <a class="nav--link" href="/<%= prevSketch.url %>">
+              <span><%= prevSketch.title %></span>
+              <img inline src="src/icons/left.svg" class="icon" />
+            </a>
+          </li>
+          <% } %> <% if (nextSketch) { %>
+          <li>
+            <a class="nav--link" href="/<%= nextSketch.url %>">
+              <span><%= nextSketch.title %></span>
+              <img inline src="src/icons/right.svg" class="icon" />
+            </a>
+          </li>
+          <% } %>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <div id="sketch"></div>
+      <p id="description"></p>
+    </main>
+    <footer id="about">
+      <h2>About</h2>
+      <p>
+        This site presents semi-daily explorations of generative and procedural
+        art. The code is all available on
+        <a href="https://github.com/arlodesign/sketchbook/">GitHub</a>.
+      </p>
+      <p>
+        <a href="https://arlo.me/">Arlo Bryan Guthrie</a>
+        often uses this work to produce screenprints and other printed artwork.
+        He might even start selling it some day. He’s on
+        <a href="https://www.instagram.com/arlodesign/">Instagram</a>.
+      </p>
+      <a class="footer--close" href="#main">
+        <img inline src="src/icons/close.svg" class="icon" />
+        <span>Close</span>
+      </a>
+    </footer>
+  </body>
+</html>

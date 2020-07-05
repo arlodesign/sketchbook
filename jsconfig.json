@@ -2,12 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~components/*": ["src/components/*"],
-      "~images/*": ["src/images/*"],
-      "~lib/*": ["src/lib/*"],
-      "~util/*": ["src/util/*"],
-      "~shaders/*": ["src/shaders/*"]
+      "assets/*": ["src/assets/*"],
+      "util/*": ["src/util/*"],
+      "shaders/*": ["src/shaders/*"]
     }
   },
-  "exclude": ["node_modules", "**/node_modules/*", "src/images", "public"]
+  "exclude": ["node_modules", "**/node_modules/*", "src/images", "dist"]
 }

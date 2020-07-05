@@ -1,0 +1,76 @@
+:root {
+  --black: #111;
+  --white: #eee;
+  --spacing: 0.5rem;
+  --spacing-small: calc(var(--spacing) / 4);
+  --elevation-nav: 100;
+  --elevation-about: 200;
+  --elevation-content: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background: var(--black);
+  color: var(--white);
+  font: 14px / 1.5 SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  position: relative;
+}
+
+*,
+*::before,
+*::after {
+  font-size: 1rem;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: var(--white);
+  text-decoration: none;
+}
+
+p a {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 1.25rem,
+    var(--white) calc(1.25rem + 1px),
+    transparent calc(1.25rem + 1.5px)
+  );
+}
+
+@media only screen and (min-width: 40em) {
+  :root {
+    --spacing: 1.5rem;
+  }
+
+  html {
+    font-size: 16px;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@import "./nav.css";
+@import "./footer.css";

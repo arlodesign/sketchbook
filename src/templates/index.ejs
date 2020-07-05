@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= siteName %></title>
+    <link rel="prefetch" href="<%= domain %>/<%= latestSketch.url %>" />
+    <link rel="canonical" href="<%= domain %>/" />
+    <meta name="description" content="Experiments with generative art" />
+    <meta property="og:description" content="Experiments with generative art" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="<%= domain %><%=
+    require(`../${latestSketch.image}?preset=facebook`).default %>"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@arlodesign" />
+    <meta
+      name="twitter:description"
+      content="Experiments with generative art"
+    />
+    <meta
+      property="twitter:image"
+      content="<%= domain %><%=
+    require(`../${latestSketch.image}?preset=twitter`).default %>"
+    />
+  </head>
+  <body>
+    <header>
+      <h1><%= siteName %></h1>
+      <nav>
+        <ul>
+          <li>
+            <a class="nav--link" href="#about">
+              <span>About</span>
+              <img inline src="src/icons/info.svg" class="icon" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main">
+      <ul>
+        <% sketches.forEach(function(sketch, i) { %>
+        <li>
+          <a href="<%= sketch.url %>">
+            <figure id="sketch-<%= sketch.title %>">
+              <img
+                srcset="<%=
+              require(`../${sketch.image}?preset=thumbnail`).default %>, <%=
+              require(`../${sketch.image}?preset=thumbnail2x`).default %>
+              2x"
+                src="<%=
+              require(`../${sketch.image}?preset=thumbnail`).default %>"
+                alt="<%= sketch.title %>"
+                loading="lazy"
+              />
+              <figcaption>
+                <time datetime="<%= sketch.title %>"> <%= sketch.title %></time>
+              </figcaption>
+            </figure>
+          </a>
+        </li>
+        <% }); %>
+      </ul>
+    </main>
+    <footer id="about">
+      <h2>About</h2>
+      <p>
+        This site presents semi-daily explorations of generative and procedural
+        art. The code is all available on
+        <a href="https://github.com/arlodesign/sketchbook/">GitHub</a>.
+      </p>
+      <p>
+        <a href="https://arlo.me/">Arlo Bryan Guthrie</a>
+        often uses this work to produce screenprints and other printed artwork.
+        He might even start selling it some day. He’s on
+        <a href="https://www.instagram.com/arlodesign/">Instagram</a>.
+      </p>
+      <a class="footer--close" href="#main">
+        <img inline src="src/icons/close.svg" class="icon" />
+        <span>Close</span>
+      </a>
+    </footer>
+  </body>
+</html>
