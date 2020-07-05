@@ -9,8 +9,9 @@
   "scripts": {
     "start": "node ./scripts/new-sketch.js; webpack-dev-server --mode development",
     "build": "rm -rf dist; webpack -p; cp ./CNAME ./dist",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "yarn build; git stash --include-untracked; git push origin master",
+    "deploy": "gh-pages -d dist",
+    "postdeploy": "git stash pop"
   },
   "devDependencies": {
     "@babel/core": "^7.10.1",
