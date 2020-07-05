@@ -4,6 +4,7 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
 
 const sketches = require("./lib/getSketches");
 const latestSketch = sketches[sketches.length - 1];
@@ -64,6 +65,7 @@ module.exports = (env, { mode }) => {
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
     }),
+    new ManifestPlugin(),
   ]);
 
   let pngRule = [
