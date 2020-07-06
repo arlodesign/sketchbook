@@ -60,7 +60,7 @@ module.exports = (env, { mode }) => {
       cacheFolder: resolve(__dirname, ".cache"),
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
+      filename: "[name].[contenthash:8].css",
     }),
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
@@ -72,7 +72,7 @@ module.exports = (env, { mode }) => {
     {
       loader: "file-loader",
       options: {
-        name: "[name].[contenthash].[ext]",
+        name: "[name].[contenthash:8].[ext]",
         outputPath: "assets",
         publicPath: "/assets",
       },
@@ -132,7 +132,7 @@ module.exports = (env, { mode }) => {
             {
               loader: "file-loader",
               options: {
-                name: "[name].[contenthash].[ext]",
+                name: "[name].[contenthash:8].[ext]",
                 outputPath: "assets",
                 publicPath: "/assets",
               },
@@ -146,8 +146,8 @@ module.exports = (env, { mode }) => {
         {
           test: /\.css$/,
           use: [
-            // PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
-            "style-loader",
+            PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
+            // "style-loader",
             "css-loader",
           ],
         },
@@ -165,7 +165,7 @@ module.exports = (env, { mode }) => {
     },
     output: {
       path: resolve(__dirname, "dist"),
-      filename: "[name].[contenthash].js",
+      filename: "[name].[contenthash:8].js",
     },
     optimization: {
       runtimeChunk: "single",
