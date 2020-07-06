@@ -69,6 +69,7 @@ module.exports = (env, { mode }) => {
   ]);
 
   let pngRule = [
+    { loader: "cache-loader" },
     {
       loader: "file-loader",
       options: {
@@ -80,7 +81,6 @@ module.exports = (env, { mode }) => {
   ];
 
   if (PRODUCTION) {
-    pngRule.unshift({ loader: "cache-loader" });
     pngRule.push({
       loader: "image-process-loader",
       options: {
