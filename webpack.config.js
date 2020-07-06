@@ -2,7 +2,6 @@ const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 
@@ -58,9 +57,6 @@ module.exports = (env, { mode }) => {
     new ImageminPlugin({
       disable: !PRODUCTION,
       cacheFolder: resolve(__dirname, ".cache"),
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash:8].css",
     }),
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
@@ -145,11 +141,7 @@ module.exports = (env, { mode }) => {
         },
         {
           test: /\.css$/,
-          use: [
-            PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
-            // "style-loader",
-            "css-loader",
-          ],
+          use: ["style-loader", "css-loader"],
         },
         {
           test: /\.svg$/,
