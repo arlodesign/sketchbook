@@ -8,3 +8,4 @@ src/thumbnails/**/*-*.png
 src/thumbnails/**/*.gif
 src/thumbnails/**/*.mov
 src/thumbnails/**/*.mp4
+videos
