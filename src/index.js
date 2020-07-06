@@ -24,3 +24,9 @@ console.log(`
 https://secure.actblue.com/donate/ms_blm_homepage_2019
 
 `);
+
+navigator.serviceWorker?.getRegistrations().then(function (registrations) {
+  for (let registration of registrations) {
+    registration.unregister();
+  }
+});
