@@ -7,9 +7,12 @@ const sketch = function (p) {
   const RATE = 30;
 
   p.setup = function () {
-    p.pixelDensity(RENDER ? 2 : 1);
+    p.pixelDensity(1);
     p.frameRate(RATE);
-    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.createCanvas(
+      RENDER ? 1080 : p.windowWidth,
+      RENDER ? 1080 : p.windowHeight
+    );
     p.background(255);
     p.noSmooth();
     p.createLoop(DURATION, {
@@ -34,12 +37,13 @@ const sketch = function (p) {
   };
 
   p.windowResized = function () {
+    if (RENDER) return;
+
     p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 };
 
 new p5(sketch, "sketch");
-
 `;
 
 const placeholder = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
