@@ -53,7 +53,23 @@ module.exports = (env, { mode }) => {
         domain,
       },
     }),
-    new FaviconsWebpackPlugin(resolve(__dirname, "src", latestSketch.image)),
+    new FaviconsWebpackPlugin({
+      logo: resolve(__dirname, "src", latestSketch.image),
+      cache: true,
+      favicons: {
+        appName: "sketchbook.arlo.me",
+        appDescription: "sketchbook.arlo.me",
+        developerName: "Arlo Bryan Guthrie",
+        developerURL: "sketchbook.arlo.me",
+        background: "#111",
+        theme_color: "#eee",
+        icons: {
+          coast: false,
+          yandex: false,
+          appleStartup: false,
+        },
+      },
+    }),
     new ImageminPlugin({
       disable: !PRODUCTION,
       cacheFolder: resolve(__dirname, ".cache"),
@@ -65,6 +81,7 @@ module.exports = (env, { mode }) => {
   ]);
 
   let pngRule = [
+    { loader: "cache-loader" },
     {
       loader: "file-loader",
       options: {
