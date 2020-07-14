@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
-  "name": "sketchbook",
-  "description": "Experiments with generative art",
+  "name": "sketchbook.arlo.me",
+  "description": "sketchbook.arlo.me",
   "icons": {
     "60": "/assets/firefox_app_60x60.png",
     "128": "/assets/firefox_app_128x128.png",
@@ -9,6 +9,6 @@
   },
   "developer": {
     "name": "Arlo Bryan Guthrie",
-    "url": null
+    "url": "sketchbook.arlo.me"
   }
 }

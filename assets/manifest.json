@@ -1,14 +1,14 @@
 {
-  "name": "sketchbook",
-  "short_name": "sketchbook",
-  "description": "Experiments with generative art",
+  "name": "sketchbook.arlo.me",
+  "short_name": "sketchbook.arlo.me",
+  "description": "sketchbook.arlo.me",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",
   "orientation": "any",
   "start_url": "/?homescreen=1",
-  "background_color": "#fff",
-  "theme_color": "#fff",
+  "background_color": "#111",
+  "theme_color": "#eee",
   "icons": [
     {
       "src": "/assets/android-chrome-36x36.png",
