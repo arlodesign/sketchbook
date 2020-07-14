@@ -9,7 +9,7 @@
   "scripts": {
     "sketch": "node ./scripts/new-sketch.js",
     "start": "webpack-dev-server --mode development",
-    "build": "rm -rf dist; webpack -p; cp ./CNAME ./dist",
+    "build": "rm -rf dist; webpack -p; cp ./CNAME ./dist/",
     "predeploy": "git stash --include-untracked; git push origin master; yarn build",
     "deploy": "gh-pages -d dist",
     "postdeploy": "git stash pop"
