@@ -79,7 +79,6 @@ module.exports = (env, { mode }) => {
   ]);
 
   let pngRule = [
-    { loader: "cache-loader" },
     {
       loader: "file-loader",
       options: {
