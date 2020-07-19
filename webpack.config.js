@@ -26,7 +26,7 @@ module.exports = (env, { mode }) => {
     (sketch, i) =>
       new HtmlWebpackPlugin({
         inject: true,
-        chunks: [sketch.title, "sketchStyles"],
+        chunks: ["sketchStyles", sketch.title],
         filename: sketch.url + "index.html",
         template: "src/templates/sketch.ejs",
         title: sketch.title,
@@ -42,7 +42,7 @@ module.exports = (env, { mode }) => {
   plugins = plugins.concat([
     new HtmlWebpackPlugin({
       inject: true,
-      chunks: ["index", "indexStyles"],
+      chunks: ["indexStyles", "index"],
       filename: "index.html",
       template: "src/templates/index.ejs",
       templateParameters: {

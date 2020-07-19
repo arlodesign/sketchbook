@@ -25,6 +25,12 @@ body {
   position: relative;
 }
 
+header,
+main,
+nav {
+  opacity: 1;
+}
+
 *,
 *::before,
 *::after {

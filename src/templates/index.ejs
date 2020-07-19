@@ -25,8 +25,22 @@
       content="<%= domain %><%=
     require(`../${latestSketch.image}?preset=twitter`).default %>"
     />
+    <style>
+      body {
+        background: #111;
+        color: #eee;
+      }
+      header,
+      nav,
+      main {
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
+    <noscript>
+      <p>This site requires Javascript to view artwork.</p>
+    </noscript>
     <header>
       <h1><%= siteName %></h1>
       <nav>
