@@ -5,11 +5,29 @@ main ul {
   flex-wrap: wrap;
 }
 
+@keyframes throb {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+main ul li:target {
+  z-index: 1;
+  animation: throb 1s 0.25s ease-in-out;
+}
+
 main ul li a {
   display: block;
 }
 
 img {
+  min-width: 133px;
   height: 170px;
   display: block;
   margin: 0 var(--spacing-small) var(--spacing-small) 0;

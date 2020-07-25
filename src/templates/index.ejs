@@ -57,18 +57,17 @@
     <main id="main">
       <ul>
         <% sketches.forEach(function(sketch, i) { %>
-        <li>
+        <li id="sketch-<%= sketch.title %>">
           <a href="<%= sketch.url %>">
-            <figure id="sketch-<%= sketch.title %>">
+            <figure>
               <img
-                srcset="<%=
-              require(`../${sketch.image}?preset=thumbnail`).default %>, <%=
-              require(`../${sketch.image}?preset=thumbnail2x`).default %>
-              2x"
                 src="<%=
               require(`../${sketch.image}?preset=thumbnail`).default %>"
-                alt="<%= sketch.title %>"
+                alt="Thumbnail of <%= sketch.title %>"
                 loading="lazy"
+                srcset="<%=
+              require(`../${sketch.image}?preset=thumbnail2x`).default %>
+              2x"
               />
               <figcaption>
                 <time datetime="<%= sketch.title %>"> <%= sketch.title %></time>

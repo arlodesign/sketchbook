@@ -30,3 +30,9 @@ navigator.serviceWorker?.getRegistrations().then(function (registrations) {
     registration.unregister();
   }
 });
+
+if (!!window.location.hash && window.location.hash.includes("sketch-")) {
+  document
+    .getElementById(window.location.hash.replace("#", ""))
+    .querySelector("img").loading = "eager";
+}
