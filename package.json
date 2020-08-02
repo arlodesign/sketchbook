@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
+    "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",
     "css-loader": "^3.6.0",
@@ -30,6 +31,7 @@
     "image-process-loader": "^1.1.1",
     "imagemin-webpack-plugin": "^2.4.2",
     "null-loader": "^4.0.0",
+    "postcss-loader": "^3.0.0",
     "raw-loader": "^4.0.1",
     "sharp": "^0.25.4",
     "style-loader": "^1.2.1",
@@ -50,5 +52,9 @@
   },
   "resolutions": {
     "p5.createloop/p5": "^1.0.0"
-  }
+  },
+  "browserslist": [
+    "> 5%",
+    "last 2 versions"
+  ]
 }
