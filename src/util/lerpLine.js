@@ -10,16 +10,7 @@
  * @param {*} showFirstDot Defaults to true
  * @param {*} noisy Defaults to true
  */
-export default function(
-  p,
-  x1,
-  y1,
-  x2,
-  y2,
-  rate,
-  showFirstDot = true,
-  noisy = true
-) {
+function lerpLine(p, x1, y1, x2, y2, rate, showFirstDot = true, noisy = true) {
   const thisRate = Math.max(rate, 0.01 / p.dist(x1, y1, x2, y2));
 
   for (let l = 0; l < 1; l += thisRate) {
@@ -29,3 +20,5 @@ export default function(
     }
   }
 }
+
+export default lerpLine;
