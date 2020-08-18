@@ -30,6 +30,7 @@ const sketch = function (p) {
 
     for (let y = 0; y < p.height; y++) {
       for (let x = 0; x < p.width; x++) {
+        const index = (x + y * p.width) * 4;
         let c = p.color(0);
 
         p.pixels[index] = p.red(c);
