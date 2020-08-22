@@ -6,11 +6,13 @@
  * @param {p5.Color} stops colors to use in the gradient
  */
 function lerpGradient(p, amt, ...stops) {
+  let theAmt = p.constrain(amt, 0, 1);
+
   const firstStop =
-    amt === 1 ? stops.length - 2 : p.floor(amt * (stops.length - 1));
+    theAmt === 1 ? stops.length - 2 : p.floor(theAmt * (stops.length - 1));
 
   const lerpColorAmt = p.map(
-    amt,
+    theAmt,
     firstStop / (stops.length - 1),
     (firstStop + 1) / (stops.length - 1),
     0,
