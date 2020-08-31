@@ -139,7 +139,6 @@ module.exports = (env, { mode }) => {
         {
           test: /\.(svg|jpg|gif|ttf|otf)$/,
           use: [
-            { loader: "cache-loader" },
             {
               loader: "file-loader",
               options: {
