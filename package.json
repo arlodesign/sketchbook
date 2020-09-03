@@ -9,7 +9,9 @@
   "scripts": {
     "sketch": "node ./scripts/new-sketch.js",
     "start": "webpack-dev-server --mode development",
-    "build": "rm -rf dist; node --max_old_space_size=8192 webpack -p; cp ./CNAME ./dist",
+    "prebuild": "rm -rf dist",
+    "build": "node --max_old_space_size=8192 node_modules/.bin/webpack -p",
+    "postbuild": "cp ./CNAME ./dist",
     "predeploy": "git stash --include-untracked; git push origin master; yarn build",
     "deploy": "gh-pages -d dist",
     "postdeploy": "git stash pop"
@@ -51,7 +53,9 @@
     "pack-spheres": "^1.0.4"
   },
   "resolutions": {
-    "p5.createloop/p5": "^1.0.0"
+    "p5.createloop/p5": "^1.0.0",
+    "jpeg-js": "^0.4.0",
+    "url-regex": "^5.0.0"
   },
   "browserslist": [
     "> 5%",
