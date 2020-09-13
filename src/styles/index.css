@@ -1,4 +1,6 @@
 @import "./theme.css";
+@import "./nav.css";
+@import "./footer.css";
 
 main ul {
   display: flex;

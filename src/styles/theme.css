@@ -77,6 +77,3 @@ p a {
     transform: scale(1.1);
   }
 }
-
-@import "./nav.css";
-@import "./footer.css";

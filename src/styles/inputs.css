@@ -1,0 +1,16 @@
+@import "./theme.css";
+
+::range-track {
+  background: var(--black);
+  height: 1.5rem;
+}
+::range-thumb {
+  box-sizing: border-box;
+  appearance: none;
+  background: var(--white);
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 0;
+  cursor: pointer;
+  border: var(--spacing-small) solid var(--black);
+}

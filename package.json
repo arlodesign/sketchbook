@@ -33,7 +33,10 @@
     "image-process-loader": "^1.1.1",
     "imagemin-webpack-plugin": "^2.4.2",
     "null-loader": "^4.0.0",
+    "postcss-import": "^12.0.1",
+    "postcss-input-range": "^4.0.0",
     "postcss-loader": "^3.0.0",
+    "postcss-nesting": "^7.0.1",
     "raw-loader": "^4.0.1",
     "sharp": "^0.25.4",
     "style-loader": "^1.2.1",
@@ -56,9 +59,5 @@
     "p5.createloop/p5": "^1.0.0",
     "jpeg-js": "^0.4.0",
     "url-regex": "^5.0.0"
-  },
-  "browserslist": [
-    "> 5%",
-    "last 2 versions"
-  ]
+  }
 }

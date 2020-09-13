@@ -1,4 +1,7 @@
 @import "./theme.css";
+@import "./nav.css";
+@import "./footer.css";
+@import "./inputs.css";
 
 main,
 #sketch,
@@ -8,6 +11,10 @@ main,
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+main,
+#sketch {
   z-index: var(--elevation-content);
 }
 
@@ -16,12 +23,35 @@ main,
   height: 100vh !important;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  z-index: -1;
+
+  & ~ a,
+  & ~ input {
+    display: block;
+    width: 25%;
+    margin-left: var(--spacing);
+    margin-top: var(--spacing);
+    opacity: 0.5;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+  & ~ input {
+    appearance: none;
+    height: 1.5rem;
+
+    & + input {
+      margin-top: var(--spacing-small);
+    }
+  }
 }
 
 #description {
   position: absolute;
-  top: var(--spacing);
-  left: var(--spacing);
+  right: var(--spacing);
+  bottom: var(--spacing);
   max-width: 30ch;
   z-index: var(--elevation-content);
   background: var(--black);

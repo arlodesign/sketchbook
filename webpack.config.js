@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
-const autoprefixer = require("autoprefixer");
 
 const sketches = require("./lib/getSketches");
 const latestSketch = sketches[sketches.length - 1];
@@ -157,13 +156,13 @@ module.exports = (env, { mode }) => {
           test: /\.css$/,
           use: [
             "style-loader",
-            "css-loader",
             {
-              loader: "postcss-loader",
+              loader: "css-loader",
               options: {
-                plugins: () => [autoprefixer()],
+                importLoaders: 1,
               },
             },
+            "postcss-loader",
           ],
         },
         {
