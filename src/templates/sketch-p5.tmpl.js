@@ -4,8 +4,8 @@ import "p5.createloop";
 const sketch = function (p) {
   const RENDER = p.getURLParams().render;
   const RENDER_SIZE = 1080;
-  const DURATION = 20;
-  const RATE = 30;
+  const DURATION = 20 * (RENDER ? 30 : 1);
+  const RATE = RENDER ? 1 : 30;
 
   p.setup = function () {
     p.pixelDensity(1);
