@@ -23,7 +23,7 @@ const sketch = function (p) {
 
   p.draw = function () {
     const { progress, theta, noise1D, noise2D } = p.animLoop;
-    const loopedProgress = -4 * progress * progress + 4 * progress;
+    const loopedProgress = p.sin(2 * p.PI * progress - p.PI / 2) / 2 + 0.5;
 
     p.background(255);
     p.loadPixels();
