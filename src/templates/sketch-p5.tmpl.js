@@ -42,7 +42,7 @@ const sketch = function (p) {
     p.updatePixels();
 
     if (RENDER && p.frameCount <= DURATION * RATE) {
-      p.frameCount % 100 === 0 && console.info(`${p.floor(progress * 100)}%`);
+      p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
       p.save(
         `${String(p.frameCount).padStart(
           String(DURATION * RATE).length,
