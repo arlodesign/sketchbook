@@ -50,6 +50,7 @@ const sketch = function (p) {
     });
 
     for (const clr in blobs) {
+      // eslint-disable-next-line no-prototype-builtins
       if (blobs.hasOwnProperty(clr)) {
         blobs[clr] = Array(BLOB_COUNT)
           .fill()

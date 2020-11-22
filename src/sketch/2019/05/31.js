@@ -5,10 +5,10 @@ const sketch = function (p) {
   const HEIGHT = 840;
   const GRID_SIZE = 10;
   const RULES = {
-    "111": p.random([0, 1]),
-    "110": p.random([0, 1]),
-    "101": p.random([0, 1]),
-    "100": p.random([0, 1]),
+    111: p.random([0, 1]),
+    110: p.random([0, 1]),
+    101: p.random([0, 1]),
+    100: p.random([0, 1]),
     "011": p.random([0, 1]),
     "010": p.random([0, 1]),
     "001": p.random([0, 1]),

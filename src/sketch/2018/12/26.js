@@ -34,8 +34,6 @@ const sketch = function (p) {
         0
       );
     }
-    if (p.frameCount === lineCount) {
-    }
   };
 
   p.windowResized = function () {

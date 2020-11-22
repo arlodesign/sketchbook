@@ -102,8 +102,6 @@ const sketch = function (p) {
       leftHandleX,
       leftHandleY,
     };
-    if (p.abs(guides[1].r) > p.PI + p.PI / 2) {
-    }
   };
 
   p.mousePressed = function () {

@@ -4,7 +4,7 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 
-const sketches = require("./lib/getSketches");
+const sketches = require("./scripts/getSketches");
 const latestSketch = sketches[sketches.length - 1];
 
 let entry = sketches.reduce(

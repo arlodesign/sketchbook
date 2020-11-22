@@ -23,7 +23,7 @@ const sketch = function (p) {
   };
 
   p.draw = function () {
-    const { progress, theta, noise1D, noise2D } = p.animLoop;
+    const { progress, noise1D } = p.animLoop;
     const loopedProgress = easeInOutQuad(
       easeInOutQuad(p.sin(2 * p.PI * progress - p.PI / 2) / 2 + 0.5)
     );

@@ -1,4 +1,5 @@
 import p5 from "p5";
+import addNoise from "util/addNoise";
 
 const sketch = function (p) {
   const GRID = 30;

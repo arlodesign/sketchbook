@@ -12,8 +12,8 @@ function getSketches() {
     return {
       title,
       entry: path.resolve(__dirname, "..", sketch),
-      url: path.join("sketch", title.replace(/\-/g, "/")) + "/",
-      image: path.join("thumbnails", title.replace(/\-/g, "/")) + ".png",
+      url: path.join("sketch", title.replace(/-/g, "/")) + "/",
+      image: path.join("thumbnails", title.replace(/-/g, "/")) + ".png",
     };
   });
 

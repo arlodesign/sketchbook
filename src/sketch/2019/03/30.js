@@ -4,6 +4,7 @@ import polarToCartesian from "util/polarToCartesian";
 const sketch = function (p) {
   const FRAMES = 30;
   const HUE = p.random(0, 50);
+  const PIXEL_DENSITY = 10;
 
   let size;
 
@@ -28,7 +29,6 @@ const sketch = function (p) {
   };
 
   p.setup = function () {
-    const PIXEL_DENSITY = 10;
     p.createCanvas(
       p.floor(p.windowWidth / PIXEL_DENSITY),
       p.floor(p.windowHeight / PIXEL_DENSITY)
