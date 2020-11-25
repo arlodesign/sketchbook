@@ -4,23 +4,28 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 
-const sketches = require("./scripts/getSketches");
-const latestSketch = sketches[sketches.length - 1];
-
-let entry = sketches.reduce(
-  (acc, sketch) => Object.assign(acc, { [sketch.title]: sketch.entry }),
-  {}
-);
-entry.index = resolve(__dirname, "src/index.js");
-entry.indexStyles = resolve(__dirname, "src/styles/index.css");
-entry.sketchStyles = resolve(__dirname, "src/styles/sketch.css");
-
 module.exports = (env, { mode }) => {
-  const PRODUCTION = mode === "production";
+  const PROD = mode === "production";
+  const DEV = mode === "development";
 
-  const domain = PRODUCTION
-    ? "https://sketchbook.arlo.me"
-    : "http://localhost:8080";
+  let sketches = require("./scripts/getSketches");
+  const latestSketch = sketches[sketches.length - 1];
+
+  if (DEV) {
+    sketches = sketches.slice(-14);
+  }
+
+  console.log(mode);
+
+  let entry = sketches.reduce(
+    (acc, sketch) => Object.assign(acc, { [sketch.title]: sketch.entry }),
+    {}
+  );
+  entry.index = resolve(__dirname, "src/index.js");
+  entry.indexStyles = resolve(__dirname, "src/styles/index.css");
+  entry.sketchStyles = resolve(__dirname, "src/styles/sketch.css");
+
+  const domain = PROD ? "https://sketchbook.arlo.me" : "http://localhost:8080";
 
   let plugins = sketches.map(
     (sketch, i) =>
@@ -70,7 +75,7 @@ module.exports = (env, { mode }) => {
       },
     }),
     new ImageminPlugin({
-      disable: !PRODUCTION,
+      disable: !PROD,
       cacheFolder: resolve(__dirname, ".cache"),
     }),
     new HtmlWebpackInlineSVGPlugin({
@@ -89,7 +94,7 @@ module.exports = (env, { mode }) => {
     },
   ];
 
-  if (PRODUCTION) {
+  if (PROD) {
     pngRule.push({
       loader: "image-process-loader",
       options: {
@@ -123,6 +128,21 @@ module.exports = (env, { mode }) => {
           exclude: /(node_modules)/,
           use: [
             { loader: "cache-loader" },
+            {
+              loader: "babel-loader",
+              options: {
+                presets: ["@babel/preset-env"],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.worker\.js$/i,
+          use: [
+            {
+              loader: "worker-loader",
+              options: { inline: "fallback" },
+            },
             {
               loader: "babel-loader",
               options: {
@@ -193,13 +213,13 @@ module.exports = (env, { mode }) => {
         },
       },
     },
-    stats: PRODUCTION ? "normal" : "errors-warnings",
+    stats: PROD ? "normal" : "errors-warnings",
     devServer: {
       open: true,
       openPage: latestSketch.url,
     },
     performance: {
-      hints: PRODUCTION && "warning",
+      hints: PROD && "warning",
       maxEntrypointSize: 6000000,
       maxAssetSize: 2000000,
     },
