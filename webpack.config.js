@@ -15,8 +15,6 @@ module.exports = (env, { mode }) => {
     sketches = sketches.slice(-14);
   }
 
-  console.log(mode);
-
   let entry = sketches.reduce(
     (acc, sketch) => Object.assign(acc, { [sketch.title]: sketch.entry }),
     {}
