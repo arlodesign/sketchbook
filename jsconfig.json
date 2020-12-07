@@ -4,7 +4,6 @@
     "paths": {
       "assets/*": ["src/assets/*"],
       "util/*": ["src/util/*"],
-      "shaders/*": ["src/shaders/*"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/*", "src/images", "dist"]
