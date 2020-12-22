@@ -168,14 +168,7 @@ module.exports = (env, { mode }) => {
         },
         {
           test: /\.(frag|vert|glsl)$/,
-          use: [
-            {
-              loader: "glsl-shader-loader",
-              options: {
-                root: "src/util",
-              },
-            },
-          ],
+          use: ["raw-loader", "glslify-loader"],
         },
         {
           test: /\.css$/,
