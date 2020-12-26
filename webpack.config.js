@@ -8,7 +8,7 @@ module.exports = (env, { mode }) => {
   const PROD = mode === "production";
   const DEV = mode === "development";
 
-  let sketches = require("./scripts/getSketches");
+  let sketches = require("./scripts/get-sketches");
   const latestSketch = sketches[sketches.length - 1];
 
   if (DEV) {
