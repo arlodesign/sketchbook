@@ -3,8 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "assets/*": ["src/assets/*"],
-      "util/*": ["src/util/*"],
-    }
+      "util/*": ["src/util/*"]
+    },
+    "target": "es6",
+    "module": "commonjs"
   },
   "exclude": ["node_modules", "**/node_modules/*", "src/images", "dist"]
 }
