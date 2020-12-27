@@ -1,59 +1,54 @@
-const fs = require("fs");
-const exec = require("child_process").exec;
-const { promisify } = require("util");
-const svg2img = require("svg2img");
+#!/usr/bin/env node
+const { resolve, parse, relative, join } = require("path");
+const { mkdir, copyFile } = require("fs").promises;
+const { existsSync } = require("fs");
+const { hideBin } = require("yargs/helpers");
+const yargs = require("yargs");
+const glob = require("glob");
+require("console-emojis");
+const makeDateArray = require("./make-date-array");
+const newPlaceholder = require("./new-placeholder");
+const argv = yargs(hideBin(process.argv)).argv;
 
-const mkdir = promisify(fs.mkdir);
-const writeFile = promisify(fs.writeFile);
-const readFile = promisify(fs.readFile);
-
-const placeholder = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <g fill="none" stroke="#fff">
-    <rect x="0.5" y="0.5" width="99" height="99"/>
-    <line x1="1" y1="1" x2="100" y2="100"/>
-    <line x1="100" y1="1" x2="1" y2="100"/>
-  </g>
-</svg>`;
-
-function leftPad(num) {
-  return String(num).padStart(2, "0");
-}
-
-function makeDateString(date, withDay = false, joinChar = "/") {
-  let dateEls = [date.getFullYear(), leftPad(date.getMonth() + 1)];
-
-  withDay && dateEls.push(leftPad(date.getDate()));
-
-  return dateEls.join(joinChar);
-}
-
-const sketchPath = "./src/sketch";
-const imagePath = "./src/thumbnails";
+const template = argv.template || argv.t || "p5";
 const DateObj = new Date();
+const sketchPath = (relativePath = false) => {
+  const newPath = resolve(
+    __dirname,
+    "../src/sketch",
+    ...makeDateArray(DateObj)
+  );
+  return relativePath
+    ? relative(resolve(__dirname, "../src"), newPath)
+    : newPath;
+};
 
 (async () => {
-  const template = await readFile("./src/templates/sketch-p5.tmpl.js", "utf8");
-
-  let sketchFile = () => `${sketchPath}/${makeDateString(DateObj, true)}.js`;
-  let imageFile = () => `${imagePath}/${makeDateString(DateObj, true)}.png`;
-
-  while (fs.existsSync(sketchFile())) {
+  while (existsSync(sketchPath())) {
     DateObj.setDate(DateObj.getDate() + 1);
   }
 
-  await mkdir(`${sketchPath}/${makeDateString(DateObj, false)}`, {
-    recursive: true,
-  });
-  await writeFile(sketchFile(), template, "utf8");
+  const matches = glob.sync(
+    resolve(__dirname, `templates/*-${template}.tmpl.*`)
+  );
 
-  await mkdir(`${imagePath}/${makeDateString(DateObj, false)}`, {
-    recursive: true,
-  });
-  svg2img(placeholder, { width: 500, height: 500 }, async (error, buffer) => {
-    await writeFile(imageFile(), buffer);
-    console.log(`🎉  ${imageFile()} created.`);
-  });
+  if (!matches.length) {
+    console.no_entry_sign(`Unable to find files for template \`${template}\``);
+    process.exit(1);
+  }
 
-  console.log(`🎉  ${sketchFile()} created.`);
-  exec(`code ${sketchFile()}`);
+  await mkdir(resolve(sketchPath()), { recursive: true });
+  console.open_file_folder(sketchPath(true));
+
+  await newPlaceholder(sketchPath());
+  console.rainbow(join(sketchPath(true), "thumb.png"));
+
+  Promise.all(
+    matches.map(async (match) => {
+      const { name, ext } = parse(match);
+      const newFileName = name.replace(`-${template}.tmpl`, "") + ext;
+      await copyFile(match, resolve(sketchPath(), newFileName));
+      console.page_facing_up(join(sketchPath(true), newFileName));
+    })
+  );
 })();
