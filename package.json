@@ -31,7 +31,10 @@
     "file-loader": "^6.0.0",
     "gh-pages": "^3.1.0",
     "glob": "^7.1.6",
-    "glsl-shader-loader": "^0.1.6",
+    "glslify-loader": "^2.0.0",
+    "glsl-easings": "^1.0.0",
+    "glsl-hsl2rgb": "^1.1.0",
+    "glsl-noise": "^0.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-inline-svg-plugin": "^2.2.6",
     "html-webpack-plugin": "^4.3.0",
@@ -51,6 +54,7 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
     "worker-loader": "^3.0.5",
+    "xmldom": "^0.4.0",
     "yargs": "^16.2.0"
   },
   "dependencies": {
@@ -58,15 +62,10 @@
     "bezier-easing": "^2.1.0",
     "coordinate-systems": "^2.0.0",
     "glitch-canvas": "^1.1.8",
-    "glsl-easings": "^1.0.0",
-    "glsl-hsl2rgb": "^1.1.0",
-    "glsl-noise": "^0.0.0",
-    "glslify-loader": "^2.0.0",
     "open-simplex-noise": "^2.3.1",
     "p5": "^1.0.0",
     "p5.createloop": "^0.1.3",
-    "pack-spheres": "^1.0.4",
-    "xmldom": "^0.4.0"
+    "pack-spheres": "^1.0.4"
   },
   "resolutions": {
     "p5.createloop/p5": "^1.0.0",

@@ -1,16 +1,24 @@
-#!/usr/bin/env node
-const { resolve, parse, relative, join } = require("path");
+const { resolve, parse, relative, join, basename } = require("path");
 const { mkdir, copyFile } = require("fs").promises;
 const { existsSync } = require("fs");
-const { hideBin } = require("yargs/helpers");
-const yargs = require("yargs");
 const glob = require("glob");
 require("console-emojis");
+
 const makeDateArray = require("./make-date-array");
 const newPlaceholder = require("./new-placeholder");
-const argv = yargs(hideBin(process.argv)).argv;
 
-const template = argv.template || argv.t || "p5";
+var argv = require("yargs/yargs")(process.argv.slice(2))
+  .option("template", {
+    alias: "t",
+    default: "p5",
+    describe: "Choose a template for your new sketch",
+    choices: glob
+      .sync(resolve(__dirname, `templates/index-*.tmpl.js`))
+      .map((t) => basename(t).replace(/^index-(.+)\.tmpl\.js$/, "$1")),
+  })
+  .help().argv;
+
+const template = argv.template;
 const DateObj = new Date();
 const sketchPath = (relativePath = false) => {
   const newPath = resolve(
