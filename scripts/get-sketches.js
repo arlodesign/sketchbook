@@ -1,19 +1,27 @@
 const path = require("path");
 const glob = require("glob");
 
+const datePath = (dir, str) =>
+  dir
+    .split(path.sep)
+    .slice(dir.split(path.sep).length - 3, dir.split(path.sep).length)
+    .join(str);
+
 function getSketches() {
   const baseDir = path.resolve(__dirname, "../src/sketch");
-  const sketches = glob.sync(baseDir + "/**/[0-9][0-9].js");
+  const sketches = glob.sync(baseDir + "/**/[0-9][0-9]/index.js");
 
-  const sketchesMetadata = sketches.map((sketch) => {
-    const { dir, name } = path.parse(sketch);
-    const title = dir.split("/").slice(-2).concat([name]).join("-");
+  const sketchesMetadata = sketches.map((entry) => {
+    const { dir } = path.parse(entry);
 
     return {
-      title,
-      entry: path.resolve(__dirname, "..", sketch),
-      url: path.join("sketch", title.replace(/-/g, "/")) + "/",
-      image: path.join("thumbnails", title.replace(/-/g, "/")) + ".png",
+      title: datePath(dir, "-"),
+      entry,
+      url: datePath(dir, "/") + "/",
+      image: path.join(
+        path.relative(path.resolve(__dirname, "../src"), path.dirname(entry)),
+        "thumb.png"
+      ),
     };
   });
 

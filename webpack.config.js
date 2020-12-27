@@ -168,7 +168,13 @@ module.exports = (env, { mode }) => {
         },
         {
           test: /\.(frag|vert|glsl)$/,
-          use: ["raw-loader", "glslify-loader"],
+          use: [
+            "raw-loader",
+            {
+              loader: "glslify-loader",
+              options: { basedir: resolve(__dirname, "src/util") },
+            },
+          ],
         },
         {
           test: /\.css$/,
