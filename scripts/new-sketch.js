@@ -13,8 +13,8 @@ var argv = require("yargs/yargs")(process.argv.slice(2))
     default: "p5",
     describe: "Choose a template for your new sketch",
     choices: glob
-      .sync(resolve(__dirname, `templates/index-*.tmpl.js`))
-      .map((t) => basename(t).replace(/^index-(.+)\.tmpl\.js$/, "$1")),
+      .sync(resolve(__dirname, `templates/sketch-*.tmpl.js`))
+      .map((t) => basename(t).replace(/^sketch-(.+)\.tmpl\.js$/, "$1")),
   })
   .help().argv;
 

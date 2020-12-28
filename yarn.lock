@@ -1981,11 +1981,6 @@ async-throttle@^1.1.0:
   resolved "https://registry.yarnpkg.com/async-throttle/-/async-throttle-1.1.0.tgz#229e7f3fa7a2a797e86f360e6309a08224d4fa7a"
   integrity sha1-Ip5/P6eip5fobzYOYwmggiTU+no=
 
-async@^1.4.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
-  integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
-
 async@^2.6.1, async@^2.6.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
@@ -3222,13 +3217,6 @@ css-what@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-4.0.0.tgz#35e73761cab2eeb3d3661126b23d7aa0e8432233"
   integrity sha512-teijzG7kwYfNVsUh2H/YN62xW3KK9YhXEgSlbxMlcyjPNvdKJqFx5lrwlJgoFP1ZHlB89iGDlo/JyshKeRhv5A==
-
-cssauron@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/cssauron/-/cssauron-1.4.0.tgz#a6602dff7e04a8306dc0db9a551e92e8b5662ad8"
-  integrity sha1-pmAt/34EqDBtwNuaVR6S6LVmKtg=
-  dependencies:
-    through X.X.X
 
 cssesc@^3.0.0:
   version "3.0.0"
@@ -4921,14 +4909,6 @@ glsl-inject-defines@^1.0.1:
     glsl-token-string "^1.0.1"
     glsl-tokenizer "^2.0.2"
 
-glsl-man@^1.1.14:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/glsl-man/-/glsl-man-1.1.14.tgz#14acf7969d3cd9113cbff291ea1991a469022630"
-  integrity sha512-yM/+5DCpHGIDO+qtMTDp2PLgl+g+4WbqmJlA4baCRkNwuOZbpNDyBaS1gfGaJIV/BrMKDuFBr6niOeRHV1iAeg==
-  dependencies:
-    cssauron "^1.4.0"
-    tree-traversal "^1.1.1"
-
 glsl-noise@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/glsl-noise/-/glsl-noise-0.0.0.tgz#367745f3a33382c0eeec4cb54b7e99cfc1d7670b"
@@ -4941,14 +4921,6 @@ glsl-resolve@0.0.1:
   dependencies:
     resolve "^0.6.1"
     xtend "^2.1.2"
-
-glsl-shader-loader@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/glsl-shader-loader/-/glsl-shader-loader-0.1.6.tgz#82240cddfc0c09b71019bc813d8b14929823a8e8"
-  integrity sha512-RInPlABhbFcVZ7d69Zs9ckJ9TPr7lEgZouuGRqUpRVouOiH2ZyikAIkSKEzkJWOyJa25Lc6VeAVk4F2ef5OXBg==
-  dependencies:
-    glsl-man "^1.1.14"
-    loader-utils "^1.1.0"
 
 glsl-token-assignments@^2.0.0:
   version "2.0.2"
@@ -9410,7 +9382,7 @@ through2@^3.0.1:
     inherits "^2.0.4"
     readable-stream "2 || 3"
 
-through@X.X.X, through@^2.3.8:
+through@^2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
@@ -9524,13 +9496,6 @@ tr46@^1.0.1:
   integrity sha1-qLE/1r/SSJUZZ0zN5VujaTtwbQk=
   dependencies:
     punycode "^2.1.0"
-
-tree-traversal@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/tree-traversal/-/tree-traversal-1.1.1.tgz#71483b3cbe01c5c3214f5a58383baaa0cf1dccbe"
-  integrity sha1-cUg7PL4BxcMhT1pYODuqoM8dzL4=
-  dependencies:
-    async "^1.4.2"
 
 trim-newlines@^1.0.0:
   version "1.0.0"

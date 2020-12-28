@@ -9,7 +9,7 @@ const datePath = (dir, str) =>
 
 function getSketches() {
   const baseDir = path.resolve(__dirname, "../src/sketch");
-  const sketches = glob.sync(baseDir + "/**/[0-9][0-9]/index.js");
+  const sketches = glob.sync(baseDir + "/**/[0-9][0-9]/sketch.js");
 
   const sketchesMetadata = sketches.map((entry) => {
     const { dir } = path.parse(entry);
