@@ -2,7 +2,7 @@ import p5 from "p5";
 import "p5.createloop";
 
 const sketch = function (p) {
-  const RENDER = p.getURLParams().render;
+  const RENDER = p.getURLParams().render === "true";
   const RENDER_SIZE = 1080;
   const TIME = 60;
   const FRAME_RATE = 60;
@@ -14,6 +14,33 @@ const sketch = function (p) {
   let urlParams;
   let hue;
   let link;
+
+  function changeURL() {
+    const searchParams = {
+      hue: hue.value(),
+      low: low.value(),
+      high: high.value(),
+      grid: grid.value(),
+    };
+
+    link.attribute(
+      "href",
+      "?" +
+        new URLSearchParams({
+          ...searchParams,
+          render: !RENDER,
+        }).toString()
+    );
+    window.history.replaceState(
+      null,
+      document.title,
+      "?" +
+        new URLSearchParams({
+          ...searchParams,
+          render: RENDER,
+        }).toString()
+    );
+  }
 
   p.setup = function () {
     p.pixelDensity(1);
@@ -38,9 +65,13 @@ const sketch = function (p) {
 
     if (!RENDER) {
       p.noSmooth();
-      hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
     }
+
+    hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
+    hue.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
+
+    changeURL();
   };
 
   p.draw = function () {

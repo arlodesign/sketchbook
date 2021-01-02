@@ -70,6 +70,7 @@
   "resolutions": {
     "p5.createloop/p5": "^1.0.0",
     "jpeg-js": "^0.4.0",
-    "url-regex": "^5.0.0"
+    "url-regex": "^5.0.0",
+    "xmldom": "^0.4.0"
   }
 }
