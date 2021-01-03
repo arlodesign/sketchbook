@@ -18,9 +18,6 @@ const sketch = function (p) {
   function changeURL() {
     const searchParams = {
       hue: hue.value(),
-      low: low.value(),
-      high: high.value(),
-      grid: grid.value(),
     };
 
     link.attribute(
@@ -87,15 +84,6 @@ const sketch = function (p) {
     p.rotate(theta);
     p.rectMode(p.CENTER);
     p.square(0, 0, p.min(p.width * 0.9, p.height * 0.9));
-
-    link.attribute(
-      "href",
-      "?" +
-        new URLSearchParams({
-          hue: hue.value(),
-          render: !RENDER,
-        }).toString()
-    );
 
     if (RENDER && p.frameCount <= FRAMES) {
       p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
