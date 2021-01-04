@@ -4696,6 +4696,13 @@ get-intrinsic@^1.0.0:
     has "^1.0.3"
     has-symbols "^1.0.1"
 
+get-parabola@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/get-parabola/-/get-parabola-1.1.9.tgz#0f5011a5903b99121a8c1830cb5148ba0163b193"
+  integrity sha512-/kO6SFfISeYbDjU92Blw67DAE3U+9pRbVK11dUKTQPmaz/jgF0PABA6oa0G6GrPCU5RW9IOw91TJwWvuTCbJSQ==
+  dependencies:
+    interpolate-by-pravosleva "^3.0.6"
+
 get-proxy@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/get-proxy/-/get-proxy-2.1.0.tgz#349f2b4d91d44c4d4d4e9cba2ad90143fac5ef93"
@@ -5652,6 +5659,11 @@ internal-ip@^4.3.0:
   dependencies:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
+
+interpolate-by-pravosleva@^3.0.6:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/interpolate-by-pravosleva/-/interpolate-by-pravosleva-3.0.9.tgz#51f86bae115b20cd05c6ad2dcbf0a23cf7a36a01"
+  integrity sha512-Nh5ies21VKHeMWk0MNrB/1oVhoYYBlIlMn8E4fjzglklLWhv5dPKc0uHAjSAn+r5k24uIj4ujMZ4IVP1W/EbpQ==
 
 interpret@^1.4.0:
   version "1.4.0"

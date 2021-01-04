@@ -94,7 +94,7 @@ const sketch = function (p) {
   };
 
   p.windowResized = function () {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
+    !RENDER && p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 };
 
