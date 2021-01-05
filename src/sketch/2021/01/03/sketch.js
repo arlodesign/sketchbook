@@ -320,3 +320,6 @@ const sketch = function (p) {
 };
 
 new p5(sketch, "sketch");
+document.getElementById(
+  "description"
+).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Make something human`;
