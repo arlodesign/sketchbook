@@ -7,8 +7,11 @@ const sketch = function (p) {
   const TIME = 60;
   const FRAME_RATE = 60;
 
-  const DURATION = TIME * (RENDER ? FRAME_RATE : 1);
-  const RATE = RENDER ? 1 : FRAME_RATE;
+  // Lower if frames skip
+  const RENDER_SPEED = 5;
+
+  const DURATION = TIME * (RENDER ? FRAME_RATE : RENDER_SPEED);
+  const RATE = ~~(RENDER ? RENDER_SPEED : FRAME_RATE);
   const FRAMES = DURATION * RATE;
 
   let urlParams;
@@ -99,3 +102,6 @@ const sketch = function (p) {
 };
 
 new p5(sketch, "sketch");
+// document.getElementById(
+//   "description"
+// ).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Small areas of symmetry`;
