@@ -2745,6 +2745,11 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+circle.js@^0.0.9:
+  version "0.0.9"
+  resolved "https://nexus.fyiblue.com/repository/npm-all/circle.js/-/circle.js-0.0.9.tgz#52da1bd8772bb7740d2cc3cc5ecb06936f0a1954"
+  integrity sha512-ifj8doW1MA4k3bFPdvmvwxiJ88+MmxdT5SxB6v9Nf8kaVeL1JExa62kyQogIeRfHkkud/Bmu/bQWO9zdtZ5HjA==
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"

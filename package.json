@@ -60,6 +60,7 @@
   "dependencies": {
     "@thi.ng/geom-voronoi": "^0.1.47",
     "bezier-easing": "^2.1.0",
+    "circle.js": "^0.0.9",
     "coordinate-systems": "^2.0.0",
     "get-parabola": "^1.1.9",
     "glitch-canvas": "^1.1.8",
