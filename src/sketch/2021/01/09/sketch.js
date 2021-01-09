@@ -17,7 +17,7 @@ void main() {
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
   const RENDER_SIZE = 1080;
-  const TIME = 60;
+  const TIME = 40;
   const FRAME_RATE = 60;
 
   // Lower if frames skip
@@ -27,7 +27,7 @@ const sketch = function (p) {
   const FRAMES = DURATION * RATE;
 
   let urlParams;
-  let hue;
+  let intensity;
   let link;
 
   let theShader;
@@ -35,7 +35,7 @@ const sketch = function (p) {
 
   function changeURL() {
     const searchParams = {
-      hue: hue.value(),
+      intensity: intensity.value(),
     };
 
     link.attribute(
@@ -69,7 +69,7 @@ const sketch = function (p) {
 
     urlParams = Object.assign(
       {
-        hue: p.random(),
+        intensity: ~~p.random(10, 1000),
       },
       p.getURLParams()
     );
@@ -78,8 +78,13 @@ const sketch = function (p) {
       p.noSmooth();
     }
 
-    hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
-    hue.changed(changeURL);
+    intensity = p.createSlider(
+      100,
+      10000,
+      parseFloat(urlParams.intensity, 10),
+      1
+    );
+    intensity.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
 
     changeURL();
@@ -91,7 +96,7 @@ const sketch = function (p) {
 
     theShader.setUniform("u_resolution", [p.width, p.height]);
     theShader.setUniform("u_progress", progress);
-    theShader.setUniform("u_hue", hue.value());
+    theShader.setUniform("u_intensity", intensity.value());
 
     p.shader(theShader);
     p.rect(0, 0, p.width, p.height);
@@ -123,6 +128,6 @@ const sketch = function (p) {
 };
 
 new p5(sketch, "sketch");
-// document.getElementById(
-//   "description"
-// ).innerHTML = ``;
+document.getElementById(
+  "description"
+).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Interference patterns`;
