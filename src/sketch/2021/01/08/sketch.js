@@ -1,5 +1,6 @@
 import p5 from "p5";
 import "p5.createloop";
+import polarToCartesian from "util/polarToCartesian";
 
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
@@ -16,6 +17,8 @@ const sketch = function (p) {
   let urlParams;
   let hue;
   let link;
+
+  let prevPoints = [[0, 0]];
 
   function changeURL() {
     const searchParams = {
@@ -42,17 +45,15 @@ const sketch = function (p) {
   }
 
   p.setup = function () {
-    p.pixelDensity(1);
     p.frameRate(RATE);
     p.createCanvas(
       RENDER ? RENDER_SIZE : p.windowWidth,
       RENDER ? RENDER_SIZE : p.windowHeight
     );
-    p.background(255);
     p.createLoop(DURATION, {
-      noiseRadius: 0.1,
+      noiseRadius: 0.8,
     });
-
+    p.noFill();
     p.colorMode(p.HSB, 1);
 
     urlParams = Object.assign(
@@ -62,45 +63,63 @@ const sketch = function (p) {
       p.getURLParams()
     );
 
-    if (!RENDER) {
-      p.noSmooth();
-    }
-
     hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
     hue.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
 
     changeURL();
+
+    p.background((hue.value() + 0.5) % 1, 1, 0.1);
   };
 
   p.draw = function () {
-    const { progress, theta, noise, noise1D, noise2D } = p.animLoop;
+    const { progress, theta, noise1D, noise2D } = p.animLoop;
     const loopedProgress = p.sin(2 * p.PI * progress - p.PI / 2) / 2 + 0.5;
+    const a = theta * 3 + p.TWO_PI * noise1D(0.8);
+    const d =
+      Math.min(p.width, p.height) *
+      0.75 *
+      loopedProgress *
+      noise2D(2, loopedProgress);
+    const pos = polarToCartesian(0, 0, a, d, true);
 
-    p.background(255);
+    p.translate(p.width * progress, p.height / 2);
+    prevPoints.push(pos);
+    if (prevPoints.length >= 4) {
+      const sw = p.constrain(
+        p.pow(p.dist(...prevPoints[1], ...prevPoints[2]), 2) / 2,
+        1,
+        p.width / 100
+      );
+      prevPoints = prevPoints.slice(-4);
 
-    // DRAW
-    p.stroke(hue.value(), 1, 1);
-    p.strokeWeight(5);
-    p.translate(p.width / 2, p.height / 2);
-    p.rotate(theta);
-    p.rectMode(p.CENTER);
-    p.square(0, 0, p.min(p.width * 0.9, p.height * 0.9));
+      p.strokeCap(p.SQUARE);
+      p.stroke((hue.value() + 0.5) % 1, 1, 0.1, 0.5);
+      p.strokeWeight(sw + sw / 4);
+      p.curve(...prevPoints.flat());
 
-    if (RENDER && p.frameCount <= FRAMES) {
-      p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
+      p.strokeCap(p.PROJECT);
+      p.stroke(
+        hue.value(),
+        0.8,
+        p.abs((p.height / 2 - prevPoints[2][1]) / (p.height / 2))
+      );
+      p.strokeWeight(sw);
+      p.curve(...prevPoints.flat());
+    }
+
+    p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
+    RENDER &&
       p.save(
         `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
       );
+    if (p.frameCount === FRAMES) {
+      p.noLoop();
     }
-  };
-
-  p.windowResized = function () {
-    !RENDER && p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 };
 
 new p5(sketch, "sketch");
-// document.getElementById(
-//   "description"
-// ).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Small areas of symmetry`;
+document.getElementById(
+  "description"
+).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Curve only`;
