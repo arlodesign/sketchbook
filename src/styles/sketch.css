@@ -25,26 +25,24 @@ main,
   image-rendering: crisp-edges;
   z-index: -1;
 
-  & ~ a,
-  & ~ input {
+  & ~ *  {
     display: block;
     width: 25%;
     margin-left: var(--spacing);
     margin-top: var(--spacing);
     opacity: 0.5;
+    height: 1.5rem;
+    appearance: none;
+    border: 0;
 
     &:hover,
     &:focus {
       opacity: 1;
     }
   }
-  & ~ input {
-    appearance: none;
-    height: 1.5rem;
 
-    & + input {
-      margin-top: var(--spacing-small);
-    }
+  & ~ * + * {
+    margin-top: var(--spacing-small);
   }
 }
 
