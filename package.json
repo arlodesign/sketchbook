@@ -59,11 +59,13 @@
   },
   "dependencies": {
     "@thi.ng/geom-voronoi": "^0.1.47",
+    "@thi.ng/strings": "^3.3.1",
     "bezier-easing": "^2.1.0",
     "circle.js": "^0.0.9",
     "coordinate-systems": "^2.0.0",
     "get-parabola": "^1.1.9",
     "glitch-canvas": "^1.1.8",
+    "jpeg-js": "^0.4.0",
     "open-simplex-noise": "^2.3.1",
     "p5": "^1.0.0",
     "p5.createloop": "^0.1.3",
