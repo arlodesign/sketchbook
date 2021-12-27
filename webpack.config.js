@@ -1,7 +1,7 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 
 module.exports = (env, { mode }) => {
@@ -72,11 +72,31 @@ module.exports = (env, { mode }) => {
         },
       },
     }),
-    new ImageminPlugin({
-      disable: !PROD,
-      cacheFolder: resolve(__dirname, ".cache"),
+    new ImageMinimizerPlugin({
+      minimizer: {
+        implementation: ImageMinimizerPlugin.imageminMinify,
+        options: {
+          plugins: [
+            ["gifsicle", { interlaced: true }],
+            ["jpegtran", { progressive: true }],
+            ["optipng", { optimizationLevel: 5 }],
+            [
+              "svgo",
+              {
+                plugins: {
+                  name: "preset-default",
+                  params: {
+                    removeViewBox: false,
+                    addAttributesToSVGElement: { attributes: [{ xmlns: "http://www.w3.org/2000/svg" }]}
+                  }
+                }
+              },
+            ],
+          ],
+        },
+      },
     }),
-    new HtmlWebpackInlineSVGPlugin({
+  new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true,
     }),
   ]);
@@ -119,13 +139,13 @@ module.exports = (env, { mode }) => {
     },
     entry,
     plugins,
+    cache: true,
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /(node_modules)/,
           use: [
-            { loader: "cache-loader" },
             {
               loader: "babel-loader",
               options: {
