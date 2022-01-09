@@ -1,8 +1,7 @@
-const { resolve } = require("path");
+const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (env, { mode }) => {
   const PROD = mode === "production";
@@ -25,8 +24,10 @@ module.exports = (env, { mode }) => {
 
   const domain = PROD ? "https://sketchbook.arlo.me" : "http://localhost:8080";
 
-  let plugins = sketches.map(
-    (sketch, i) =>
+  let plugins = [];
+  let patterns = [{ from: "./CNAME", to: "." }];
+  sketches.forEach((sketch, i) => {
+    plugins.push(
       new HtmlWebpackPlugin({
         inject: true,
         chunks: ["sketchStyles", sketch.title],
@@ -41,7 +42,12 @@ module.exports = (env, { mode }) => {
           domain,
         },
       })
-  );
+    );
+    patterns.push({
+      from: resolve(__dirname, "src", sketch.image),
+      to: join(resolve(__dirname, "dist"), sketch.url, "thumb.png"),
+    });
+  });
   plugins = plugins.concat([
     new HtmlWebpackPlugin({
       inject: true,
@@ -55,9 +61,15 @@ module.exports = (env, { mode }) => {
         domain,
       },
     }),
+    new CopyPlugin({ patterns }),
     new FaviconsWebpackPlugin({
       logo: resolve(__dirname, "src", latestSketch.image),
-      cache: true,
+      cache: {
+        type: "filesystem",
+        buildDependencies: {
+          config: [__filename],
+        },
+      },
       favicons: {
         appName: "sketchbook.arlo.me",
         appDescription: "sketchbook.arlo.me",
@@ -72,61 +84,7 @@ module.exports = (env, { mode }) => {
         },
       },
     }),
-    new ImageMinimizerPlugin({
-      minimizer: {
-        implementation: ImageMinimizerPlugin.imageminMinify,
-        options: {
-          plugins: [
-            ["gifsicle", { interlaced: true }],
-            ["jpegtran", { progressive: true }],
-            ["optipng", { optimizationLevel: 5 }],
-            [
-              "svgo",
-              {
-                plugins: {
-                  name: "preset-default",
-                  params: {
-                    removeViewBox: false,
-                    addAttributesToSVGElement: { attributes: [{ xmlns: "http://www.w3.org/2000/svg" }]}
-                  }
-                }
-              },
-            ],
-          ],
-        },
-      },
-    }),
-  new HtmlWebpackInlineSVGPlugin({
-      runPreEmit: true,
-    }),
   ]);
-
-  let pngRule = [
-    {
-      loader: "file-loader",
-      options: {
-        name: "[name].[contenthash:8].[ext]",
-        outputPath: "assets",
-        publicPath: "/assets",
-      },
-    },
-  ];
-
-  if (PROD) {
-    pngRule.push({
-      loader: "image-process-loader",
-      options: {
-        presets: {
-          twitter: { resize: 440 },
-          facebook: {
-            resize: [843, 504],
-          },
-          thumbnail: { resize: { height: 170 } },
-          thumbnail2x: { resize: { height: 170 * 2 } },
-        },
-      },
-    });
-  }
 
   return {
     resolve: {
@@ -170,11 +128,7 @@ module.exports = (env, { mode }) => {
           ],
         },
         {
-          test: /\.png$/,
-          use: pngRule,
-        },
-        {
-          test: /\.(svg|jpg|gif|ttf|otf)$/,
+          test: /\.(svg|png|jpg|gif|ttf|otf)$/,
           use: [
             {
               loader: "file-loader",
@@ -223,18 +177,12 @@ module.exports = (env, { mode }) => {
     },
     output: {
       path: resolve(__dirname, "dist"),
-      filename: "[name].[contenthash:8].js",
+      filename: "assets/[name].[contenthash:8].js",
     },
     optimization: {
       runtimeChunk: "single",
       splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-        },
+        chunks: "all",
       },
     },
     stats: PROD ? "normal" : "errors-warnings",

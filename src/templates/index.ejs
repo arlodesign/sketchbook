@@ -11,8 +11,7 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="<%= domain %><%=
-    require(`../${latestSketch.image}?preset=facebook`).default %>"
+      content="<%= domain %>/<%= latestSketch.url %>facebook.png"
     />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@arlodesign" />
@@ -22,8 +21,7 @@
     />
     <meta
       property="twitter:image"
-      content="<%= domain %><%=
-    require(`../${latestSketch.image}?preset=twitter`).default %>"
+      content="<%= domain %>/<%= latestSketch.url %>twitter.png"
     />
     <style>
       body {
@@ -48,7 +46,21 @@
           <li>
             <a class="nav--link" href="#about">
               <span>About</span>
-              <img inline src="src/icons/info.svg" class="icon" />
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <circle
+                  fill="none"
+                  stroke="currentColor"
+                  class="cls-1"
+                  cx="12"
+                  cy="12"
+                  r="7.5"
+                />
+                <path
+                  fill="currentColor"
+                  d="M13 15v-5h-3v1h1v4h-1v1h4v-1h-1z"
+                />
+                <circle fill="currentColor" cx="12" cy="8" r="1.25" />
+              </svg>
             </a>
           </li>
         </ul>
@@ -61,13 +73,8 @@
           <a href="<%= sketch.url %>">
             <figure>
               <img
-                src="<%=
-              require(`../${sketch.image}?preset=thumbnail`).default %>"
-                alt="Thumbnail of <%= sketch.title %>"
-                loading="lazy"
-                srcset="<%=
-              require(`../${sketch.image}?preset=thumbnail2x`).default %>
-              2x"
+                src="<%= sketch.url %>thumb@1x.png"
+                srcset="<%= sketch.url %>thumb@1x.png 1x, <%= sketch.url %>thumb@2x.png 2x"
               />
               <figcaption>
                 <time datetime="<%= sketch.title %>"> <%= sketch.title %></time>
@@ -92,7 +99,11 @@
         <a href="https://www.instagram.com/arlodesign/">Instagram</a>.
       </p>
       <a class="footer--close" href="#main">
-        <img inline src="src/icons/close.svg" class="icon" />
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor">
+            <path d="M18 6 6 18M18 18 6 6" />
+          </g>
+        </svg>
         <span>Close</span>
       </a>
     </footer>
