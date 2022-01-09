@@ -167,7 +167,6 @@ module.exports = (env, { mode }) => {
           test: /\.svg$/,
           use: "raw-loader",
         },
-        // { test: /\.ejs$/, use: "ejs-compiled-loader" },
         // https://www.youtube.com/watch?v=ddPQAJSm2cQ
         {
           exclude: /\.png$/,
