@@ -1,4 +1,4 @@
-const { resolve, dirname, join } = require("path");
+const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
@@ -26,7 +26,7 @@ module.exports = (env, { mode }) => {
   const domain = PROD ? "https://sketchbook.arlo.me" : "http://localhost:8080";
 
   let plugins = [];
-  let patterns = [];
+  let patterns = [{ from: "./CNAME", to: "." }];
   sketches.forEach((sketch, i) => {
     plugins.push(
       new HtmlWebpackPlugin({
@@ -85,58 +85,7 @@ module.exports = (env, { mode }) => {
         },
       },
     }),
-    // new ImageMinimizerPlugin({
-    //   minimizer: {
-    //     implementation: ImageMinimizerPlugin.imageminMinify,
-    //     options: {
-    //       plugins: [
-    //         ["gifsicle", { interlaced: true }],
-    //         ["jpegtran", { progressive: true }],
-    //         ["zopfli"],
-    //         [
-    //           "svgo",
-    //           {
-    //             plugins: {
-    //               name: "preset-default",
-    //               params: {
-    //                 removeViewBox: false,
-    //                 addAttributesToSVGElement: {
-    //                   attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
-    //                 },
-    //               },
-    //             },
-    //           },
-    //         ],
-    //       ],
-    //     },
-    //   },
-    // }),
   ]);
-
-  let pngRule = [
-    {
-      loader: "file-loader",
-      options: {
-        name: "[name].[contenthash:8].[ext]",
-        outputPath: "assets",
-        publicPath: "/assets",
-      },
-    },
-  ];
-
-  // if (PROD) {
-  //   pngRule.push({
-  //     loader: "image-process-loader",
-  //     options: {
-  //       presets: {
-  //         facebook: {
-  //           resize: [843, 504],
-  //         },
-  //         thumbnail: { resize: { height: 440 } },
-  //       },
-  //     },
-  //   });
-  // }
 
   return {
     resolve: {
@@ -180,12 +129,7 @@ module.exports = (env, { mode }) => {
           ],
         },
         {
-          test: /\.png$/,
-          use: pngRule,
-          type: "javascript/auto",
-        },
-        {
-          test: /\.(svg|jpg|gif|ttf|otf)$/,
+          test: /\.(svg|png|jpg|gif|ttf|otf)$/,
           use: [
             {
               loader: "file-loader",
@@ -235,7 +179,7 @@ module.exports = (env, { mode }) => {
     },
     output: {
       path: resolve(__dirname, "dist"),
-      filename: "[name].[contenthash:8].js",
+      filename: "assets/[name].[contenthash:8].js",
     },
     optimization: {
       runtimeChunk: "single",

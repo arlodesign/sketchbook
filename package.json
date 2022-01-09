@@ -11,7 +11,7 @@
     "start": "webpack-dev-server --mode development --progress",
     "prebuild": "rm -rf dist",
     "build": "webpack --mode production --progress",
-    "postbuild": "cp ./CNAME ./dist",
+    "postbuild": "node ./scripts/resize-images.js",
     "predeploy": "git stash --include-untracked; git push origin master; yarn build",
     "deploy": "gh-pages -d dist",
     "postdeploy": "git stash pop"
