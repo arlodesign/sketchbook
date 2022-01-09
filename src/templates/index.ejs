@@ -11,8 +11,7 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="<%= domain %><%=
-    require(`../${latestSketch.image}?preset=facebook`).default %>"
+      content="<%= domain %>/<%= latestSketch.url %>thumb.png"
     />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@arlodesign" />
@@ -22,8 +21,7 @@
     />
     <meta
       property="twitter:image"
-      content="<%= domain %><%=
-    require(`../${latestSketch.image}?preset=twitter`).default %>"
+      content="<%= domain %>/<%= latestSketch.url %>thumb.png"
     />
     <style>
       body {
@@ -60,15 +58,7 @@
         <li id="sketch-<%= sketch.title %>">
           <a href="<%= sketch.url %>">
             <figure>
-              <img
-                src="<%=
-              require(`../${sketch.image}?preset=thumbnail`).default %>"
-                alt="Thumbnail of <%= sketch.title %>"
-                loading="lazy"
-                srcset="<%=
-              require(`../${sketch.image}?preset=thumbnail2x`).default %>
-              2x"
-              />
+              <img src="<%= sketch.url %>thumb.png" />
               <figcaption>
                 <time datetime="<%= sketch.title %>"> <%= sketch.title %></time>
               </figcaption>

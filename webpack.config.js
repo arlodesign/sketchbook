@@ -1,8 +1,8 @@
-const { resolve } = require("path");
+const { resolve, dirname, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
-const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 
 module.exports = (env, { mode }) => {
   const PROD = mode === "production";
@@ -25,8 +25,10 @@ module.exports = (env, { mode }) => {
 
   const domain = PROD ? "https://sketchbook.arlo.me" : "http://localhost:8080";
 
-  let plugins = sketches.map(
-    (sketch, i) =>
+  let plugins = [];
+  let patterns = [];
+  sketches.forEach((sketch, i) => {
+    plugins.push(
       new HtmlWebpackPlugin({
         inject: true,
         chunks: ["sketchStyles", sketch.title],
@@ -41,7 +43,12 @@ module.exports = (env, { mode }) => {
           domain,
         },
       })
-  );
+    );
+    patterns.push({
+      from: resolve(__dirname, "src", sketch.image),
+      to: join(resolve(__dirname, "dist"), sketch.url, "thumb.png"),
+    });
+  });
   plugins = plugins.concat([
     new HtmlWebpackPlugin({
       inject: true,
@@ -55,9 +62,15 @@ module.exports = (env, { mode }) => {
         domain,
       },
     }),
+    new CopyPlugin({ patterns }),
     new FaviconsWebpackPlugin({
       logo: resolve(__dirname, "src", latestSketch.image),
-      cache: true,
+      cache: {
+        type: "filesystem",
+        buildDependencies: {
+          config: [__filename],
+        },
+      },
       favicons: {
         appName: "sketchbook.arlo.me",
         appDescription: "sketchbook.arlo.me",
@@ -72,33 +85,32 @@ module.exports = (env, { mode }) => {
         },
       },
     }),
-    new ImageMinimizerPlugin({
-      minimizer: {
-        implementation: ImageMinimizerPlugin.imageminMinify,
-        options: {
-          plugins: [
-            ["gifsicle", { interlaced: true }],
-            ["jpegtran", { progressive: true }],
-            ["optipng", { optimizationLevel: 5 }],
-            [
-              "svgo",
-              {
-                plugins: {
-                  name: "preset-default",
-                  params: {
-                    removeViewBox: false,
-                    addAttributesToSVGElement: { attributes: [{ xmlns: "http://www.w3.org/2000/svg" }]}
-                  }
-                }
-              },
-            ],
-          ],
-        },
-      },
-    }),
-  new HtmlWebpackInlineSVGPlugin({
-      runPreEmit: true,
-    }),
+    // new ImageMinimizerPlugin({
+    //   minimizer: {
+    //     implementation: ImageMinimizerPlugin.imageminMinify,
+    //     options: {
+    //       plugins: [
+    //         ["gifsicle", { interlaced: true }],
+    //         ["jpegtran", { progressive: true }],
+    //         ["zopfli"],
+    //         [
+    //           "svgo",
+    //           {
+    //             plugins: {
+    //               name: "preset-default",
+    //               params: {
+    //                 removeViewBox: false,
+    //                 addAttributesToSVGElement: {
+    //                   attributes: [{ xmlns: "http://www.w3.org/2000/svg" }],
+    //                 },
+    //               },
+    //             },
+    //           },
+    //         ],
+    //       ],
+    //     },
+    //   },
+    // }),
   ]);
 
   let pngRule = [
@@ -112,21 +124,19 @@ module.exports = (env, { mode }) => {
     },
   ];
 
-  if (PROD) {
-    pngRule.push({
-      loader: "image-process-loader",
-      options: {
-        presets: {
-          twitter: { resize: 440 },
-          facebook: {
-            resize: [843, 504],
-          },
-          thumbnail: { resize: { height: 170 } },
-          thumbnail2x: { resize: { height: 170 * 2 } },
-        },
-      },
-    });
-  }
+  // if (PROD) {
+  //   pngRule.push({
+  //     loader: "image-process-loader",
+  //     options: {
+  //       presets: {
+  //         facebook: {
+  //           resize: [843, 504],
+  //         },
+  //         thumbnail: { resize: { height: 440 } },
+  //       },
+  //     },
+  //   });
+  // }
 
   return {
     resolve: {
@@ -172,6 +182,7 @@ module.exports = (env, { mode }) => {
         {
           test: /\.png$/,
           use: pngRule,
+          type: "javascript/auto",
         },
         {
           test: /\.(svg|jpg|gif|ttf|otf)$/,
@@ -213,6 +224,7 @@ module.exports = (env, { mode }) => {
           test: /\.svg$/,
           use: "raw-loader",
         },
+        // { test: /\.ejs$/, use: "ejs-compiled-loader" },
         // https://www.youtube.com/watch?v=ddPQAJSm2cQ
         {
           exclude: /\.png$/,
@@ -228,13 +240,7 @@ module.exports = (env, { mode }) => {
     optimization: {
       runtimeChunk: "single",
       splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-        },
+        chunks: "all",
       },
     },
     stats: PROD ? "normal" : "errors-warnings",
