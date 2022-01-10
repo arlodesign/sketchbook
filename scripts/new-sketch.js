@@ -6,8 +6,10 @@ require("console-emojis");
 
 const makeDateArray = require("./make-date-array");
 const newPlaceholder = require("./new-placeholder");
+const sketches = require("./get-sketches");
+const latestSketch = sketches[sketches.length - 1];
 
-var argv = require("yargs/yargs")(process.argv.slice(2))
+const argv = require("yargs/yargs")(process.argv.slice(2))
   .option("template", {
     alias: "t",
     default: "p5",
@@ -19,7 +21,7 @@ var argv = require("yargs/yargs")(process.argv.slice(2))
   .help().argv;
 
 const template = argv.template;
-const DateObj = new Date();
+const DateObj = new Date(Date.parse(latestSketch.title + "T00:00:00"));
 const sketchPath = (relativePath = false) => {
   const newPath = resolve(
     __dirname,
