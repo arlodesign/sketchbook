@@ -188,8 +188,16 @@ module.exports = (env, { mode }) => {
     },
     stats: PROD ? "normal" : "errors-warnings",
     devServer: {
-      open: true,
-      openPage: latestSketch.url,
+      open: [latestSketch.url],
+      port: 8080,
+      hot: true,
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false,
+        },
+        reconnect: true,
+      },
     },
     performance: {
       hints: PROD && "warning",
