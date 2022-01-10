@@ -60,6 +60,7 @@ module.exports = (env, { mode }) => {
         sketches: sketches.reverse(),
         latestSketch,
         domain,
+        prod: PROD,
       },
     }),
     new CopyPlugin({ patterns }),
