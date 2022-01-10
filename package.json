@@ -37,15 +37,7 @@
     "glsl-noise": "^0.0.0",
     "glslify-loader": "^2.0.0",
     "html-loader": "^3.0.1",
-    "html-webpack-inline-svg-plugin": "^2.2.6",
     "html-webpack-plugin": "^5.5.0",
-    "image-process-loader": "^1.1.1",
-    "imagemin": "^8.0.1",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegtran": "^7.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^10.0.1",
-    "imagemin-zopfli": "^7.0.0",
     "null-loader": "^4.0.0",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
@@ -62,7 +54,6 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
     "worker-loader": "^3.0.5",
-    "xmldom": "^0.6.0",
     "yargs": "^17.3.0"
   },
   "dependencies": {
