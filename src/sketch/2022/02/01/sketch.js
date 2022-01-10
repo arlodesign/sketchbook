@@ -3,12 +3,12 @@ import "p5.createloop";
 
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
-  const RENDER_SIZE = 1080;
-  const TIME = 60;
+  const RENDER_SIZE = [~~((11 / 14) * p.windowHeight), p.windowHeight];
+  const TIME = RENDER ? 120 : 60;
   const FRAME_RATE = 60;
 
   // Lower if frames skip
-  const RENDER_SPEED = 5;
+  const RENDER_SPEED = 60;
   const DURATION = TIME * (RENDER ? ~~(FRAME_RATE / RENDER_SPEED) : 1);
   const RATE = ~~(RENDER ? RENDER_SPEED : FRAME_RATE);
   const FRAMES = DURATION * RATE;
@@ -45,15 +45,12 @@ const sketch = function (p) {
     p.pixelDensity(1);
     p.frameRate(RATE);
     p.createCanvas(
-      RENDER ? RENDER_SIZE : p.windowWidth,
-      RENDER ? RENDER_SIZE : p.windowHeight
+      RENDER ? RENDER_SIZE[0] : p.windowWidth,
+      RENDER ? RENDER_SIZE[1] : p.windowHeight
     );
-    p.background(255);
     p.createLoop(DURATION, {
-      noiseRadius: 0.1,
+      noiseRadius: 0.2,
     });
-
-    p.colorMode(p.HSB, 1);
 
     urlParams = Object.assign(
       {
@@ -62,36 +59,54 @@ const sketch = function (p) {
       p.getURLParams()
     );
 
-    if (!RENDER) {
-      p.noSmooth();
-    }
-
-    hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
+    hue = p.createSlider(0.3, 0.7, parseFloat(urlParams.hue, 10), 0.01);
     hue.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
 
     changeURL();
+
+    p.colorMode(p.HSL, 1);
+    p.noFill();
+    p.background(1 - hue.value(), 0.2, 0.5);
+    p.blendMode(p.OVERLAY);
   };
 
   p.draw = function () {
     const { progress, theta, noise, noise1D, noise2D } = p.animLoop;
     const loopedProgress = p.sin(2 * p.PI * progress - p.PI / 2) / 2 + 0.5;
 
-    p.background(255);
+    // p.background(255);
 
     // DRAW
-    p.stroke(hue.value(), 1, 1);
-    p.strokeWeight(5);
+    p.stroke(
+      p.lerp(-0.3, 0.3, Math.abs(noise1D(0.5))) + hue.value(),
+      1,
+      Math.abs(noise()),
+      0.5
+    );
     p.translate(p.width / 2, p.height / 2);
-    p.rotate(theta);
+    p.translate(
+      p.width * 0.333 * noise1D(0.8),
+      p.height * 0.333 * noise1D(0.6)
+    );
+    p.rotate(theta * 2 + p.lerp(-p.PI, p.PI, Math.abs(noise2D(0.1, 0.2))));
     p.rectMode(p.CENTER);
-    p.square(0, 0, p.min(p.width * 0.9, p.height * 0.9));
+    p.square(
+      0,
+      0,
+      Math.min(p.width * 0.666, p.height * 0.666) * loopedProgress,
+      10
+    );
 
     if (RENDER && p.frameCount <= FRAMES) {
       p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
-      p.save(
-        `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
-      );
+      // p.save(
+      //   `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
+      // );
+    }
+
+    if (p.frameCount === FRAMES) {
+      p.noLoop();
     }
   };
 
