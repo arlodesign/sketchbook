@@ -2,16 +2,17 @@ const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const makeDateArray = require("./scripts/make-date-array");
 
 module.exports = (env, { mode }) => {
   const PROD = mode === "production";
-  const DEV = mode === "development";
 
   let sketches = require("./scripts/get-sketches");
   const latestSketch = sketches[sketches.length - 1];
 
-  if (DEV) {
-    sketches = sketches.slice(-14);
+  if (PROD) {
+    const today = makeDateArray(new Date()).join("-");
+    sketches = sketches.filter(({ title }) => title < today);
   }
 
   let entry = sketches.reduce(
