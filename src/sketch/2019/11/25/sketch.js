@@ -3,7 +3,9 @@ import polarToCartesian from "util/polarToCartesian";
 import lineIntersection from "util/lineIntersection";
 import isPrime from "util/isPrime";
 import { easeInOutQuad as ease } from "util/easing";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const DURATION = 120;
 

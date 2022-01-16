@@ -1,5 +1,7 @@
 import p5 from "p5";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 import { easeOutQuad, easeInOutQuart } from "util/easing";
 
 const sketch = function (p) {

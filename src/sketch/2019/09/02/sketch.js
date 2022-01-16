@@ -2,7 +2,9 @@ import p5 from "p5";
 import { Coordinate } from "coordinate-systems";
 import { easeOutQuint as ease } from "util/easing";
 
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const { spherical } = Coordinate;
 const RENDER = process.env.DEV && false;

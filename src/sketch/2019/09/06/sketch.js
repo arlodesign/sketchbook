@@ -1,5 +1,7 @@
 import p5 from "p5";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 import { easeInOutQuad as ease } from "util/easing";
 
 const RENDER = process.env.DEV && false;

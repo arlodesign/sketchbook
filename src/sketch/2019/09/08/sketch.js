@@ -3,7 +3,9 @@ import { DVMesh } from "@thi.ng/geom-voronoi";
 
 import polarToCartesian from "util/polarToCartesian";
 import { easeInQuad as ease } from "util/easing";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const RENDER = process.env.DEV && false;
 const DURATION = 60;

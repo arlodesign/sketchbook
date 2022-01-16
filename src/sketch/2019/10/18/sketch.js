@@ -1,5 +1,7 @@
 import p5 from "p5";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 import bezierEasing from "bezier-easing";
 
 const ease = bezierEasing(0, 1, 1, 0);

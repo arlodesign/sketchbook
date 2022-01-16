@@ -2,7 +2,9 @@ import p5 from "p5";
 import polarToCartesian, {
   polarToCartesianEllipse,
 } from "util/polarToCartesian";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 import lerpLine from "util/lerpLine";
 
 const RENDER = process.env.DEV && false;

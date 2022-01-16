@@ -1,7 +1,9 @@
 import p5 from "p5";
 import polarToCartesian from "util/polarToCartesian";
 import bezierEasing from "bezier-easing";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const ease = bezierEasing(0, 0.8, 1, 0.2);
 

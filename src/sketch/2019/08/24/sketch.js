@@ -2,7 +2,9 @@ import p5 from "p5";
 import { DVMesh } from "@thi.ng/geom-voronoi";
 
 import polarToCartesian from "util/polarToCartesian";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const RENDER = process.env.DEV && false;
 

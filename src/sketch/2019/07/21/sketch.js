@@ -1,7 +1,9 @@
 import p5 from "p5";
 import polarToCartesian from "util/polarToCartesian";
 import { polar } from "coordinate-systems";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const RENDER = process.env.DEV && false;
 
