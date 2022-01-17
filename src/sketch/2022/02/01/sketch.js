@@ -1,5 +1,7 @@
 import p5 from "p5";
-import "p5.createloop";
+import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+window.p5 = p5;
+attachCreateLoop();
 
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
@@ -8,7 +10,7 @@ const sketch = function (p) {
   const FRAME_RATE = 60;
 
   // Lower if frames skip
-  const RENDER_SPEED = 60;
+  const RENDER_SPEED = 5;
   const DURATION = TIME * (RENDER ? ~~(FRAME_RATE / RENDER_SPEED) : 1);
   const RATE = ~~(RENDER ? RENDER_SPEED : FRAME_RATE);
   const FRAMES = DURATION * RATE;
@@ -98,11 +100,13 @@ const sketch = function (p) {
       10
     );
 
+    p.frameCount % 100 === 0 &&
+      console.info(`${p.ceil(progress * 100)}% | ${p.frameCount}/${FRAMES}`);
+
     if (RENDER && p.frameCount <= FRAMES) {
-      p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
-      // p.save(
-      //   `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
-      // );
+      p.save(
+        `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
+      );
     }
 
     if (p.frameCount === FRAMES) {
@@ -116,6 +120,3 @@ const sketch = function (p) {
 };
 
 new p5(sketch, "sketch");
-// document.getElementById(
-//   "description"
-// ).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Small areas of symmetry`;

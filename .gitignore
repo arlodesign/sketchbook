@@ -4,8 +4,8 @@
 *.log
 dist
 node_modules
-src/thumbnails/**/*-*.png
-src/thumbnails/**/*.gif
-src/thumbnails/**/*.mov
-src/thumbnails/**/*.mp4
+src/**/*-*.png
+src/**/*.gif
+src/**/*.mov
+src/**/*.mp4
 output
