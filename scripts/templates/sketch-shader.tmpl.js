@@ -107,7 +107,8 @@ const sketch = function (p) {
     // sometimes the very first frame isn't right, so we skip it
     // TODO: WHY!?!?!
     if (RENDER && p.frameCount <= FRAMES + 1 && p.frameCount > 1) {
-      p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
+      p.frameCount % 100 === 0 &&
+        console.info(`${p.ceil(progress * 100)}% | ${p.frameCount}/${FRAMES}`);
       p.save(
         `${String(p.frameCount - 1).padStart(
           String(DURATION * RATE).length,

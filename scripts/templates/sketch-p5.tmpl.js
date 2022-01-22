@@ -1,5 +1,6 @@
 import p5 from "p5";
 import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+
 window.p5 = p5;
 attachCreateLoop();
 
@@ -89,8 +90,9 @@ const sketch = function (p) {
     p.rectMode(p.CENTER);
     p.square(0, 0, p.min(p.width * 0.9, p.height * 0.9));
 
+    p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}% | ${p.frameCount}/${FRAMES}`);
+
     if (RENDER && p.frameCount <= FRAMES) {
-      p.frameCount % 100 === 0 && console.info(`${p.ceil(progress * 100)}%`);
       p.save(
         `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
       );
@@ -105,4 +107,4 @@ const sketch = function (p) {
 new p5(sketch, "sketch");
 // document.getElementById(
 //   "description"
-// ).innerHTML = `<a href="https://genuary2021.github.io/">#genuary2021</a>: Small areas of symmetry`;
+// ).innerHTML = ``;
