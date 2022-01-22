@@ -1,5 +1,7 @@
 import p5 from "p5";
 import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+import { easeInOutQuad } from "util/easing";
+import polarToCartesian from "util/polarToCartesian";
 import waveLoop from "util/waveLoop";
 
 window.p5 = p5;
@@ -7,7 +9,7 @@ attachCreateLoop();
 
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
-  const RENDER_SIZE = 1080;
+  const RENDER_SIZE = [~~((11 / 14) * p.windowHeight), p.windowHeight];
   const TIME = 60;
   const FRAME_RATE = 60;
 
@@ -46,18 +48,12 @@ const sketch = function (p) {
   }
 
   p.setup = function () {
-    p.pixelDensity(1);
+    p.pixelDensity(2);
     p.frameRate(RATE);
-    p.createCanvas(
-      RENDER ? RENDER_SIZE : p.windowWidth,
-      RENDER ? RENDER_SIZE : p.windowHeight
-    );
-    p.background(255);
+    p.createCanvas(p.windowWidth, p.windowWidth);
     p.createLoop(DURATION, {
-      noiseRadius: 0.1,
+      noiseRadius: 0.5,
     });
-
-    p.colorMode(p.HSB, 1);
 
     urlParams = Object.assign(
       {
@@ -70,39 +66,89 @@ const sketch = function (p) {
       p.noSmooth();
     }
 
-    hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
+    hue = p.createSlider(0.1, 0.9, parseFloat(urlParams.hue, 10), 0.01);
     hue.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
 
     changeURL();
+
+    p.colorMode(p.HSB, 1);
+    p.background(hue.value(), 0.2, 0.7);
   };
 
   p.draw = function () {
     const { progress, theta, noise, noise1D, noise2D } = p.animLoop;
     const loop = waveLoop(progress);
 
-    p.background(255);
-
     // DRAW
-    p.stroke(hue.value(), 1, 1);
-    p.strokeWeight(5);
+    p.fill(
+      hue.value() + 0.1 * noise1D(1),
+      waveLoop(progress, 7),
+      waveLoop(progress, 10),
+      0.05
+    );
+    p.noStroke();
+    // p.noFill();
+    p.blendMode(p.HARD_LIGHT);
     p.translate(p.width / 2, p.height / 2);
-    p.rotate(theta);
-    p.rectMode(p.CENTER);
-    p.square(0, 0, p.min(p.width * 0.9, p.height * 0.9));
+    // p.rotate(theta);
+    // p.rectMode(p.CENTER);
+
+    const points = [
+      polarToCartesian(
+        0,
+        0,
+        theta,
+        p.lerp(0, p.width, loop * easeInOutQuad(Math.abs(noise2D(0, 0.1)))),
+        true
+      ),
+      polarToCartesian(
+        0,
+        0,
+        theta + (p.TWO_PI / 5) * 1,
+        p.lerp(0, p.width, loop * easeInOutQuad(Math.abs(noise2D(0.2, 0.3)))),
+        true
+      ),
+      polarToCartesian(
+        0,
+        0,
+        theta + (p.TWO_PI / 5) * 2,
+        p.lerp(0, p.width, loop * easeInOutQuad(Math.abs(noise2D(0.4, 0.5)))),
+        true
+      ),
+      polarToCartesian(
+        0,
+        0,
+        theta + (p.TWO_PI / 5) * 3,
+        p.lerp(0, p.width, loop * easeInOutQuad(Math.abs(noise2D(0.6, 0.7)))),
+        true
+      ),
+      polarToCartesian(
+        0,
+        0,
+        theta + (p.TWO_PI / 5) * 4,
+        p.lerp(0, p.width, loop * easeInOutQuad(Math.abs(noise2D(0.8, 0.9)))),
+        true
+      ),
+    ];
+
+    p.beginShape();
+    points.forEach((pt) => p.curveVertex(...pt));
+    p.curveVertex(...points[0]);
+    p.curveVertex(...points[1]);
+    p.curveVertex(...points[2]);
+    p.endShape();
 
     p.frameCount % 100 === 0 &&
       console.info(`${p.ceil(progress * 100)}% | ${p.frameCount}/${FRAMES}`);
 
-    if (RENDER && p.frameCount <= FRAMES) {
+    if (RENDER) {
       p.save(
         `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
       );
     }
-  };
 
-  p.windowResized = function () {
-    !RENDER && p.resizeCanvas(p.windowWidth, p.windowHeight);
+    if (p.frameCount === FRAMES) p.noLoop();
   };
 };
 
