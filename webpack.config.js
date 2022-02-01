@@ -12,7 +12,7 @@ module.exports = (env, { mode }) => {
 
   if (PROD) {
     const today = makeDateArray(new Date()).join("-");
-    sketches = sketches.filter(({ title }) => title < today);
+    sketches = sketches.filter(({ title }) => title <= today);
   }
 
   let entry = sketches.reduce(
