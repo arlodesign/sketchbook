@@ -4,12 +4,9 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const makeDateArray = require("./scripts/make-date-array");
 
-let sketches = require("./scripts/get-sketches");
-sketches = sketches.filter(({ title }) => title < today);
 
 module.exports = (env, { mode }) => {
   const PROD = mode === "production";
-
   const latestSketch = sketches[sketches.length - 1];
 
   if (PROD) {
