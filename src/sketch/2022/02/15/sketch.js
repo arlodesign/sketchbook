@@ -1,14 +1,32 @@
 import p5 from "p5";
 import attachCreateLoop from "p5.createloop/src/p5.createLoop";
+import { getLineBy2Points } from "get-parabola";
+import { easeOutQuint } from "util/easing";
+import waveLoop from "util/waveLoop";
+import polarToCartesian from "util/polarToCartesian";
 
 window.p5 = p5;
 attachCreateLoop();
 
+const slope = (c) =>
+  easeOutQuint(
+    Math.min(
+      Math.max(
+        getLineBy2Points([
+          { x: 0.017, y: 0 },
+          { x: 0.018, y: 1 },
+        ])(c),
+        0
+      ),
+      1
+    )
+  );
+
 const sketch = function (p) {
   const RENDER = p.getURLParams().render === "true";
-  const RENDER_SIZE = 1080 / (RENDER ? 1 : 6);
-  const TIME = 60;
-  const FRAME_RATE = 30;
+  const RENDER_SIZE = 1080;
+  const TIME = 20;
+  const FRAME_RATE = 60;
 
   // Lower if frames skip
   const RENDER_SPEED = 5;
@@ -45,13 +63,19 @@ const sketch = function (p) {
   }
 
   p.setup = function () {
-    p.pixelDensity(RENDER ? 2 : 1);
+    p.pixelDensity(1);
     p.frameRate(RATE);
-    p.createCanvas(~~((4 / 5) * RENDER_SIZE), RENDER_SIZE);
-    p.background(128);
+    p.createCanvas(
+      RENDER ? RENDER_SIZE : ~~(RENDER_SIZE / 10),
+      RENDER ? RENDER_SIZE : ~~(RENDER_SIZE / 10)
+    );
+    p.background(255);
     p.createLoop(DURATION, {
-      noiseRadius: 0.1,
+      noiseRadius: 0.5,
     });
+    p.noSmooth();
+
+    p.colorMode(p.HSB, 1);
 
     urlParams = Object.assign(
       {
@@ -60,54 +84,64 @@ const sketch = function (p) {
       p.getURLParams()
     );
 
-    if (!RENDER) {
-      p.noSmooth();
-    }
-
     hue = p.createSlider(0, 1, parseFloat(urlParams.hue, 10), 0.01);
     hue.changed(changeURL);
     link = p.createA("?", RENDER ? "Draft" : "Render");
 
     changeURL();
-
-    p.colorMode(p.HSB, 1);
-    p.noFill();
-    p.background(hue.value(), 0.2, 0.5);
-    p.blendMode(p.HARD_LIGHT);
   };
 
   p.draw = function () {
-    const { progress, noise2D } = p.animLoop;
+    const { progress, theta, noise, noise1D, noise2D } = p.animLoop;
 
-    const x = (p.width / 2 - p.height / 20) * progress;
+    const maxDist = p.dist(0, 0, p.width, p.height);
+    const positions = [];
 
-    for (let y = p.height / 20; y < p.height - p.height / 20; y++) {
-      p.stroke(
-        p.lerp(
-          (hue.value() - 0.1) % 1,
-          (hue.value() + 0.1) % 1,
-          Math.abs(noise2D(x / (RENDER ? 1000 : 100), y / (RENDER ? 600 : 60)))
-        ),
-        Math.abs(noise2D(x / (RENDER ? 600 : 60), y / (RENDER ? 400 : 40))),
-        Math.abs(noise2D(x / (RENDER ? 300 : 30), y / (RENDER ? 300 : 30)))
-      );
-      p.point(p.width / 2 - x, y);
-      p.point(p.width / 2 + x, y);
+    positions.push([0, 0]);
+    positions.push([p.width, 0]);
+    positions.push([p.width, p.height]);
+    positions.push([0, p.height]);
+    positions.push(
+      polarToCartesian(
+        p.width / 2,
+        p.height / 2,
+        p.TWO_PI * noise(),
+        p.height / 4 + (p.height / 4) * waveLoop(5),
+        true
+      )
+    );
+
+    p.background(hue.value());
+
+    p.loadPixels();
+    for (let x = 0; x < p.width; x++) {
+      for (let y = 0; y < p.height; y++) {
+        const PIX = (x + y * p.width) * 4;
+        const d = positions.reduce(
+          (prev, curr) => prev * (p.dist(x, y, ...curr) / maxDist),
+          1
+        );
+        const s = Math.abs(
+          noise2D(x / (RENDER ? 1000 : 100), y / (RENDER ? 1000 : 100))
+        );
+        const l = 1 - slope(d) * (1 - s);
+        const color = p.color(Math.abs(noise()), s, l);
+
+        p.pixels[PIX + 0] = p.red(color);
+        p.pixels[PIX + 1] = p.green(color);
+        p.pixels[PIX + 2] = p.blue(color);
+        p.pixels[PIX + 3] = 255;
+      }
     }
-
-    // DRAW
+    p.updatePixels();
 
     p.frameCount % 100 === 0 &&
       console.info(`${p.ceil(progress * 100)}% | ${p.frameCount}/${FRAMES}`);
 
-    // if (RENDER && p.frameCount <= FRAMES) {
-    //   p.save(
-    //     `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
-    //   );
-    // }
-
-    if (p.frameCount === FRAMES) {
-      p.noLoop();
+    if (RENDER && p.frameCount <= FRAMES) {
+      p.save(
+        `${String(p.frameCount).padStart(String(FRAMES).length, "0")}.png`
+      );
     }
   };
 };
