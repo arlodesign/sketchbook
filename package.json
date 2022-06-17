@@ -64,7 +64,7 @@
     "coordinate-systems": "^2.0.0",
     "get-parabola": "^1.1.9",
     "glitch-canvas": "^1.1.8",
-    "jpeg-js": "^0.4.0",
+    "jpeg-js": "^0.4.4",
     "open-simplex-noise": "^2.3.1",
     "p5": "^1.0.0",
     "p5.createloop": "^0.2.8",
